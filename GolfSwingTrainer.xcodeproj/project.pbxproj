@@ -1,0 +1,1026 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
+		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
+		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
+		FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109092C91265D00F074C8 /* Preview Assets.xcassets */; };
+		FE0109142C91265D00F074C8 /* GolfSwingTrainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109132C91265D00F074C8 /* GolfSwingTrainerTests.swift */; };
+		FE01091E2C91265D00F074C8 /* GolfSwingTrainerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01091D2C91265D00F074C8 /* GolfSwingTrainerUITests.swift */; };
+		FE0109202C91265D00F074C8 /* GolfSwingTrainerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01091F2C91265D00F074C8 /* GolfSwingTrainerUITestsLaunchTests.swift */; };
+		FE0109262C91265D00F074C8 /* GolfSwingTrainer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = FE0109252C91265D00F074C8 /* GolfSwingTrainer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */; };
+		FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01092C2C91265D00F074C8 /* ContentView.swift */; };
+		FE01092F2C91265E00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE01092E2C91265E00F074C8 /* Assets.xcassets */; };
+		FE0109322C91265E00F074C8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109312C91265E00F074C8 /* Preview Assets.xcassets */; };
+		FE01093C2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01093B2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift */; };
+		FE0109462C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109452C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift */; };
+		FE0109482C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109472C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE0109102C91265D00F074C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE0108F72C91265C00F074C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE0108FE2C91265C00F074C8;
+			remoteInfo = GolfSwingTrainer;
+		};
+		FE01091A2C91265D00F074C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE0108F72C91265C00F074C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE0108FE2C91265C00F074C8;
+			remoteInfo = GolfSwingTrainer;
+		};
+		FE0109272C91265D00F074C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE0108F72C91265C00F074C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE0109242C91265D00F074C8;
+			remoteInfo = "GolfSwingTrainer Watch App";
+		};
+		FE0109382C91265E00F074C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE0108F72C91265C00F074C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE0109242C91265D00F074C8;
+			remoteInfo = "GolfSwingTrainer Watch App";
+		};
+		FE0109422C91265E00F074C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE0108F72C91265C00F074C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE0109242C91265D00F074C8;
+			remoteInfo = "GolfSwingTrainer Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FE01094E2C91265E00F074C8 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				FE0109262C91265D00F074C8 /* GolfSwingTrainer Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
+		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE0109062C91265D00F074C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE0109092C91265D00F074C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FE01090F2C91265D00F074C8 /* GolfSwingTrainerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolfSwingTrainerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE0109132C91265D00F074C8 /* GolfSwingTrainerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerTests.swift; sourceTree = "<group>"; };
+		FE0109192C91265D00F074C8 /* GolfSwingTrainerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GolfSwingTrainerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE01091D2C91265D00F074C8 /* GolfSwingTrainerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerUITests.swift; sourceTree = "<group>"; };
+		FE01091F2C91265D00F074C8 /* GolfSwingTrainerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE0109252C91265D00F074C8 /* GolfSwingTrainer Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GolfSwingTrainer Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
+		FE01092C2C91265D00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FE01092E2C91265E00F074C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE0109312C91265E00F074C8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FE0109372C91265E00F074C8 /* GolfSwingTrainer Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GolfSwingTrainer Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE01093B2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainer_Watch_AppTests.swift; sourceTree = "<group>"; };
+		FE0109412C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GolfSwingTrainer Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE0109452C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainer_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		FE0109472C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE0108FC2C91265C00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01090C2C91265D00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109162C91265D00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109222C91265D00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109342C91265E00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01093E2C91265E00F074C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FE0108F62C91265C00F074C8 = {
+			isa = PBXGroup;
+			children = (
+				FE0109012C91265C00F074C8 /* GolfSwingTrainer */,
+				FE0109122C91265D00F074C8 /* GolfSwingTrainerTests */,
+				FE01091C2C91265D00F074C8 /* GolfSwingTrainerUITests */,
+				FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */,
+				FE01093A2C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */,
+				FE0109442C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */,
+				FE0109002C91265C00F074C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FE0109002C91265C00F074C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */,
+				FE01090F2C91265D00F074C8 /* GolfSwingTrainerTests.xctest */,
+				FE0109192C91265D00F074C8 /* GolfSwingTrainerUITests.xctest */,
+				FE0109252C91265D00F074C8 /* GolfSwingTrainer Watch App.app */,
+				FE0109372C91265E00F074C8 /* GolfSwingTrainer Watch AppTests.xctest */,
+				FE0109412C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
+				FE0109042C91265C00F074C8 /* ContentView.swift */,
+				FE0109062C91265D00F074C8 /* Assets.xcassets */,
+				FE0109082C91265D00F074C8 /* Preview Content */,
+			);
+			path = GolfSwingTrainer;
+			sourceTree = "<group>";
+		};
+		FE0109082C91265D00F074C8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109092C91265D00F074C8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FE0109122C91265D00F074C8 /* GolfSwingTrainerTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109132C91265D00F074C8 /* GolfSwingTrainerTests.swift */,
+			);
+			path = GolfSwingTrainerTests;
+			sourceTree = "<group>";
+		};
+		FE01091C2C91265D00F074C8 /* GolfSwingTrainerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FE01091D2C91265D00F074C8 /* GolfSwingTrainerUITests.swift */,
+				FE01091F2C91265D00F074C8 /* GolfSwingTrainerUITestsLaunchTests.swift */,
+			);
+			path = GolfSwingTrainerUITests;
+			sourceTree = "<group>";
+		};
+		FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */,
+				FE01092C2C91265D00F074C8 /* ContentView.swift */,
+				FE01092E2C91265E00F074C8 /* Assets.xcassets */,
+				FE0109302C91265E00F074C8 /* Preview Content */,
+			);
+			path = "GolfSwingTrainer Watch App";
+			sourceTree = "<group>";
+		};
+		FE0109302C91265E00F074C8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109312C91265E00F074C8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FE01093A2C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE01093B2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift */,
+			);
+			path = "GolfSwingTrainer Watch AppTests";
+			sourceTree = "<group>";
+		};
+		FE0109442C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109452C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift */,
+				FE0109472C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "GolfSwingTrainer Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FE0108FE2C91265C00F074C8 /* GolfSwingTrainer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE01094F2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer" */;
+			buildPhases = (
+				FE0108FB2C91265C00F074C8 /* Sources */,
+				FE0108FC2C91265C00F074C8 /* Frameworks */,
+				FE0108FD2C91265C00F074C8 /* Resources */,
+				FE01094E2C91265E00F074C8 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE0109282C91265D00F074C8 /* PBXTargetDependency */,
+			);
+			name = GolfSwingTrainer;
+			productName = GolfSwingTrainer;
+			productReference = FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE01090E2C91265D00F074C8 /* GolfSwingTrainerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE0109522C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainerTests" */;
+			buildPhases = (
+				FE01090B2C91265D00F074C8 /* Sources */,
+				FE01090C2C91265D00F074C8 /* Frameworks */,
+				FE01090D2C91265D00F074C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE0109112C91265D00F074C8 /* PBXTargetDependency */,
+			);
+			name = GolfSwingTrainerTests;
+			productName = GolfSwingTrainerTests;
+			productReference = FE01090F2C91265D00F074C8 /* GolfSwingTrainerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE0109182C91265D00F074C8 /* GolfSwingTrainerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE0109552C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainerUITests" */;
+			buildPhases = (
+				FE0109152C91265D00F074C8 /* Sources */,
+				FE0109162C91265D00F074C8 /* Frameworks */,
+				FE0109172C91265D00F074C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE01091B2C91265D00F074C8 /* PBXTargetDependency */,
+			);
+			name = GolfSwingTrainerUITests;
+			productName = GolfSwingTrainerUITests;
+			productReference = FE0109192C91265D00F074C8 /* GolfSwingTrainerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		FE0109242C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE01094B2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch App" */;
+			buildPhases = (
+				FE0109212C91265D00F074C8 /* Sources */,
+				FE0109222C91265D00F074C8 /* Frameworks */,
+				FE0109232C91265D00F074C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GolfSwingTrainer Watch App";
+			productName = "GolfSwingTrainer Watch App";
+			productReference = FE0109252C91265D00F074C8 /* GolfSwingTrainer Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FE0109362C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE0109582C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch AppTests" */;
+			buildPhases = (
+				FE0109332C91265E00F074C8 /* Sources */,
+				FE0109342C91265E00F074C8 /* Frameworks */,
+				FE0109352C91265E00F074C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE0109392C91265E00F074C8 /* PBXTargetDependency */,
+			);
+			name = "GolfSwingTrainer Watch AppTests";
+			productName = "GolfSwingTrainer Watch AppTests";
+			productReference = FE0109372C91265E00F074C8 /* GolfSwingTrainer Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FE0109402C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE01095B2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch AppUITests" */;
+			buildPhases = (
+				FE01093D2C91265E00F074C8 /* Sources */,
+				FE01093E2C91265E00F074C8 /* Frameworks */,
+				FE01093F2C91265E00F074C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE0109432C91265E00F074C8 /* PBXTargetDependency */,
+			);
+			name = "GolfSwingTrainer Watch AppUITests";
+			productName = "GolfSwingTrainer Watch AppUITests";
+			productReference = FE0109412C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE0108F72C91265C00F074C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					FE0108FE2C91265C00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					FE01090E2C91265D00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = FE0108FE2C91265C00F074C8;
+					};
+					FE0109182C91265D00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = FE0108FE2C91265C00F074C8;
+					};
+					FE0109242C91265D00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					FE0109362C91265E00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = FE0109242C91265D00F074C8;
+					};
+					FE0109402C91265E00F074C8 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = FE0109242C91265D00F074C8;
+					};
+				};
+			};
+			buildConfigurationList = FE0108FA2C91265C00F074C8 /* Build configuration list for PBXProject "GolfSwingTrainer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FE0108F62C91265C00F074C8;
+			productRefGroup = FE0109002C91265C00F074C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE0108FE2C91265C00F074C8 /* GolfSwingTrainer */,
+				FE01090E2C91265D00F074C8 /* GolfSwingTrainerTests */,
+				FE0109182C91265D00F074C8 /* GolfSwingTrainerUITests */,
+				FE0109242C91265D00F074C8 /* GolfSwingTrainer Watch App */,
+				FE0109362C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */,
+				FE0109402C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FE0108FD2C91265C00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */,
+				FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01090D2C91265D00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109172C91265D00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109232C91265D00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE0109322C91265E00F074C8 /* Preview Assets.xcassets in Resources */,
+				FE01092F2C91265E00F074C8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109352C91265E00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01093F2C91265E00F074C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE0108FB2C91265C00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
+				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01090B2C91265D00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE0109142C91265D00F074C8 /* GolfSwingTrainerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109152C91265D00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE01091E2C91265D00F074C8 /* GolfSwingTrainerUITests.swift in Sources */,
+				FE0109202C91265D00F074C8 /* GolfSwingTrainerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109212C91265D00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
+				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE0109332C91265E00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE01093C2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE01093D2C91265E00F074C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE0109462C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift in Sources */,
+				FE0109482C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE0109112C91265D00F074C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE0108FE2C91265C00F074C8 /* GolfSwingTrainer */;
+			targetProxy = FE0109102C91265D00F074C8 /* PBXContainerItemProxy */;
+		};
+		FE01091B2C91265D00F074C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE0108FE2C91265C00F074C8 /* GolfSwingTrainer */;
+			targetProxy = FE01091A2C91265D00F074C8 /* PBXContainerItemProxy */;
+		};
+		FE0109282C91265D00F074C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE0109242C91265D00F074C8 /* GolfSwingTrainer Watch App */;
+			targetProxy = FE0109272C91265D00F074C8 /* PBXContainerItemProxy */;
+		};
+		FE0109392C91265E00F074C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE0109242C91265D00F074C8 /* GolfSwingTrainer Watch App */;
+			targetProxy = FE0109382C91265E00F074C8 /* PBXContainerItemProxy */;
+		};
+		FE0109432C91265E00F074C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE0109242C91265D00F074C8 /* GolfSwingTrainer Watch App */;
+			targetProxy = FE0109422C91265E00F074C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FE0109492C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FE01094A2C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		FE01094C2C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		FE01094D2C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		FE0109502C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FE0109512C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE0109532C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolfSwingTrainer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GolfSwingTrainer";
+			};
+			name = Debug;
+		};
+		FE0109542C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolfSwingTrainer.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GolfSwingTrainer";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE0109562C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GolfSwingTrainer;
+			};
+			name = Debug;
+		};
+		FE0109572C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GolfSwingTrainer;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FE0109592C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolfSwingTrainer Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GolfSwingTrainer Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		FE01095A2C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GolfSwingTrainer Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/GolfSwingTrainer Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+		FE01095C2C91265E00F074C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "GolfSwingTrainer Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Debug;
+		};
+		FE01095D2C91265E00F074C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "GolfSwingTrainer Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FE0108FA2C91265C00F074C8 /* Build configuration list for PBXProject "GolfSwingTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE0109492C91265E00F074C8 /* Debug */,
+				FE01094A2C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE01094B2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE01094C2C91265E00F074C8 /* Debug */,
+				FE01094D2C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE01094F2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE0109502C91265E00F074C8 /* Debug */,
+				FE0109512C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE0109522C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE0109532C91265E00F074C8 /* Debug */,
+				FE0109542C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE0109552C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE0109562C91265E00F074C8 /* Debug */,
+				FE0109572C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE0109582C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE0109592C91265E00F074C8 /* Debug */,
+				FE01095A2C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE01095B2C91265E00F074C8 /* Build configuration list for PBXNativeTarget "GolfSwingTrainer Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE01095C2C91265E00F074C8 /* Debug */,
+				FE01095D2C91265E00F074C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FE0108F72C91265C00F074C8 /* Project object */;
+}
