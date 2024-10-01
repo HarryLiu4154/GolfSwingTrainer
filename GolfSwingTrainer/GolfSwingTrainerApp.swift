@@ -11,7 +11,9 @@ import SwiftUI
 struct GolfSwingTrainerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                ProgressView()
+            }
         }
     }
 }
