@@ -10,6 +10,9 @@
 		0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */; };
 		0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0492CAC69800035E5E5 /* ProgressView.swift */; };
 		0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */; };
+		BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */; };
+		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
+		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -83,6 +86,9 @@
 		0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionComponentView.swift; sourceTree = "<group>"; };
 		0AB5E0492CAC69800035E5E5 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailsView.swift; sourceTree = "<group>"; };
+		BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolBar.swift; sourceTree = "<group>"; };
+		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +175,32 @@
 			path = Progress;
 			sourceTree = "<group>";
 		};
+		BC0583D22CADACD20018E9C1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC0583D92CADD7940018E9C1 /* Session */,
+				BC0583D32CADACD90018E9C1 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC0583D32CADACD90018E9C1 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */,
+				BC0583D72CADD7190018E9C1 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BC0583D92CADD7940018E9C1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		FE0108F62C91265C00F074C8 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +267,7 @@
 		FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BC0583D22CADACD20018E9C1 /* Views */,
 				FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */,
 				FE01092C2C91265D00F074C8 /* ContentView.swift */,
 				FE01092E2C91265E00F074C8 /* Assets.xcassets */,
@@ -519,6 +552,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */,
+				BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */,
+				BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */,
 				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
 				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 			);
