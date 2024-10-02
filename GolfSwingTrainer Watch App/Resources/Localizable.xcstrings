@@ -1,7 +1,39 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
 
+    },
+    "Account" : {
+
+    },
+    "David" : {
+
+    },
+    "Email" : {
+
+    },
+    "Hello, world!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Home" : {
+
+    },
+    "January 2021" : {
+
+    },
+    "Member Since" : {
+
+    },
+    "test@test.com" : {
+
+    },
+    "Username" : {
+
+    }
   },
   "version" : "1.0"
 }

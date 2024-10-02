@@ -1,9 +1,27 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Email" : {
+
+    },
     "Golf Swing Trainer" : {
       "comment" : "App title.",
       "extractionState" : "manual"
+    },
+    "Hello, world!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Password" : {
+
+    },
+    "Register" : {
+
+    },
+    "Sign In" : {
+
     }
   },
   "version" : "1.0"
