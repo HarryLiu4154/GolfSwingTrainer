@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchKit /* https://developer.apple.com/documentation/watchkit/ */
 
 struct ContentView: View {
     var body: some View {

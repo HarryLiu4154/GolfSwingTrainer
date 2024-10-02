@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0583B82CAD0A830018E9C1 /* CloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583B72CAD0A830018E9C1 /* CloudView.swift */; };
+		BC3B15DE2CAC37FE00E06EB9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC3B15DD2CAC37FE00E06EB9 /* Localizable.xcstrings */; };
+		BC3B15E12CAC43BA00E06EB9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC3B15E02CAC43BA00E06EB9 /* GoogleService-Info.plist */; };
+		BC3B15E52CAC4BEC00E06EB9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3B15E42CAC4BDD00E06EB9 /* LoginViewModel.swift */; };
+		BC3B15E72CAC4CA900E06EB9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3B15E62CAC4CA900E06EB9 /* LoginView.swift */; };
+		BC3B15E92CAC4EA100E06EB9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC3B15E82CAC4EA100E06EB9 /* Localizable.xcstrings */; };
+		BC48A1512C978D3F00223ADE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC48A1502C978D3E00223ADE /* HomeView.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -77,6 +84,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC0583B72CAD0A830018E9C1 /* CloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudView.swift; sourceTree = "<group>"; };
+		BC3B15DD2CAC37FE00E06EB9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BC3B15E02CAC43BA00E06EB9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC3B15E42CAC4BDD00E06EB9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BC3B15E62CAC4CA900E06EB9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		BC3B15E82CAC4EA100E06EB9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BC48A1502C978D3E00223ADE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -145,6 +159,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC3B15DB2CAC353300E06EB9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE01092C2C91265D00F074C8 /* ContentView.swift */,
+				BC48A1502C978D3E00223ADE /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC3B15DC2CAC37C900E06EB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC3B15DD2CAC37FE00E06EB9 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BC3B15DF2CAC438B00E06EB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC3B15E82CAC4EA100E06EB9 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BC3B15E22CAC4AE900E06EB9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE0109042C91265C00F074C8 /* ContentView.swift */,
+				BC3B15E62CAC4CA900E06EB9 /* LoginView.swift */,
+				BC0583B72CAD0A830018E9C1 /* CloudView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC3B15E32CAC4BA200E06EB9 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BC3B15E42CAC4BDD00E06EB9 /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		FE0108F62C91265C00F074C8 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +212,7 @@
 				FE01093A2C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */,
 				FE0109442C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */,
 				FE0109002C91265C00F074C8 /* Products */,
+				BC3B15E02CAC43BA00E06EB9 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -174,8 +232,10 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				BC3B15E32CAC4BA200E06EB9 /* ViewModels */,
+				BC3B15E22CAC4AE900E06EB9 /* Views */,
+				BC3B15DF2CAC438B00E06EB9 /* Resources */,
 				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
-				FE0109042C91265C00F074C8 /* ContentView.swift */,
 				FE0109062C91265D00F074C8 /* Assets.xcassets */,
 				FE0109082C91265D00F074C8 /* Preview Content */,
 			);
@@ -210,9 +270,10 @@
 		FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BC3B15DB2CAC353300E06EB9 /* Views */,
 				FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */,
-				FE01092C2C91265D00F074C8 /* ContentView.swift */,
 				FE01092E2C91265E00F074C8 /* Assets.xcassets */,
+				BC3B15DC2CAC37C900E06EB9 /* Resources */,
 				FE0109302C91265E00F074C8 /* Preview Content */,
 			);
 			path = "GolfSwingTrainer Watch App";
@@ -418,6 +479,8 @@
 			files = (
 				FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */,
+				BC3B15E92CAC4EA100E06EB9 /* Localizable.xcstrings in Resources */,
+				BC3B15E12CAC43BA00E06EB9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +504,7 @@
 			files = (
 				FE0109322C91265E00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE01092F2C91265E00F074C8 /* Assets.xcassets in Resources */,
+				BC3B15DE2CAC37FE00E06EB9 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +531,9 @@
 			files = (
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
+				BC3B15E72CAC4CA900E06EB9 /* LoginView.swift in Sources */,
+				BC0583B82CAD0A830018E9C1 /* CloudView.swift in Sources */,
+				BC3B15E52CAC4BEC00E06EB9 /* LoginViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC48A1512C978D3F00223ADE /* HomeView.swift in Sources */,
 				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
 				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 			);
@@ -602,6 +670,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -658,6 +727,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
@@ -688,7 +758,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -719,7 +789,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -741,7 +811,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -774,7 +845,8 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=iphoneos*]" = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -933,7 +1005,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "GolfSwingTrainer Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -954,7 +1026,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "GolfSwingTrainer Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.5;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};

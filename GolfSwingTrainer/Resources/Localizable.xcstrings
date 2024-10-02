@@ -1,0 +1,10 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Golf Swing Trainer" : {
+      "comment" : "App title.",
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.0"
+}

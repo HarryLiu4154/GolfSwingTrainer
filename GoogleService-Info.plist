@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDaxxdOWEMQ4dy0SSDTsW_AAlRTRnEfAqU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>802707746777</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer</string>
+	<key>PROJECT_ID</key>
+	<string>golf-swing-trainer-5bfd3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>golf-swing-trainer-5bfd3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:802707746777:ios:ef171ef55ebcfae2cef3c8</string>
+</dict>
+</plist>
