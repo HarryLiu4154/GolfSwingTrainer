@@ -16,7 +16,8 @@ struct HomeView: View {
             ZStack {
                 // Horizontal Scrolling Views
                 TabView {
-                    ContentView()
+                    ContentView()//most recent stuff
+                    //add vert scrolling per view
                     AnalyticsView()
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Horizontal swiping without dots
