@@ -1,7 +1,45 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Distance" : {
 
+    },
+    "Distance Metadata" : {
+
+    },
+    "Email" : {
+
+    },
+    "Hello, world!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Password" : {
+
+    },
+    "Register" : {
+
+    },
+    "Sign In" : {
+
+    },
+    "Stance" : {
+
+    },
+    "Stance Metadata" : {
+
+    },
+    "Swing" : {
+
+    },
+    "Swing Metadata" : {
+
+    },
+    "Your Progress" : {
+
+    }
   },
   "version" : "1.0"
 }
