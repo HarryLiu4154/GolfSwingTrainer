@@ -4,6 +4,9 @@
 
 ## User settings
 xcuserdata/
+*/UserInterfaceState.xcuserstate
+GolfSwingTrainer.xcodeproj/project.xcworkspace/xcuserdata/
+GolfSwingTrainer.xcodeproj/xcuserdata/davidromero.xcuserdatad/xcschemes/
 
 ## Obj-C/Swift specific
 *.hmap
