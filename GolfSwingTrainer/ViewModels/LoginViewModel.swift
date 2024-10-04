@@ -18,7 +18,11 @@ class LoginViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var errorMessage: String = ""
-    @Published private var isLoggedIn = false
+    
+    private var appState: AppState
+    init(appState: AppState) {
+            self.appState = appState
+        }
     
     //Register new user
     func register(){
@@ -27,6 +31,7 @@ class LoginViewModel: ObservableObject {
                 self.errorMessage = error.localizedDescription
             } else {
                 self.errorMessage = "Account created successfully!"
+                self.appState.isLoggedIn = true // Automatically log in upon successful registration
             }
         }
     }
@@ -37,9 +42,11 @@ class LoginViewModel: ObservableObject {
             if let error = error {
                 self.errorMessage = error.localizedDescription
             } else {
-                self.isLoggedIn = true
+                //self.isLoggedIn = true
+                self.appState.isLoggedIn = true // Update app state on successful login
                 self.errorMessage = ""
             }
         }
     }
 }
+

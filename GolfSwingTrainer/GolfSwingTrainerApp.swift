@@ -15,19 +15,24 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
-
     return true
   }
 }
 
 @main
 struct GolfSwingTrainerApp: App {
+    @StateObject var appState = AppState() // Track login status
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack{
-                //rogressView()
-                LoginView()
+                if appState.isLoggedIn {
+                    ProgressView().environmentObject(appState) //TODO: Insert home screen here
+                }else{
+                    LoginView(appState: appState).environmentObject(appState)
+                }
+                
             }
         }
     }

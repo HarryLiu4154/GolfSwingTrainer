@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var viewModel = LoginViewModel()
+    @EnvironmentObject var appState: AppState
+    @StateObject private var viewModel: LoginViewModel
+    
+    init(appState: AppState) {
+            // Initialize the ViewModel with the shared appState environment object
+            _viewModel = StateObject(wrappedValue: LoginViewModel(appState: appState))
+        }
     
     var body: some View {
         NavigationStack{
@@ -54,11 +60,14 @@ struct LoginView: View {
                         .cornerRadius(8)
                 }
             }.padding()
+            
+            
+            
         } //NavigationStack
     } //Body
 } //struct
 
 
 #Preview {
-    LoginView()
+    
 }

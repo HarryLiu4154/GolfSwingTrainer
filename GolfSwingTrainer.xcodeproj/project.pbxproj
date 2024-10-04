@@ -21,6 +21,7 @@
 		BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC8802CAF7F7500E5FC48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BC1CC87F2CAF7F7500E5FC48 /* FirebaseAuth */; };
+		BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8812CAF92DB00E5FC48 /* AppState.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 		BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC1CC8812CAF92DB00E5FC48 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				BC1CC8732CAF32FE00E5FC48 /* Authentication */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
+				FE0109042C91265C00F074C8 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				BC1CC8712CAF326300E5FC48 /* Localizable.xcstrings */,
+				FE0109062C91265D00F074C8 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -248,6 +252,14 @@
 				BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FE0108F62C91265C00F074C8 = {
@@ -279,12 +291,11 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				BC1CC8832CAF97EA00E5FC48 /* Models */,
+				0AB5E0452CAC68630035E5E5 /* Views */,
 				BC1CC8762CAF34D800E5FC48 /* ViewModels */,
 				BC1CC8702CAF324B00E5FC48 /* Resources */,
-				0AB5E0452CAC68630035E5E5 /* Views */,
 				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
-				FE0109042C91265C00F074C8 /* ContentView.swift */,
-				FE0109062C91265D00F074C8 /* Assets.xcassets */,
 				BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */,
 				FE0109082C91265D00F074C8 /* Preview Content */,
 			);
@@ -586,6 +597,7 @@
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
+				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
