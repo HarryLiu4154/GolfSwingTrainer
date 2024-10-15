@@ -12,7 +12,7 @@ struct HomeToolBar: View {
     var body: some View {
         NavigationStack{
                     ScrollView (.horizontal){
-                        Text("")
+                        Text(String(localized: ""))
                             .toolbar {
                                 ToolbarItem(placement: .topBarLeading) {
                                     NavigationLink {
@@ -54,7 +54,7 @@ struct HomeToolBar: View {
                             }
                     }
                     
-                }.navigationTitle("Home")
+        }.navigationTitle(String(localized: "Home"))
     }
 }
 

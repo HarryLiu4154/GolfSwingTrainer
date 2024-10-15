@@ -1,7 +1,57 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Day" : {
+      "extractionState" : "manual"
+    },
+    "Distance" : {
 
+    },
+    "Distance Metadata" : {
+
+    },
+    "Email" : {
+
+    },
+    "Hello, world!" : {
+
+    },
+    "Hello, World!" : {
+
+    },
+    "Month" : {
+      "extractionState" : "manual"
+    },
+    "Password" : {
+
+    },
+    "Register" : {
+
+    },
+    "Sign In" : {
+
+    },
+    "Stance" : {
+
+    },
+    "Stance Metadata" : {
+
+    },
+    "Swing" : {
+
+    },
+    "Swing Metadata" : {
+
+    },
+    "Week" : {
+      "extractionState" : "manual"
+    },
+    "Year" : {
+      "extractionState" : "manual"
+    },
+    "Your Progress" : {
+
+    }
   },
   "version" : "1.0"
 }

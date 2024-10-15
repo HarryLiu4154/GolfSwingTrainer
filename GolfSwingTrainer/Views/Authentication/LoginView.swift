@@ -15,7 +15,7 @@ struct LoginView: View {
             VStack(spacing: 20){
                 
                 //Email
-                TextField("Email", text: $viewModel.email)
+                TextField(String(localized: "Email"), text: $viewModel.email)
                     .autocapitalization(.none)
                     .keyboardType(.emailAddress)
                     .padding()
@@ -23,7 +23,7 @@ struct LoginView: View {
                     .cornerRadius(8)
                 
                 //Password
-                SecureField("Password", text: $viewModel.password)
+                SecureField(String(localized: "Password"), text: $viewModel.password)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(8)
@@ -36,7 +36,7 @@ struct LoginView: View {
                 Button(action: {
                     viewModel.signIn()
                 }) {
-                    Text("Sign In")
+                    Text(String(localized: "Sign In"))
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.blue)
@@ -46,7 +46,7 @@ struct LoginView: View {
                 Button(action: {
                     viewModel.register()
                 }) {
-                    Text("Register")
+                    Text(String(localized: "Register"))
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color.green)
