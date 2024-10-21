@@ -25,6 +25,12 @@
 		FE01093C2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE01093B2C91265E00F074C8 /* GolfSwingTrainer_Watch_AppTests.swift */; };
 		FE0109462C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109452C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift */; };
 		FE0109482C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109472C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift */; };
+		FE94B8A62CAD1281005CF679 /* CustomBottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8A52CAD127B005CF679 /* CustomBottomNavigation.swift */; };
+		FE94B8A82CAD1828005CF679 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8A72CAD1825005CF679 /* HomeView.swift */; };
+		FE94B8AA2CAD1832005CF679 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8A92CAD182F005CF679 /* TrackerView.swift */; };
+		FE94B8AC2CAD26C7005CF679 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */; };
+		FE94B8AE2CAD26D0005CF679 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */; };
+		FE98BD302CC6EA5D0095FF08 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98BD2F2CC6EA4B0095FF08 /* MotionData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +109,12 @@
 		FE0109412C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GolfSwingTrainer Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109452C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainer_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		FE0109472C91265E00F074C8 /* GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainer_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FE94B8A52CAD127B005CF679 /* CustomBottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBottomNavigation.swift; sourceTree = "<group>"; };
+		FE94B8A72CAD1825005CF679 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FE94B8A92CAD182F005CF679 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
+		FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		FE98BD2F2CC6EA4B0095FF08 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +166,11 @@
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */,
+				FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */,
+				FE94B8A92CAD182F005CF679 /* TrackerView.swift */,
+				FE94B8A72CAD1825005CF679 /* HomeView.swift */,
+				FE94B8A52CAD127B005CF679 /* CustomBottomNavigation.swift */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
 			);
 			path = Views;
@@ -198,6 +215,7 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				FE98BD2F2CC6EA4B0095FF08 /* MotionData.swift */,
 				0AB5E0452CAC68630035E5E5 /* Views */,
 				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
 				FE0109042C91265C00F074C8 /* ContentView.swift */,
@@ -490,11 +508,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE94B8AE2CAD26D0005CF679 /* FriendsView.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
+				FE94B8A82CAD1828005CF679 /* HomeView.swift in Sources */,
+				FE94B8AA2CAD1832005CF679 /* TrackerView.swift in Sources */,
+				FE94B8AC2CAD26C7005CF679 /* SettingsView.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
+				FE94B8A62CAD1281005CF679 /* CustomBottomNavigation.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
+				FE98BD302CC6EA5D0095FF08 /* MotionData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

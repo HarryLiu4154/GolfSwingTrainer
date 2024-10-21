@@ -8,14 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var index = 0
+    
+    init () {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            switch index {
+                case 0:
+                    HomeView()
+                case 1:
+                    TrackerView()
+                case 2:
+                    FriendsView()
+                case 3:
+                    SettingsView()
+                default:
+                    HomeView()
+            }
+            
+            Spacer()
+            
+            CustomBottomNavigation(index: self.$index)
         }
-        .padding()
+        .background(Color.white.edgesIgnoringSafeArea(.top))
+        .ignoresSafeArea(.all, edges: .bottom)
     }
 }
 
