@@ -10,6 +10,9 @@
 		0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */; };
 		0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0492CAC69800035E5E5 /* ProgressView.swift */; };
 		0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */; };
+		0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA582CBEC953007D10AA /* SessionView.swift */; };
+		0AB7CA5B2CBECEE0007D10AA /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */; };
+		0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */; };
 		BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */; };
 		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
 		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
@@ -91,6 +94,9 @@
 		0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionComponentView.swift; sourceTree = "<group>"; };
 		0AB5E0492CAC69800035E5E5 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailsView.swift; sourceTree = "<group>"; };
+		0AB7CA582CBEC953007D10AA /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
+		0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingVideoCaptureDelegate.swift; sourceTree = "<group>"; };
 		BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolBar.swift; sourceTree = "<group>"; };
 		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0AB7CA572CBEC914007D10AA /* Session */,
 				BC1CC8732CAF32FE00E5FC48 /* Authentication */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
 			);
@@ -184,6 +191,30 @@
 				0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */,
 			);
 			path = Progress;
+			sourceTree = "<group>";
+		};
+		0AB7CA572CBEC914007D10AA /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				0AB7CA582CBEC953007D10AA /* SessionView.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		0AB7CA5C2CBFE4EB007D10AA /* BLL */ = {
+			isa = PBXGroup;
+			children = (
+				0AB7CA5D2CBFE4F8007D10AA /* SwingAnalyzer */,
+			);
+			path = BLL;
+			sourceTree = "<group>";
+		};
+		0AB7CA5D2CBFE4F8007D10AA /* SwingAnalyzer */ = {
+			isa = PBXGroup;
+			children = (
+				0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */,
+			);
+			path = SwingAnalyzer;
 			sourceTree = "<group>";
 		};
 		BC0583D22CADACD20018E9C1 /* Views */ = {
@@ -241,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */,
+				0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -274,6 +306,7 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				0AB7CA5C2CBFE4EB007D10AA /* BLL */,
 				BC1CC8762CAF34D800E5FC48 /* ViewModels */,
 				BC1CC8702CAF324B00E5FC48 /* Resources */,
 				0AB5E0452CAC68630035E5E5 /* Views */,
@@ -573,12 +606,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
+				0AB7CA5B2CBECEE0007D10AA /* SessionViewModel.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
+				0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* LoginViewModel.swift in Sources */,
+				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -854,6 +890,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -887,6 +924,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
