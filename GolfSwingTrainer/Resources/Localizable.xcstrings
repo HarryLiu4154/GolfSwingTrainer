@@ -1,9 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+<<<<<<< HEAD
     "Day" : {
       "extractionState" : "manual"
     },
+=======
+>>>>>>> adolfo
     "Distance" : {
 
     },
@@ -19,9 +22,12 @@
     "Hello, World!" : {
 
     },
+<<<<<<< HEAD
     "Month" : {
       "extractionState" : "manual"
     },
+=======
+>>>>>>> adolfo
     "Password" : {
 
     },
@@ -43,12 +49,15 @@
     "Swing Metadata" : {
 
     },
+<<<<<<< HEAD
     "Week" : {
       "extractionState" : "manual"
     },
     "Year" : {
       "extractionState" : "manual"
     },
+=======
+>>>>>>> adolfo
     "Your Progress" : {
 
     }

@@ -18,6 +18,10 @@
 		BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8742CAF336700E5FC48 /* LoginView.swift */; };
 		BC1CC8782CAF351E00E5FC48 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */; };
 		BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */; };
+		BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
+		BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
+		BC1CC8802CAF7F7500E5FC48 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BC1CC87F2CAF7F7500E5FC48 /* FirebaseAuth */; };
+		BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8812CAF92DB00E5FC48 /* AppState.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -99,6 +103,8 @@
 		BC1CC8742CAF336700E5FC48 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC1CC8812CAF92DB00E5FC48 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1CC8802CAF7F7500E5FC48 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +179,7 @@
 			children = (
 				BC1CC8732CAF32FE00E5FC48 /* Authentication */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
+				FE0109042C91265C00F074C8 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				BC1CC8712CAF326300E5FC48 /* Localizable.xcstrings */,
+				FE0109062C91265D00F074C8 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -243,6 +252,14 @@
 				BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		FE0108F62C91265C00F074C8 = {
@@ -274,12 +291,12 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				BC1CC8832CAF97EA00E5FC48 /* Models */,
+				0AB5E0452CAC68630035E5E5 /* Views */,
 				BC1CC8762CAF34D800E5FC48 /* ViewModels */,
 				BC1CC8702CAF324B00E5FC48 /* Resources */,
-				0AB5E0452CAC68630035E5E5 /* Views */,
 				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
-				FE0109042C91265C00F074C8 /* ContentView.swift */,
-				FE0109062C91265D00F074C8 /* Assets.xcassets */,
+				BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */,
 				FE0109082C91265D00F074C8 /* Preview Content */,
 			);
 			path = GolfSwingTrainer;
@@ -502,6 +519,9 @@
 				Base,
 			);
 			mainGroup = FE0108F62C91265C00F074C8;
+			packageReferences = (
+				BC1CC87E2CAF7F7500E5FC48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FE0109002C91265C00F074C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -524,6 +544,7 @@
 				FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */,
 				BC1CC8722CAF326300E5FC48 /* Localizable.xcstrings in Resources */,
+				BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +569,7 @@
 				FE0109322C91265E00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE01092F2C91265E00F074C8 /* Assets.xcassets in Resources */,
 				BC1CC86F2CAF323B00E5FC48 /* Localizable.xcstrings in Resources */,
+				BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +597,7 @@
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
+				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
@@ -788,7 +811,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -818,7 +841,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -850,7 +873,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -883,7 +906,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -915,7 +938,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -936,7 +959,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -957,7 +980,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -977,7 +1000,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -999,7 +1022,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
@@ -1020,7 +1043,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
@@ -1041,7 +1064,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
@@ -1061,7 +1084,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
@@ -1143,6 +1166,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BC1CC87E2CAF7F7500E5FC48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BC1CC87F2CAF7F7500E5FC48 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC1CC87E2CAF7F7500E5FC48 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FE0108F72C91265C00F074C8 /* Project object */;
 }
