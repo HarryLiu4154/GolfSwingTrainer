@@ -48,7 +48,7 @@ struct LoginView: View {
                     
                     //register button
                     NavigationLink{
-                        RegistrationView().navigationBarBackButtonHidden(true)
+                        RegistrationView().navigationBarBackButtonHidden(true).environmentObject(viewModel)
                     }label: {
                         HStack(spacing: 2){
                             Text(String(localized: "Don't have an account?"))
