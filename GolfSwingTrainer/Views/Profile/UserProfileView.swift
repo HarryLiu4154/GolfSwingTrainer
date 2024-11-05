@@ -65,5 +65,5 @@ struct UserProfileView: View {
 
 #Preview {
     
-    UserProfileView()
+    UserProfileView().environmentObject(AuthViewModel())
 }

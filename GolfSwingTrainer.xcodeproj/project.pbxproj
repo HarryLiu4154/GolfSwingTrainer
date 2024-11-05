@@ -31,6 +31,7 @@
 		BCF714472CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714462CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community */; };
 		BCF714492CDAAD7E00BDB798 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714482CDAAD7E00BDB798 /* FirebaseStorage */; };
 		BCF7144B2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BCF7144A2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community */; };
+		BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -118,6 +119,7 @@
 		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
+		BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesInputView.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BCF7144D2CDABB8700BDB798 /* Start Dialog */,
 				BCE638152CD9865800411D5B /* Profile */,
 				BC1CC8732CAF32FE00E5FC48 /* Authentication */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
@@ -297,6 +300,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCF7144D2CDABB8700BDB798 /* Start Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */,
+			);
+			path = "Start Dialog";
 			sourceTree = "<group>";
 		};
 		FE0108F62C91265C00F074C8 = {
@@ -641,6 +652,7 @@
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
 				BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */,
+				BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,

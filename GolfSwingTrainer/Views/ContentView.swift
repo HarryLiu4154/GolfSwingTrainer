@@ -7,8 +7,10 @@
 
 import SwiftUI
 
+//TODO: Rename this file or maybe inject it somewhere else
 struct ContentView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+    
     
     var body: some View {
         Group{
