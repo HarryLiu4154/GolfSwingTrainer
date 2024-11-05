@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         NavigationStack{
@@ -28,22 +29,27 @@ struct LoginView: View {
                     
                     //Sign In Button
                     Button{
-                        print("Logging user in...")
+                        Task{
+                            try await viewModel.signIn(withEmail: email, password: password)
+                        }
                     }label: {
                         HStack{
                             Text("Sign in").fontWeight(.semibold)
                             Image(systemName: "arrow.right")
                         }.foregroundStyle(.white).frame(width: UIScreen.main.bounds.width - 32, height: 48)
-                    }.background(Color(.systemBlue)).clipShape(.buttonBorder).padding(.top, 24)
+                    }
+                    .background(Color(.systemBlue))
+                    .disabled(formIsValid)
+                    .opacity(formIsValid ? 1.0 : 0.5)
+                        .clipShape(.buttonBorder)
+                        .padding(.top, 24)
                     
                     Spacer()
                     
                     //register button
                     NavigationLink{
-                        //
                         RegistrationView().navigationBarBackButtonHidden(true)
                     }label: {
-                        //
                         HStack(spacing: 2){
                             Text(String(localized: "Don't have an account?"))
                             Text(String(localized: "Sign up")).fontWeight(.bold)
@@ -54,8 +60,15 @@ struct LoginView: View {
         }
     }
 }
+extension LoginView: AuthenticationFormProtocol{
+    var formIsValid: Bool{
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+    }
+}
 
 #Preview {
-    //LoginView(appState: AppState())
-    LoginView()
+    LoginView().environmentObject(AuthViewModel())
 }

@@ -13,6 +13,7 @@ struct RegistrationView: View {
     @State private var password = ""
     @State private var confirmPasswword = ""
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
         VStack{
@@ -28,20 +29,43 @@ struct RegistrationView: View {
                 AuthInputComponentView(text: $password, title: "Password", placeHolder: "Enter your password",isSecureField: true)
                 
                 //Re-enter password
-                AuthInputComponentView(text: $confirmPasswword, title: "Confirm Password", placeHolder: "Re-enter your password", isSecureField: true)
+                ZStack(alignment: .trailing){
+                    AuthInputComponentView(text: $confirmPasswword, title: "Confirm Password", placeHolder: "Re-enter your password", isSecureField: true)
+                    
+                    if !password.isEmpty && !confirmPasswword.isEmpty{
+                        if password == confirmPasswword{
+                            Image(systemName: "checkmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color(.systemGreen))
+                        }else{
+                            Image(systemName: "xmark.circle.fill")
+                                .imageScale(.large)
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color(.systemRed))
+                        }
+                    }
+                }
             }
             .padding(.horizontal)
             .padding(.top, 12)
             
             //Register Button
             Button{
-                print("Registering user...")
+                Task{
+                    try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                }
             }label: {
                 HStack{
                     Text(String(localized: "Register")).fontWeight(.semibold)
                     Image(systemName: "arrow.right")
                 }.foregroundStyle(.white).frame(width: UIScreen.main.bounds.width - 32, height: 48)
-            }.background(Color(.systemBlue)).clipShape(.buttonBorder).padding(.top, 24)
+            }
+            .background(Color(.systemBlue))
+            .disabled(!formIsValid)
+            .opacity(formIsValid ? 1.0 : 0.5)
+                .clipShape(.buttonBorder)
+                .padding(.top, 24)
             
             Spacer()
             
@@ -58,7 +82,17 @@ struct RegistrationView: View {
         
     }
 }
+extension RegistrationView: AuthenticationFormProtocol{
+    var formIsValid: Bool{
+        return !email.isEmpty
+        && email.contains("@")
+        && !password.isEmpty
+        && password.count > 5
+        && confirmPasswword == password
+        && !fullName.isEmpty
+    }
+}
 
 #Preview {
-    RegistrationView()
+    RegistrationView().environmentObject(AuthViewModel())
 }
