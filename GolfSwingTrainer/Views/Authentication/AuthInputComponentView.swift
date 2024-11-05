@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AuthInputView: View {
+struct AuthInputComponentView: View {
     @Binding var text: String
     let title: String
     let placeHolder: String
@@ -28,5 +28,5 @@ struct AuthInputView: View {
 
 #Preview {
     
-    AuthInputView(text: .constant(""), title: "Email Address", placeHolder: "Admin@Admin.com")
+    AuthInputComponentView(text: .constant(""), title: "Email Address", placeHolder: "Admin@Admin.com")
 }

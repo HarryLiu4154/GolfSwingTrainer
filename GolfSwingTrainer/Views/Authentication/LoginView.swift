@@ -8,73 +8,54 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject var appState: AppState
-    @StateObject private var viewModel: LoginViewModel
-    @State private var email:String = ""
-    @State private var password: String = ""
-    
-    init(appState: AppState) {
-            // Initialize the ViewModel with the shared appState environment object
-            _viewModel = StateObject(wrappedValue: LoginViewModel(appState: appState))
-        }
+    @State private var email = ""
+    @State private var password = ""
     
     var body: some View {
         NavigationStack{
-            VStack(spacing: 20){
-                //Logo
-                Image("capstone-logo-text").resizable().scaledToFill().frame(height: 200).padding(.vertical, 32)
-                Spacer()
-                
-                //Email
-                AuthInputView(text: $email, title: "Email Address", placeHolder: "Admin@Admin.com")
-                /*TextField(String(localized: "Email"), text: $viewModel.email)
-                    .autocapitalization(.none)
-                    .keyboardType(.emailAddress)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(8)*/
-                
-                //Password
-                AuthInputView(text: $password, title: "Password", placeHolder: "Enter your password")
-                /*SecureField(String(localized: "Password"), text: $viewModel.password)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(8)*/
-                
-                if !viewModel.errorMessage.isEmpty {
-                    Text(viewModel.errorMessage)
-                        .foregroundColor(.red)
+            VStack{
+                VStack{
+                    //Image
+                    Image("capstone-logo-text").resizable().scaledToFill().frame(height: 200).padding(.vertical, 32)
+                    VStack(spacing: 24){
+                        //email
+                        AuthInputComponentView(text: $email, title: String(localized: "Email Address"),placeHolder: "admin@admin.com").textInputAutocapitalization(.none)
+                        
+                        //password
+                        AuthInputComponentView(text: $password, title: String(localized: "Password"),placeHolder: String(localized: "Enter your password"), isSecureField: true)
+                        
+                    }.padding(.horizontal).padding(.top, 12)
+                    
+                    //Sign In Button
+                    Button{
+                        print("Logging user in...")
+                    }label: {
+                        HStack{
+                            Text("Sign in").fontWeight(.semibold)
+                            Image(systemName: "arrow.right")
+                        }.foregroundStyle(.white).frame(width: UIScreen.main.bounds.width - 32, height: 48)
+                    }.background(Color(.systemBlue)).clipShape(.buttonBorder).padding(.top, 24)
+                    
+                    Spacer()
+                    
+                    //register button
+                    NavigationLink{
+                        //
+                        RegistrationView().navigationBarBackButtonHidden(true)
+                    }label: {
+                        //
+                        HStack(spacing: 2){
+                            Text(String(localized: "Don't have an account?"))
+                            Text(String(localized: "Sign up")).fontWeight(.bold)
+                        }.font(.system(size: 16))
+                    }
                 }
-                
-                Button(action: {
-                    viewModel.signIn()
-                }) {
-                    Text(String(localized: "Sign In"))
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                Button(action: {
-                    viewModel.register()
-                }) {
-                    Text(String(localized: "Register"))
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.green)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-            }.padding()
-            
-            
-            
-        } //NavigationStack
-    } //Body
-} //struct
-
+            }
+        }
+    }
+}
 
 #Preview {
-    LoginView(appState: AppState())
+    //LoginView(appState: AppState())
+    LoginView()
 }

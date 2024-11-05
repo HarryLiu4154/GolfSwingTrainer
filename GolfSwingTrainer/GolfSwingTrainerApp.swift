@@ -30,7 +30,8 @@ struct GolfSwingTrainerApp: App {
                 if appState.isLoggedIn {
                     ProgressView().environmentObject(appState) //TODO: Insert home screen here
                 }else{
-                    LoginView(appState: appState).environmentObject(appState)
+                    //LoginView(appState: appState).environmentObject(appState)
+                    LoginView()
                 }
                 
             }
