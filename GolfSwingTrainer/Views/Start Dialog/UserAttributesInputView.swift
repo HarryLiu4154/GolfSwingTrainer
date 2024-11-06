@@ -38,7 +38,7 @@ struct UserAttributesInputView: View {
                     
                     
                 }.font(.headline).fontWeight(.semibold)
-                
+
                 
                 Section(String(localized: "Weight")+String(localized: "(kg)")){
                     // Weight Picker

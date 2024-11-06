@@ -1,7 +1,28 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "(cm)" : {
+
+    },
+    "(kg)" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld cm" : {
+
+    },
+    "%lld kg" : {
+
+    },
     "Account" : {
+
+    },
+    "Age" : {
 
     },
     "Alpha" : {
@@ -19,6 +40,9 @@
     "Distance Metadata" : {
 
     },
+    "Dominant Hand" : {
+
+    },
     "Don't have an account?" : {
 
     },
@@ -28,7 +52,13 @@
     "Enter your password" : {
 
     },
+    "Gender" : {
+
+    },
     "General" : {
+
+    },
+    "Height" : {
 
     },
     "Month" : {
@@ -38,6 +68,12 @@
 
     },
     "Register" : {
+
+    },
+    "Select Dominant Hand" : {
+
+    },
+    "Select Gender" : {
 
     },
     "Sign in" : {
@@ -64,7 +100,13 @@
     "Week" : {
 
     },
+    "Weight" : {
+
+    },
     "Year" : {
+
+    },
+    "Your Physical Attributes" : {
 
     },
     "Your Progress" : {
