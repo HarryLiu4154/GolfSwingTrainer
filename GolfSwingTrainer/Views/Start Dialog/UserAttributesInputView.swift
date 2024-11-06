@@ -18,56 +18,57 @@ struct UserAttributesInputView: View {
     private let dominantHands = ["Right", "Left"]
     var body: some View {
         NavigationStack{
-            ScrollView {
-                Text("Your Physical Attributes")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.top)
-                VStack(alignment: .leading, spacing: 20) {
-                    Section(String(localized: "Height")+String(localized: "(cm)")){
-                        
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "ruler")
-                                Slider(value: $height, in: 120...220, step: 1)
-                                    .accentColor(.green)
-                                Text("\(Int(height)) cm")
-                                    .foregroundColor(.secondary)
-                            }
-                        }.padding(.horizontal)
+            Text("Your Physical Attributes")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.top)
+            
+            VStack(alignment: .leading, spacing: 20) {
+                Section(String(localized: "Height")+String(localized: "(cm)")){
                     
-                        
-                    }.font(.headline).fontWeight(.semibold)
-                    
-                    
-                    Section(String(localized: "Weight")+String(localized: "(kg)")){
-                        // Weight Picker
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "scalemass")
-                                Slider(value: $weight, in: 40...150, step: 1)
-                                    .accentColor(.blue)
-                                Text("\(Int(weight)) kg")
-                                    .foregroundColor(.secondary)
-                            }
-                        }.padding(.horizontal)
-                    }.font(.headline).fontWeight(.semibold)
-                    
-                    
-                    // Age Picker
                     VStack(alignment: .leading) {
-                        Text("Age")
-                            .font(.headline)
-                        Picker("Your age", selection: $age) {
+                        HStack {
+                            Image(systemName: "ruler")
+                            Slider(value: $height, in: 120...220, step: 1)
+                                .accentColor(.green)
+                            Text("\(Int(height)) cm")
+                                .foregroundColor(.secondary)
+                        }
+                    }.padding(.horizontal)
+                    
+                    
+                }.font(.headline).fontWeight(.semibold)
+                
+                
+                Section(String(localized: "Weight")+String(localized: "(kg)")){
+                    // Weight Picker
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "scalemass")
+                            Slider(value: $weight, in: 40...150, step: 1)
+                                .accentColor(.blue)
+                            Text("\(Int(weight)) kg")
+                                .foregroundColor(.secondary)
+                        }
+                    }.padding(.horizontal)
+                }.font(.headline).fontWeight(.semibold)
+                
+                
+                // Age Picker
+                Section("Age"){
+                    VStack(alignment: .leading) {
+                        Picker("", selection: $age) {
                             ForEach(10...100, id: \.self){ age in
                                 Text("\(age)")
                             }
                             
-                        }.pickerStyle(.inline)
+                        }.pickerStyle(.menu)
                             .padding(.horizontal)
                     }
-                    
-                    // Gender Picker
+                }.font(.headline).fontWeight(.semibold)
+                
+                // Gender Picker
+                Section("Gender"){
                     VStack(alignment: .leading) {
                         Text("Gender")
                             .font(.headline)
@@ -79,11 +80,11 @@ struct UserAttributesInputView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal)
                     }
-                    
-                    // Dominant Hand Picker
+                }
+                
+                // Dominant Hand Picker
+                Section("Dominant Hand"){
                     VStack(alignment: .leading) {
-                        Text("Dominant Hand")
-                            .font(.headline)
                         Picker("Select Dominant Hand", selection: $dominantHand) {
                             ForEach(dominantHands, id: \.self) { hand in
                                 Text(hand)
@@ -92,31 +93,33 @@ struct UserAttributesInputView: View {
                         .pickerStyle(SegmentedPickerStyle())
                         .padding(.horizontal)
                     }
-                    
-                    // Submit Button
-                    Button(action: submit) {
-                        Text("Save Attributes")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(10)
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 20)
+                }.font(.headline).fontWeight(.semibold)
+                
+                
+                // Submit Button
+               /* Button(action: submit) {
+                    Text("Save Attributes")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
-                .padding(.vertical)
+                .padding(.horizontal)
+                .padding(.top, 20)*/
             }
+            .padding(.vertical)
         }
     }
-    private func submit() {
-            print("User Attributes Saved")
-            // Here you would save to a model or submit to a server
-        }
+    /*private func submit() {
+        print("User Attributes Saved")
+        // Here you would save to a model or submit to a server
+    }*/
 }
 
 
 #Preview {
     UserAttributesInputView()
 }
+
