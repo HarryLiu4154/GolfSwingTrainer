@@ -22,6 +22,8 @@
 		6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */; };
 		636638502CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */; };
 		636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638512CE3FE7600CD48F7 /* PersistenceController.swift */; };
+		636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */; };
+		636638562CE40B5D00CD48F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638552CE40B5700CD48F7 /* Constants.swift */; };
 		BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */; };
 		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
 		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
@@ -121,6 +123,8 @@
 		6366384B2CE3FDE300CD48F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		636638512CE3FE7600CD48F7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUserInputComponentView.swift; sourceTree = "<group>"; };
+		636638552CE40B5700CD48F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolBar.swift; sourceTree = "<group>"; };
 		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
@@ -305,6 +309,7 @@
 		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				636638552CE40B5700CD48F7 /* Constants.swift */,
 				BCE638102CD9850D00411D5B /* User.swift */,
 				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
 				636638512CE3FE7600CD48F7 /* PersistenceController.swift */,
@@ -334,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */,
+				636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */,
 			);
 			path = "Start Dialog";
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
+				636638562CE40B5D00CD48F7 /* Constants.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
 				6366384A2CE3FCE300CD48F7 /* UserAttributesViewModel.swift in Sources */,
@@ -687,6 +694,7 @@
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
+				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

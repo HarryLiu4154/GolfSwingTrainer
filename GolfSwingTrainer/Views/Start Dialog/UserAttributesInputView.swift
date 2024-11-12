@@ -17,19 +17,6 @@ struct UserAttributesInputView: View {
         _viewModel = StateObject(wrappedValue: UserAttributesViewModel(context: context))
     }
      
-    
-       
-//    @State private var height: Int = 170 // Default in cm
-//    @State private var weight: Int = 70 // Default in kg
-//    @State private var birthDate = Date.now
-//    @State private var gender: String = "Other"
-//    @State private var dominantHand: String = "Right"
-//    @State private var preferredMeasurement: String = "Metric"
-//    private let heights = 120...220
-//    private let weights = 40...150
-//    private let genders = ["Male", "Female", "Non-Binary" ,"Other"]
-//    private let dominantHands = ["Right", "Left"]
-//    private let preferredMeasurements = ["Imperial","Metric"]
     var body: some View {
         NavigationStack{
             Form{

@@ -16,6 +16,7 @@ class UserAttributesViewModel: ObservableObject {
     @Published var dominantHand: String = "Right"
     @Published var preferredMeasurement: String = "Metric"
     
+    // Variables that the user chooses from
     @Published var heights: ClosedRange<Int> = 120...220
     @Published var weights: ClosedRange<Int> = 40...150
     @Published var genders: [String] = ["Male", "Female", "Non-Binary" ,"Other"]
