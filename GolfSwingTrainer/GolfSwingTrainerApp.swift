@@ -10,6 +10,7 @@ import Firebase
 
 @main
 struct GolfSwingTrainerApp: App {
+    let persistenceController = PersistenceController.shared
     @StateObject var viewModel = AuthViewModel()
     
     init(){
@@ -18,7 +19,7 @@ struct GolfSwingTrainerApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack{
-                ContentView().environmentObject(viewModel)
+                ContentView().environmentObject(viewModel).environment(\.managedObjectContext, persistenceController.container.viewContext)
                 
             }
         }

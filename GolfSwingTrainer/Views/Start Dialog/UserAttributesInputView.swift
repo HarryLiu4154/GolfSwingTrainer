@@ -6,19 +6,30 @@
 //
 
 import SwiftUI
+import Foundation
+import CoreData
 
 struct UserAttributesInputView: View {
-    @State private var height: Int = 170 // Default in cm
-    @State private var weight: Int = 70 // Default in kg
-    @State private var birthDate = Date.now
-    @State private var gender: String = "Other"
-    @State private var dominantHand: String = "Right"
-    @State private var preferredMeasurement: String = "Metric"
-    private let heights = 120...220
-    private let weights = 40...150
-    private let genders = ["Male", "Female", "Non-Binary" ,"Other"]
-    private let dominantHands = ["Right", "Left"]
-    private let preferredMeasurements = ["Imperial","Metric"]
+    @StateObject private var viewModel: UserAttributesViewModel
+    @Environment(\.managedObjectContext) private var context
+      
+    init(context: NSManagedObjectContext) {
+        _viewModel = StateObject(wrappedValue: UserAttributesViewModel(context: context))
+    }
+     
+    
+       
+//    @State private var height: Int = 170 // Default in cm
+//    @State private var weight: Int = 70 // Default in kg
+//    @State private var birthDate = Date.now
+//    @State private var gender: String = "Other"
+//    @State private var dominantHand: String = "Right"
+//    @State private var preferredMeasurement: String = "Metric"
+//    private let heights = 120...220
+//    private let weights = 40...150
+//    private let genders = ["Male", "Female", "Non-Binary" ,"Other"]
+//    private let dominantHands = ["Right", "Left"]
+//    private let preferredMeasurements = ["Imperial","Metric"]
     var body: some View {
         NavigationStack{
             Form{
@@ -32,8 +43,8 @@ struct UserAttributesInputView: View {
                     
                     //Preferred Measurment
                     HStack(){
-                        Picker("Measurments", selection: $preferredMeasurement) {
-                            ForEach(preferredMeasurements, id: \.self) { measurement in
+                        Picker("Measurments", selection: $viewModel.preferredMeasurement) {
+                            ForEach(viewModel.preferredMeasurements, id: \.self) { measurement in
                                 Text(measurement)
                             }
                         }.pickerStyle(.segmented)
@@ -43,8 +54,8 @@ struct UserAttributesInputView: View {
                     //Height
                     HStack {
                         Image(systemName: "ruler")
-                        Picker(String(localized: "Height")+String(localized: " (cm)"), selection: $height){
-                            ForEach(heights, id: \.self) { height in
+                        Picker(String(localized: "Height")+String(localized: " (cm)"), selection: $viewModel.height){
+                            ForEach(viewModel.heights, id: \.self) { height in
                                 Text("\(height)cm").tag(height) // Display each height option
                             }
                         }.pickerStyle(.automatic)
@@ -53,8 +64,8 @@ struct UserAttributesInputView: View {
                     //Weight
                     HStack{
                         Image(systemName: "scalemass")
-                        Picker(String(localized: "Weight")+String(localized: " (kg)"), selection: $weight){
-                            ForEach(weights, id: \.self ){ value in
+                        Picker(String(localized: "Weight")+String(localized: " (kg)"), selection: $viewModel.weight){
+                            ForEach(viewModel.weights, id: \.self ){ value in
                                 Text("\(value) kg").tag(value) // Display each height option
                             }
                         }
@@ -64,14 +75,14 @@ struct UserAttributesInputView: View {
                     HStack{
                         Image(systemName: "birthday.cake")
                         Text(String(localized: "Birthday"))
-                        DatePicker(selection: $birthDate, in: ...Date.now, displayedComponents: .date){}
+                        DatePicker(selection: $viewModel.birthDate, in: ...Date.now, displayedComponents: .date){}
                     }.font(.headline).fontWeight(.semibold)
                     
                     // Gender Picker
                     HStack{
                         Image(systemName: "person.fill.questionmark")
-                        Picker("Gender", selection: $gender) {
-                            ForEach(genders, id: \.self) { gender in
+                        Picker("Gender", selection: $viewModel.gender) {
+                            ForEach(viewModel.genders, id: \.self) { gender in
                                 Text(gender)
                             }
                         }
@@ -84,8 +95,8 @@ struct UserAttributesInputView: View {
                     HStack {
                         Image(systemName: "hand.wave")
                         Text(String(localized: "Dominant Hand"))
-                        Picker("Select Dominant Hand", selection: $dominantHand) {
-                            ForEach(dominantHands, id: \.self) { hand in
+                        Picker("Select Dominant Hand", selection: $viewModel.dominantHand) {
+                            ForEach(viewModel.dominantHands, id: \.self) { hand in
                                 Text(hand)
                             }
                         }
@@ -111,6 +122,7 @@ struct UserAttributesInputView: View {
 
 
 #Preview {
-    UserAttributesInputView()
+    let context = PersistenceController.preview.container.viewContext
+    UserAttributesInputView(context: context)
 }
 
