@@ -15,6 +15,7 @@ struct GolfSwingTrainerApp: App {
     
     init(){
         FirebaseApp.configure()
+        print("GolfSwingTrainerApp: init() -> Firebase initialized successfully.")
     }
     var body: some Scene {
         WindowGroup {

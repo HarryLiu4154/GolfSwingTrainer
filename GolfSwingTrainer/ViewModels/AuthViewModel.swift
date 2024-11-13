@@ -28,11 +28,11 @@ class AuthViewModel: ObservableObject {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
             await fetchUser()
+            print("AuthViewModel: signIn() -> Successfully signed in user: \(result.user.email ?? "")")
         }catch{
-            print("AuthViewModel: FAILED Signing in with error: \(error.localizedDescription)...") //Debug message
+            print("AuthViewModel: signIn() -> FAILED Signing in with error: \(error.localizedDescription)...")
         }
-        
-        print("AuthViewModel: Signing in \(String(describing: currentUser?.fullname)), with Email: \(String(email))...") //Debug message
+        print("AuthViewModel: Signing in \(String(describing: currentUser?.fullname)), with Email: \(String(email))...")
     }
     func createUser(withEmail email: String, password: String, fullName: String) async throws{
         do{
@@ -41,15 +41,15 @@ class AuthViewModel: ObservableObject {
             let user = User(id: result.user.uid, fullname: fullName, email: email)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            print("AuthViewModel: Created a user with email: \(String(describing: email)), ") //Debug message
+            print("AuthViewModel: createUser() -> Created a user with email: \(String(describing: email)), ") //Debug message
             await fetchUser()
         }catch{
             
-            print("AuthViewModel: Failed to create a user with error: \(error.localizedDescription)") //Debug message
+            print("AuthViewModel: createUser() -> Failed to create a user with error: \(error.localizedDescription)") //Debug message
         }
         
         
-        print("AuthViewModel: Creating User \(String(describing: currentUser?.fullname)), with Email: \(String(email))...") //Debug message
+        print("AuthViewModel: Creating User \(String(describing: currentUser?.fullname)), with Email: \(String(email))...")
     }
     func signOut(){
         do{
