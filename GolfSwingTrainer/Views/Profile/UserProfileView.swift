@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+    @State private var showDeleteConfirmation = false //Controls the delete account pop up confirmation
     var body: some View {
         if let user = viewModel.currentUser {
             List{
@@ -51,12 +52,22 @@ struct UserProfileView: View {
                         
                     }
                     Button{
-                        print("Deleting user account...")
+                        print("Button: Delete user account pressed")
+                        showDeleteConfirmation = true
                     }label: {
                         SettingRowComponentView(imageName: "trash", title: "DELETE ACCOUNT", tintColor: Color.red)
-                        
+                    }.alert(isPresented: $showDeleteConfirmation) {
+                        Alert(
+                            title: Text("Are you sure?"),
+                            message: Text("This action will permanently delete your account."),
+                            primaryButton: .destructive(Text("Delete")) {
+                                Task {
+                                    await viewModel.deleteAccount()
+                                }
+                            },
+                            secondaryButton: .cancel()
+                        )
                     }
-                    
                 }
             }
         }

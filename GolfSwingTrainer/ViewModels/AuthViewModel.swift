@@ -41,15 +41,15 @@ class AuthViewModel: ObservableObject {
             let user = User(id: result.user.uid, fullname: fullName, email: email)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            print("AuthViewModel: createUser() -> Created a user with email: \(String(describing: email)), ") //Debug message
+            print("AuthViewModel: createUser() -> Created a user with email: \(String(describing: email)), ")
             await fetchUser()
         }catch{
             
-            print("AuthViewModel: createUser() -> Failed to create a user with error: \(error.localizedDescription)") //Debug message
+            print("AuthViewModel: createUser() -> Failed to create a user with error: \(error.localizedDescription)")
         }
         
         
-        print("AuthViewModel: Creating User \(String(describing: currentUser?.fullname)), with Email: \(String(email))...")
+        
     }
     func signOut(){
         do{
@@ -57,15 +57,28 @@ class AuthViewModel: ObservableObject {
             self.userSession = nil //wipes user session and returns to login screen
             self.currentUser = nil //wipes data model
         }catch{
-            print("AuthViewModel: FAILED to sign out User with error \(error.localizedDescription)...") //Debug message
+            print("AuthViewModel: signOut() -> FAILED to sign out User with error \(error.localizedDescription)...") 
         }
         
-        print("AuthViewModel: Signing out User...") //Debug message
+        print("AuthViewModel: signOut() -> Signing out User...") //Debug message
     }
-    func deleteAccount(){
+    func deleteAccount() async {
+        guard let user = Auth.auth().currentUser else { return }
         
-        
-        print("AuthViewModel: deleting account...") //Debug message
+        do {
+            // Remove the user document from Firestore
+            try await Firestore.firestore().collection("users").document(user.uid).delete()
+            
+            // Delete the user from Firebase Authentication
+            try await user.delete()
+            
+            // Clear session and user data
+            self.userSession = nil
+            self.currentUser = nil
+            print("AuthViewModel: deleteAccount() -> Account successfully deleted.")
+        } catch {
+            print("AuthViewModel: deleteAccount() -> Failed to delete account with error: \(error.localizedDescription)")
+        }
     }
     func fetchUser() async{
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -73,7 +86,7 @@ class AuthViewModel: ObservableObject {
         self.currentUser = try? snapshot.data(as: User.self)
         
       
-        print("AuthViewModel: fetching user \(String(describing: self.currentUser))...") //Debug message
+        print("AuthViewModel: fetchUser() -> fetching user \(String(describing: self.currentUser))...")
     }
 
 }

@@ -22,6 +22,9 @@
     "Already have an account?" : {
 
     },
+    "Are you sure?" : {
+
+    },
     "Birthday" : {
 
     },
@@ -29,6 +32,9 @@
 
     },
     "Day" : {
+
+    },
+    "Delete" : {
 
     },
     "Distance" : {
@@ -92,6 +98,9 @@
 
     },
     "Swing Metadata" : {
+
+    },
+    "This action will permanently delete your account." : {
 
     },
     "TODO: " : {
