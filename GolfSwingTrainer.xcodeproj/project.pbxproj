@@ -31,6 +31,8 @@
 		FE94B8AC2CAD26C7005CF679 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */; };
 		FE94B8AE2CAD26D0005CF679 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */; };
 		FE98BD302CC6EA5D0095FF08 /* MotionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98BD2F2CC6EA4B0095FF08 /* MotionData.swift */; };
+		FEFA0B412CC6F4410093CE43 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA0B402CC6F43D0093CE43 /* MotionManager.swift */; };
+		FEFA0B432CC6F5D00093CE43 /* MotionDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA0B422CC6F5C70093CE43 /* MotionDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		FE98BD2F2CC6EA4B0095FF08 /* MotionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionData.swift; sourceTree = "<group>"; };
+		FEFA0B402CC6F43D0093CE43 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
+		FEFA0B422CC6F5C70093CE43 /* MotionDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FEFA0B422CC6F5C70093CE43 /* MotionDataView.swift */,
 				FE94B8AD2CAD26CA005CF679 /* FriendsView.swift */,
 				FE94B8AB2CAD26C3005CF679 /* SettingsView.swift */,
 				FE94B8A92CAD182F005CF679 /* TrackerView.swift */,
@@ -253,6 +258,7 @@
 		FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				FEFA0B402CC6F43D0093CE43 /* MotionManager.swift */,
 				FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */,
 				FE01092C2C91265D00F074C8 /* ContentView.swift */,
 				FE01092E2C91265E00F074C8 /* Assets.xcassets */,
@@ -518,6 +524,7 @@
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
+				FEFA0B432CC6F5D00093CE43 /* MotionDataView.swift in Sources */,
 				FE98BD302CC6EA5D0095FF08 /* MotionData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
+				FEFA0B412CC6F4410093CE43 /* MotionManager.swift in Sources */,
 				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

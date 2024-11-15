@@ -6,14 +6,26 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 @main
 struct GolfSwingTrainerApp: App {
+    
+    var sessionDelegate = WatchSessionDelegate()
+    
     var body: some Scene {
         WindowGroup {
-            NavigationStack{
-                ProgressView()
-            }
+//            NavigationStack{
+//                ProgressView()
+//            }
+            ContentView()
+                .onAppear {
+                    if (WCSession.isSupported()) {
+                        let session = WCSession.default
+                        session.delegate = sessionDelegate
+                        session.activate()
+                    }
+                }
         }
     }
 }

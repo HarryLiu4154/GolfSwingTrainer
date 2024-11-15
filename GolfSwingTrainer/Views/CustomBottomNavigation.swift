@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WatchConnectivity
 
 enum Tab: String, CaseIterable {
     case Home = "house"
@@ -24,14 +25,20 @@ enum Tab: String, CaseIterable {
 }
 
 struct CustomBottomNavigation: View {
-    @State var selectedTab: Tab = .Home
-    
+//    @State var selectedTab: Tab = .Home
+    @State private var showingTracking = false
     @Binding var index: Int
+    var sessionDelegate = WatchSessionDelegate()
     
     var body: some View {
         ZStack {
             Button(action: {
-                
+//                DispatchQueue.main.async {
+//                    
+//                }
+                print("HELLO THERE")
+                showingTracking.toggle()
+                startTrackingOnWatch()
             }) {
                 Image(systemName: "figure.golf")
                     .font(.system(size: 36))
@@ -42,6 +49,9 @@ struct CustomBottomNavigation: View {
             .clipShape(Circle())
             .shadow(color: .gray, radius: 5, x: 0, y: 5)
             .offset(y: -30)
+            .sheet(isPresented: $showingTracking) {
+                MotionDataView()
+            }
             
             HStack {
                 Button(action: {
@@ -56,12 +66,18 @@ struct CustomBottomNavigation: View {
                 
                 Button(action: {
                     self.index = 1
+                    print("HELLO THERE")
+                    showingTracking.toggle()
+                    startTrackingOnWatch()
                 }) {
                     Image(systemName: self.index == 1 ? Tab.Tracker.rawValue + ".fill" : Tab.Tracker.rawValue)
                 }
                 .font(.system(size: 20))
                 .foregroundColor(Color.white)
                 .offset(x: -22)
+                .sheet(isPresented: $showingTracking) {
+                    MotionDataView()
+                }
                 
                 Spacer(minLength: 0)
                 
@@ -90,18 +106,35 @@ struct CustomBottomNavigation: View {
             .background(Color("Background"))
             .clipShape(CurveShape())
         }
+        
+//        .toolbar {
+//            ToolbarItem(placement: .bottomBar) {
+//                Button(action: startTrackingOnWatch) {
+//                    Image(systemName: "watch.circle.fill")
+//                }
+//            }
+//        }
     }
     
-    func TabButton(tab: Tab) -> some View {
-        Button(action: {
-            withAnimation(.spring()) {
-                selectedTab = tab
-            }
-        }, label: {
-            VStack(spacing: 0) {
-                Image(systemName: selectedTab == tab ? tab.rawValue + ".fill" : tab.rawValue)
-            }
-        })
+//    func TabButton(tab: Tab) -> some View {
+//        Button(action: {
+//            withAnimation(.spring()) {
+//                selectedTab = tab
+//            }
+//        }, label: {
+//            VStack(spacing: 0) {
+//                Image(systemName: selectedTab == tab ? tab.rawValue + ".fill" : tab.rawValue)
+//            }
+//        })
+//    }
+    
+    func startTrackingOnWatch() {
+        if (WCSession.isSupported()) {
+            let session = WCSession.default
+            session.sendMessage(["startTracking": true], replyHandler: nil, errorHandler: { error in
+                print("Error sending startTracking message: \(error.localizedDescription)")
+            })
+        }
     }
     
 }
