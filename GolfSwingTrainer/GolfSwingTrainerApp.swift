@@ -8,9 +8,15 @@
 import SwiftUI
 import Firebase
 
+class  test : ObservableObject
+{
+    
+}
 @main
 struct GolfSwingTrainerApp: App {
     @AppStorage("darkModeEnabled") private var darkModeEnabled: Bool = false
+    //@StateObject var t = test()
+    
     let persistenceController = PersistenceController.shared
     @StateObject var viewModel = AuthViewModel()
     
@@ -22,6 +28,7 @@ struct GolfSwingTrainerApp: App {
             NavigationStack{
                 RootView().environmentObject(viewModel)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    //.environmentObject(t)
                 
             }.preferredColorScheme(darkModeEnabled ? .dark : .light) // Apply dark mode globally
         }

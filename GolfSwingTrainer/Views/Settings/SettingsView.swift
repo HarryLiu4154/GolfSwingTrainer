@@ -19,6 +19,10 @@ struct SettingsView: View {
                     })
                     
                 }
+                Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
+                    NavigationLink("Your attributes", destination: SettingsAttributesView())
+                    
+                }
             }.navigationTitle("Settings")
                 .preferredColorScheme(viewModel.darkModeEnabled ? .dark : .light) 
         }

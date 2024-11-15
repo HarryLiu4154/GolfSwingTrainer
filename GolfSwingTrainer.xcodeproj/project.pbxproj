@@ -39,6 +39,7 @@
 		BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */; };
 		BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */; };
 		BCB320172CE6E142005E9853 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320162CE6E142005E9853 /* HomeView.swift */; };
+		BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */; };
 		BCE638112CD9851000411D5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638102CD9850D00411D5B /* User.swift */; };
 		BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638142CD9865800411D5B /* UserProfileView.swift */; };
 		BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */; };
@@ -142,6 +143,7 @@
 		BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		BCB320162CE6E142005E9853 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAttributesView.swift; sourceTree = "<group>"; };
 		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */,
+				BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
 				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
+				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
