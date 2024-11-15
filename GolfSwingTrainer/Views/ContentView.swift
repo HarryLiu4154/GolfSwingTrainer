@@ -5,6 +5,7 @@
 //  Created by Harry Liu on 2024-09-10.
 //
 
+/*
 import SwiftUI
 
 //TODO: Rename this file or maybe inject it somewhere else
@@ -27,3 +28,4 @@ struct ContentView: View {
 #Preview {
     ContentView().environmentObject(AuthViewModel())
 }
+*/

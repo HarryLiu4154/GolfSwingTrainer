@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import SwiftUI
 
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool {get}
@@ -16,6 +17,8 @@ protocol AuthenticationFormProtocol{
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User? //Help's determine if user is logged in or not
     @Published var currentUser: User?
+    
+    @AppStorage("isUserSetupComplete") var isUserSetupComplete: Bool = false //Remembers whether the user set up their app in the beggining
     
     init(){
         self.userSession = Auth.auth().currentUser
@@ -28,11 +31,10 @@ class AuthViewModel: ObservableObject {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userSession = result.user
             await fetchUser()
+            print("AuthViewModel: signIn() -> Signing in \(String(describing: currentUser?.fullname)), with Email: \(String(email))...")
         }catch{
-            print("AuthViewModel: FAILED Signing in with error: \(error.localizedDescription)...") //Debug message
+            print("AuthViewModel: signIn() -> FAILED Signing in with error: \(error.localizedDescription)...")
         }
-        
-        print("AuthViewModel: Signing in \(String(describing: currentUser?.fullname)), with Email: \(String(email))...") //Debug message
     }
     func createUser(withEmail email: String, password: String, fullName: String) async throws{
         do{
@@ -41,31 +43,42 @@ class AuthViewModel: ObservableObject {
             let user = User(id: result.user.uid, fullname: fullName, email: email)
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            print("AuthViewModel: Created a user with email: \(String(describing: email)), ") //Debug message
+            print("AuthViewModel: createUser() -> Created a user with email: \(String(describing: email))")
             await fetchUser()
+            self.userSession = result.user
         }catch{
-            
-            print("AuthViewModel: Failed to create a user with error: \(error.localizedDescription)") //Debug message
+            print("AuthViewModel: createUser() -> Failed to create a user with error: \(error.localizedDescription)")
         }
-        
-        
-        print("AuthViewModel: Creating User \(String(describing: currentUser?.fullname)), with Email: \(String(email))...") //Debug message
     }
     func signOut(){
         do{
             try Auth.auth().signOut() //signs out the backend
             self.userSession = nil //wipes user session and returns to login screen
             self.currentUser = nil //wipes data model
+            print("AuthViewModel: signOut() -> Signing out User...")
         }catch{
-            print("AuthViewModel: FAILED to sign out User with error \(error.localizedDescription)...") //Debug message
+            print("AuthViewModel: signOut() -> FAILED to sign out User with error \(error.localizedDescription)...")
         }
         
-        print("AuthViewModel: Signing out User...") //Debug message
+        print("AuthViewModel: signOut() -> Signing out User...")
     }
-    func deleteAccount(){
-        
-        
-        print("AuthViewModel: deleting account...") //Debug message
+    func deleteAccount() async {
+        guard let user = Auth.auth().currentUser else { return }
+        do {
+            // Remove the user document from Firestore
+            try await Firestore.firestore().collection("users").document(user.uid).delete()
+            
+            // Delete the user from Firebase Authentication
+            try await user.delete()
+            
+            // Clear session and user data
+            self.userSession = nil
+            self.currentUser = nil
+            print("AuthViewModel: deleteAccount() -> Account successfully deleted.")
+        } catch {
+            print("AuthViewModel: deleteAccount() -> Failed to delete account with error: \(error.localizedDescription)")
+        }
+                
     }
     func fetchUser() async{
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -73,7 +86,7 @@ class AuthViewModel: ObservableObject {
         self.currentUser = try? snapshot.data(as: User.self)
         
       
-        print("AuthViewModel: fetching user \(String(describing: self.currentUser))...") //Debug message
+        print("AuthViewModel: fetching user \(String(describing: self.currentUser))...")
     }
 
 }

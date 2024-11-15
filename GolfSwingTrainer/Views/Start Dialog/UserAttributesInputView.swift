@@ -12,9 +12,11 @@ import CoreData
 struct UserAttributesInputView: View {
     @StateObject private var viewModel: UserAttributesViewModel
     @Environment(\.managedObjectContext) private var context
+    @EnvironmentObject var authViewModel: AuthViewModel // To update the completion status
+    @Environment(\.dismiss) private var dismiss // To programmatically dismiss this view
       
-    init(context: NSManagedObjectContext) {
-        _viewModel = StateObject(wrappedValue: UserAttributesViewModel(context: context))
+    init() {
+        _viewModel = StateObject(wrappedValue: UserAttributesViewModel(context: PersistenceController.shared.container.viewContext))
     }
      
     var body: some View {
@@ -92,12 +94,14 @@ struct UserAttributesInputView: View {
                     
                 }
                 Button(action: {
-                    //TODO:
+                    authViewModel.isUserSetupComplete = true //user set up is now complete
+                    dismiss() // Dismiss or navigate to the next view
                 }, label: {
-                    HStack(alignment: .lastTextBaseline){
-                        
+                    HStack(alignment: .center){
+                        Spacer()
                         Text("Continue")
                         Image(systemName: "arrow.right")
+                        Spacer()
                     }
                 })
             }.navigationTitle("Your physical attributes")
@@ -109,7 +113,7 @@ struct UserAttributesInputView: View {
 
 
 #Preview {
-    let context = PersistenceController.preview.container.viewContext
-    UserAttributesInputView(context: context)
+    
+    UserAttributesInputView()
 }
 

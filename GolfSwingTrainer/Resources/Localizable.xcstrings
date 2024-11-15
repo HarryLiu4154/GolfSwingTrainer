@@ -16,10 +16,16 @@
     "Account" : {
 
     },
+    "Adjust your screen" : {
+
+    },
     "Alpha" : {
 
     },
     "Already have an account?" : {
+
+    },
+    "Are you sure?" : {
 
     },
     "Birthday" : {
@@ -28,7 +34,16 @@
     "Continue" : {
 
     },
+    "Dark Mode" : {
+
+    },
     "Day" : {
+
+    },
+    "Delete" : {
+
+    },
+    "Display" : {
 
     },
     "Distance" : {
@@ -61,6 +76,9 @@
     "Height" : {
 
     },
+    "Home" : {
+
+    },
     "Measurments" : {
 
     },
@@ -70,10 +88,16 @@
     "Password" : {
 
     },
+    "Profile" : {
+
+    },
     "Register" : {
 
     },
     "Select Dominant Hand" : {
+
+    },
+    "Settings" : {
 
     },
     "Sign in" : {
@@ -92,6 +116,9 @@
 
     },
     "Swing Metadata" : {
+
+    },
+    "This action will permanently delete your account." : {
 
     },
     "TODO: " : {
@@ -113,6 +140,9 @@
 
     },
     "Your physical attributes" : {
+
+    },
+    "Your Profile" : {
 
     },
     "Your Progress" : {

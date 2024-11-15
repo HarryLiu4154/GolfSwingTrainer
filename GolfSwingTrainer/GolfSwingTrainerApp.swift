@@ -10,6 +10,7 @@ import Firebase
 
 @main
 struct GolfSwingTrainerApp: App {
+    @AppStorage("darkModeEnabled") private var darkModeEnabled: Bool = false
     let persistenceController = PersistenceController.shared
     @StateObject var viewModel = AuthViewModel()
     
@@ -19,9 +20,33 @@ struct GolfSwingTrainerApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack{
-                ContentView().environmentObject(viewModel).environment(\.managedObjectContext, persistenceController.container.viewContext)
+                RootView().environmentObject(viewModel)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 
-            }
+            }.preferredColorScheme(darkModeEnabled ? .dark : .light) // Apply dark mode globally
         }
     }
+}
+
+//MARK: - Root navigation
+struct RootView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+
+    var body: some View {
+            if viewModel.userSession != nil {
+                if viewModel.isUserSetupComplete {
+                    //TODO: Add home screen
+                    HomeView()
+                } else {
+                    UserAttributesInputView() // Show setup view if not complete
+                }
+
+            } else {
+                LoginView()
+            }
+        
+    }
+}
+#Preview {
+    RootView().environmentObject(AuthViewModel())
 }

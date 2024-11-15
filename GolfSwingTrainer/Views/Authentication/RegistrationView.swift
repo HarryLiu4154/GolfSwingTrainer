@@ -9,12 +9,13 @@ import SwiftUI
 import Firebase
 
 struct RegistrationView: View {
-    @State private var email = ""
-    @State private var fullName = ""
-    @State private var password = ""
-    @State private var confirmPasswword = ""
+    @State private var email: String = ""
+    @State private var fullName: String = ""
+    @State private var password: String = ""
+    @State private var confirmPasswword: String = ""
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
+    @State private var navigationPath = NavigationPath() // Navigation path for programmatic navigation
     
     var body: some View {
         VStack{
@@ -55,7 +56,9 @@ struct RegistrationView: View {
             Button{
                 Task{
                     try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                    dismiss()
                 }
+                
             }label: {
                 HStack{
                     Text(String(localized: "Register")).fontWeight(.semibold)
