@@ -20,7 +20,7 @@ struct ProgressDetailsView: View {
                 Button(action:{
                     self.progressType = .Swing
                 }, label: {
-                    Text("Swing")
+                    Text(String(localized: "Swing"))
                         .font(.title2)
                         .frame(width: 100, height: 100)
                         .foregroundColor(.white)
@@ -31,7 +31,7 @@ struct ProgressDetailsView: View {
                 Button(action:{
                     self.progressType = .Distance
                 }, label: {
-                    Text("Distance")
+                    Text(String(localized: "Distance"))
                         .font(.title2)
                         .frame(width: 100, height: 100)
                         .foregroundColor(.white)
@@ -42,7 +42,7 @@ struct ProgressDetailsView: View {
                 Button(action:{
                     self.progressType = .Stance
                 }, label: {
-                    Text("Stance")
+                    Text(String(localized: "Stance"))
                         .font(.title2)
                         .frame(width: 100, height: 100)
                         .foregroundColor(.white)
@@ -55,11 +55,11 @@ struct ProgressDetailsView: View {
             VStack{
                 switch self.progressType {
                 case .Swing:
-                    Text("Swing Metadata")
+                    Text(String(localized: "Swing Metadata"))
                 case .Distance:
-                    Text("Distance Metadata")
+                    Text(String(localized: "Distance Metadata"))
                 case .Stance:
-                    Text("Stance Metadata")
+                    Text(String(localized: "Stance Metadata"))
                 }
             }
             .padding()
@@ -75,5 +75,5 @@ struct ProgressDetailsView: View {
 }
 
 #Preview {
-    ProgressDetailsView(timeframe: "Day")
+    ProgressDetailsView(timeframe: String(localized: "Day"))
 }

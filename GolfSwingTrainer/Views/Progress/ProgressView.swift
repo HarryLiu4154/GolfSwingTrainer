@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProgressView: View {
-    private let timeframes = ["Day", "Week", "Month", "Year"]
+    private let timeframes = [String(localized: "Day"), String(localized: "Week"), String(localized: "Month"), String(localized: "Year")]
     
     var body: some View {
         VStack{
-            Text("Your Progress")
+            Text(String(localized: "Your Progress"))
                 .font(.title)
             ScrollView{
                 Spacer()

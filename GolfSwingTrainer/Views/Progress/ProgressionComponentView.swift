@@ -26,5 +26,5 @@ struct ProgressionComponentView: View {
 }
 
 #Preview {
-    ProgressionComponentView(title: "Week", chart: Image("movement_graph"))
+    ProgressionComponentView(title: String(localized: "Week"), chart: Image("movement_graph"))
 }
