@@ -1,8 +1,50 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    " (cm)" : {
+
+    },
+    " (kg)" : {
+
+    },
+    "%lld kg" : {
+
+    },
+    "%lldcm" : {
+
+    },
+    "Account" : {
+
+    },
+    "Adjust your screen" : {
+
+    },
+    "Alpha" : {
+
+    },
+    "Already have an account?" : {
+
+    },
+    "Are you sure?" : {
+
+    },
+    "Birthday" : {
+
+    },
+    "Continue" : {
+
+    },
+    "Dark Mode" : {
+
+    },
     "Day" : {
-      "extractionState" : "manual"
+
+    },
+    "Delete" : {
+
+    },
+    "Display" : {
+
     },
     "Distance" : {
 
@@ -10,25 +52,58 @@
     "Distance Metadata" : {
 
     },
-    "Email" : {
+    "Dominant Hand" : {
 
     },
-    "Hello, world!" : {
+    "Don't have an account?" : {
 
     },
-    "Hello, World!" : {
+    "Email Address" : {
+
+    },
+    "Enter your password" : {
+
+    },
+    "Enter your physical attributes" : {
+
+    },
+    "Gender" : {
+
+    },
+    "General" : {
+
+    },
+    "Height" : {
+
+    },
+    "Home" : {
+
+    },
+    "Measurments" : {
 
     },
     "Month" : {
-      "extractionState" : "manual"
+
     },
     "Password" : {
+
+    },
+    "Profile" : {
 
     },
     "Register" : {
 
     },
-    "Sign In" : {
+    "Select Dominant Hand" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Sign in" : {
+
+    },
+    "Sign up" : {
 
     },
     "Stance" : {
@@ -43,11 +118,32 @@
     "Swing Metadata" : {
 
     },
+    "This action will permanently delete your account." : {
+
+    },
+    "TODO: " : {
+
+    },
+    "Version" : {
+
+    },
     "Week" : {
-      "extractionState" : "manual"
+
+    },
+    "Weight" : {
+
+    },
+    "Why do we need this?" : {
+
     },
     "Year" : {
-      "extractionState" : "manual"
+
+    },
+    "Your physical attributes" : {
+
+    },
+    "Your Profile" : {
+
     },
     "Your Progress" : {
 
