@@ -36,6 +36,9 @@
 		BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8812CAF92DB00E5FC48 /* AppState.swift */; };
+		BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAA2CECFFC10058F58D /* WeatherViewModel.swift */; };
+		BC46FFAD2CED1CF70058F58D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAC2CED1CEE0058F58D /* WeatherModel.swift */; };
+		BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAF2CED1D570058F58D /* WeatherComponentView.swift */; };
 		BC6921B12CC853DE00E7CD64 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */; };
 		BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */; };
 		BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */; };
@@ -141,7 +144,11 @@
 		BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC1CC8812CAF92DB00E5FC48 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BC408F732CED2B5C003E2257 /* GolfSwingTrainerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GolfSwingTrainerDebug.entitlements; sourceTree = "<group>"; };
 		BC46FF942CECFCD20058F58D /* GolfSwingTrainerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GolfSwingTrainerRelease.entitlements; sourceTree = "<group>"; };
+		BC46FFAA2CECFFC10058F58D /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		BC46FFAC2CED1CEE0058F58D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		BC46FFAF2CED1D570058F58D /* WeatherComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherComponentView.swift; sourceTree = "<group>"; };
 		BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -236,6 +243,7 @@
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BC46FFAE2CED1D3C0058F58D /* Weather */,
 				BCB320152CE6E129005E9853 /* Home */,
 				BCB3200D2CE6D479005E9853 /* Settings */,
 				BCF7144D2CDABB8700BDB798 /* Start Dialog */,
@@ -313,6 +321,7 @@
 		BC1CC8762CAF34D800E5FC48 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				BC46FFA92CECFFB50058F58D /* Weather */,
 				BCB320122CE6DB87005E9853 /* Settings */,
 				BCB320112CE6DB6E005E9853 /* Start Dialog */,
 				BCB320102CE6DB32005E9853 /* Auth */,
@@ -323,6 +332,7 @@
 		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BC46FFAC2CED1CEE0058F58D /* WeatherModel.swift */,
 				636638552CE40B5700CD48F7 /* Constants.swift */,
 				BCE638102CD9850D00411D5B /* User.swift */,
 				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
@@ -331,6 +341,22 @@
 				BC0E65FC2CEC2091009BA763 /* LocationManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BC46FFA92CECFFB50058F58D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				BC46FFAA2CECFFC10058F58D /* WeatherViewModel.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		BC46FFAE2CED1D3C0058F58D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				BC46FFAF2CED1D570058F58D /* WeatherComponentView.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		BCB3200D2CE6D479005E9853 /* Settings */ = {
@@ -430,6 +456,7 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				BC408F732CED2B5C003E2257 /* GolfSwingTrainerDebug.entitlements */,
 				BC46FF942CECFCD20058F58D /* GolfSwingTrainerRelease.entitlements */,
 				BC1CC8832CAF97EA00E5FC48 /* Models */,
 				0AB5E0452CAC68630035E5E5 /* Views */,
@@ -752,8 +779,11 @@
 				6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
+				BC46FFAD2CED1CF70058F58D /* WeatherModel.swift in Sources */,
+				BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
 				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
+				BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */,
 				BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
@@ -892,7 +922,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location for weather services for accurate responses.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for weather services for accurate responses.";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -952,7 +983,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location for weather services for accurate responses.";
+				INFOPLIST_KEY_NSLocationUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location for weather services for accurate responses.";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1029,10 +1061,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = GolfSwingTrainer/GolfSwingTrainerDebug.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = HB3XP4BKLJ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -1049,6 +1084,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "GolfSwingTrainer Development Profile";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1062,10 +1099,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GolfSwingTrainer/GolfSwingTrainerRelease.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = HB3XP4BKLJ;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -1082,6 +1121,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "GolfSwingTrainer Development Profile";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

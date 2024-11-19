@@ -11,6 +11,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             VStack{
+                WeatherComponentView()
                 TabView{
                     UserProfileView().tabItem{
                         Label("Profile", systemImage: "person.fill")
