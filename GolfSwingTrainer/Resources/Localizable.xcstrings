@@ -7,9 +7,6 @@
     " (kg)" : {
 
     },
-    "%@°C" : {
-
-    },
     "%lld kg" : {
 
     },
@@ -31,7 +28,13 @@
     "Are you sure?" : {
 
     },
+    "Birth Date" : {
+
+    },
     "Birthday" : {
+
+    },
+    "Condition: %@" : {
 
     },
     "Continue" : {
@@ -67,10 +70,16 @@
     "Email Address" : {
 
     },
+    "Enter %@" : {
+
+    },
     "Enter your password" : {
 
     },
     "Enter your physical attributes" : {
+
+    },
+    "Feels Like: %@°C" : {
 
     },
     "Gender" : {
@@ -82,7 +91,13 @@
     "Height" : {
 
     },
+    "Height: %lld cm" : {
+
+    },
     "Home" : {
+
+    },
+    "Humidity: %@%%" : {
 
     },
     "Measurments" : {
@@ -94,10 +109,19 @@
     "Password" : {
 
     },
+    "Physical Attributes" : {
+
+    },
+    "Preferred Measurement" : {
+
+    },
     "Profile" : {
 
     },
     "Register" : {
+
+    },
+    "Save" : {
 
     },
     "Select Dominant Hand" : {
@@ -124,10 +148,16 @@
     "Swing Metadata" : {
 
     },
+    "Temperature: %@°C" : {
+
+    },
     "This action will permanently delete your account." : {
 
     },
     "TODO: " : {
+
+    },
+    "UV Index: %lld" : {
 
     },
     "Version" : {
@@ -139,7 +169,16 @@
     "Weight" : {
 
     },
+    "Weight: %lld kg" : {
+
+    },
     "Why do we need this?" : {
+
+    },
+    "Wind Direction: %@" : {
+
+    },
+    "Wind: %@ km/h" : {
 
     },
     "Year" : {
@@ -155,9 +194,6 @@
 
     },
     "Your physical attributes" : {
-
-    },
-    "Your physical Attributes" : {
 
     },
     "Your Profile" : {

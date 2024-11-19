@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject private var viewModel = SettingsViewModel()
+    @Environment(\.managedObjectContext) private var context // Access Core Data context from the environment
+
     var body: some View {
         NavigationStack{
             Form{
@@ -20,7 +22,7 @@ struct SettingsView: View {
                     
                 }
                 Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
-                    NavigationLink("Your attributes", destination: SettingsAttributesView())
+                    NavigationLink("Your attributes", destination: SettingsAttributesView(context: context))
                     
                 }
             }.navigationTitle("Settings")
@@ -30,5 +32,6 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView().environmentObject(SettingsViewModel())
+    let context = PersistenceController.preview.container.viewContext
+    SettingsView().environment(\.managedObjectContext, context)
 }

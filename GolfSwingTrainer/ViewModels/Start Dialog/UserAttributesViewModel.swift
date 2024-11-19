@@ -23,29 +23,60 @@ class UserAttributesViewModel: ObservableObject {
     @Published var dominantHands: [String] = ["Right", "Left"]
     @Published var preferredMeasurements: [String] = ["Imperial","Metric"]
     
+    @Published var showSaveConfirmation: Bool = false // State for showing confirmation
+    
     private let context: NSManagedObjectContext
+    private var userEntity: UserEntity? // Reference to Core Data object
     
     init(context: NSManagedObjectContext) {
-           self.context = context
-       }
+        self.context = context
+        loadUser() // Load user data when initialized
+    }
+    // Load user attributes from Core Data
+    func loadUser() {
+        let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        request.fetchLimit = 1
+        
+        do {
+            let results = try context.fetch(request)
+            if let user = results.first {
+                self.userEntity = user
+                self.height = Int(user.height)
+                self.weight = Int(user.weight)
+                self.birthDate = user.birthDate ?? Date.now
+                self.gender = user.gender ?? "Other"
+                self.dominantHand = user.dominantHand ?? "Right"
+                self.preferredMeasurement = user.preferredMeasurment ?? "Metric"
+            }
+        } catch {
+            print("Failed to load user: \(error.localizedDescription)")
+        }
+    }
     
-    func saveUser(fullname: String, email: String) {
-        let userEntity = UserEntity(context: context)
-        userEntity.id = UUID()
-        userEntity.fullName = fullname
-        userEntity.email = email
-        userEntity.height = Int16(height)
-        userEntity.weight = Int16(weight)
-        userEntity.birthDate = birthDate
-        userEntity.gender = gender
-        userEntity.dominantHand = dominantHand
-        userEntity.preferredMeasurment = preferredMeasurement
+    // Save updated attributes to Core Data
+    func saveAttributes() {
+        if userEntity == nil {
+            // Create new user if none exists
+            userEntity = UserEntity(context: context)
+            userEntity?.id = UUID()
+        }
+        
+        userEntity?.height = Int16(height)
+        userEntity?.weight = Int16(weight)
+        userEntity?.birthDate = birthDate
+        userEntity?.gender = gender
+        userEntity?.dominantHand = dominantHand
+        userEntity?.preferredMeasurment = preferredMeasurement
         
         do {
             try context.save()
-            print("User data saved successfully!")
+            print("User attributes saved successfully!")
+            showSaveConfirmation = true // Trigger confirmation
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.showSaveConfirmation = false // Hide after 2 seconds
+            }
         } catch {
-            print("Error saving user data: \(error.localizedDescription)")
+            print("Failed to save user attributes: \(error.localizedDescription)")
         }
     }
 }
