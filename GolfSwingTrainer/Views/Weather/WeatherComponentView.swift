@@ -14,23 +14,23 @@ struct WeatherComponentView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            // Show weather data
             if let weather = weatherViewModel.currentWeather {
-                HStack {
-                    Image(systemName: "thermometer.medium")
-                        .foregroundColor(.blue)
-                    Text("\(String(format: "%.1f", weather.temperature))°C")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Condition: \(weather.condition)")
+                    Text("Temperature: \(String(format: "%.1f", weather.temperature))°C")
                         .font(.headline)
-                    Text(weather.condition)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    Text("Feels Like: \(String(format: "%.1f", weather.feelsLike))°C")
+                    
+                    Text("Wind: \(String(format: "%.1f", weather.windSpeed)) km/h")
+                    Text("Wind Direction: \(weather.windDirection)")
+                    Text("Humidity: \(String(format: "%.0f", weather.humidity))%")
+                    /*Text("Precipitation: \(String(format: "%.0f", weather.precipitationProbability))%")*/
+                    Text("UV Index: \(weather.uvIndex)")
                 }
                 .padding()
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
             } else if let error = weatherViewModel.errorMessage {
-                Image(systemName: "thermometer.medium.slash")
-                    .foregroundColor(.blue)
                 Text(error)
                     .foregroundColor(.red)
                     .font(.caption)
