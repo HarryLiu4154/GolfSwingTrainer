@@ -73,10 +73,16 @@
     "Enter %@" : {
 
     },
+    "Enter Post text" : {
+
+    },
     "Enter your password" : {
 
     },
     "Enter your physical attributes" : {
+
+    },
+    "Feed" : {
 
     },
     "Feels Like: %@°C" : {

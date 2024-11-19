@@ -11,13 +11,16 @@ struct HomeView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                WeatherComponentView()
+                //WeatherComponentView()
                 TabView{
                     UserProfileView().tabItem{
                         Label("Profile", systemImage: "person.fill")
                     }
                     SettingsView().tabItem{
                         Label("Settings", systemImage: "gear")
+                    }
+                    FeedView().tabItem{
+                        Label("Feed", systemImage: "paperplane.circle")
                     }
                 }
             }
