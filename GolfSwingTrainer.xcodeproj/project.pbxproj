@@ -28,6 +28,7 @@
 		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
 		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
 		BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */; };
+		BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E65FC2CEC2091009BA763 /* LocationManager.swift */; };
 		BC1CC86F2CAF323B00E5FC48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */; };
 		BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8742CAF336700E5FC48 /* LoginView.swift */; };
 		BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8772CAF351000E5FC48 /* AuthViewModel.swift */; };
@@ -133,6 +134,7 @@
 		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
 		BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInputComponentView.swift; sourceTree = "<group>"; };
+		BC0E65FC2CEC2091009BA763 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BC1CC8742CAF336700E5FC48 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		BC1CC8772CAF351000E5FC48 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
 				636638512CE3FE7600CD48F7 /* PersistenceController.swift */,
 				6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */,
+				BC0E65FC2CEC2091009BA763 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -749,6 +752,7 @@
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
 				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
+				BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
@@ -886,6 +890,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location for weather services for accurate responses.";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -945,6 +950,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "We need your location for weather services for accurate responses.";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
