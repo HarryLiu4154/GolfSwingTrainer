@@ -26,7 +26,7 @@
 		636638562CE40B5D00CD48F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638552CE40B5700CD48F7 /* Constants.swift */; };
 		BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */; };
 		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
-		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
+		BC0583DB2CADD7D50018E9C1 /* SwingSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* SwingSessionView.swift */; };
 		BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */; };
 		BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0E65FC2CEC2091009BA763 /* LocationManager.swift */; };
 		BC1CC86F2CAF323B00E5FC48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */; };
@@ -40,6 +40,7 @@
 		BC408F9B2CED50D9003E2257 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408F9A2CED50D4003E2257 /* PostModel.swift */; };
 		BC408F9F2CED512B003E2257 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408F9E2CED5128003E2257 /* FeedViewModel.swift */; };
 		BC408FA12CED519E003E2257 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408FA02CED5194003E2257 /* FeedView.swift */; };
+		BC408FCC2CEE60FF003E2257 /* MotionTrackingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408FCB2CEE60F0003E2257 /* MotionTrackingViewModel.swift */; };
 		BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAA2CECFFC10058F58D /* WeatherViewModel.swift */; };
 		BC46FFAD2CED1CF70058F58D /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAC2CED1CEE0058F58D /* WeatherModel.swift */; };
 		BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAF2CED1D570058F58D /* WeatherComponentView.swift */; };
@@ -139,7 +140,7 @@
 		636638552CE40B5700CD48F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolBar.swift; sourceTree = "<group>"; };
 		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
+		BC0583DA2CADD7D50018E9C1 /* SwingSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSessionView.swift; sourceTree = "<group>"; };
 		BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInputComponentView.swift; sourceTree = "<group>"; };
 		BC0E65FC2CEC2091009BA763 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -153,6 +154,7 @@
 		BC408F9A2CED50D4003E2257 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		BC408F9E2CED5128003E2257 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		BC408FA02CED5194003E2257 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		BC408FCB2CEE60F0003E2257 /* MotionTrackingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTrackingViewModel.swift; sourceTree = "<group>"; };
 		BC46FF942CECFCD20058F58D /* GolfSwingTrainerRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GolfSwingTrainerRelease.entitlements; sourceTree = "<group>"; };
 		BC46FFAA2CECFFC10058F58D /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		BC46FFAC2CED1CEE0058F58D /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
@@ -295,7 +297,7 @@
 		BC0583D92CADD7940018E9C1 /* Session */ = {
 			isa = PBXGroup;
 			children = (
-				BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */,
+				BC0583DA2CADD7D50018E9C1 /* SwingSessionView.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -368,6 +370,29 @@
 				BC408F9E2CED5128003E2257 /* FeedViewModel.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		BC408FC92CEE60C7003E2257 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BC408FCA2CEE60E4003E2257 /* Session */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC408FCA2CEE60E4003E2257 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				BC408FCB2CEE60F0003E2257 /* MotionTrackingViewModel.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		BC408FCD2CEE6123003E2257 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BC46FFA92CECFFB50058F58D /* Weather */ = {
@@ -525,6 +550,8 @@
 		FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				BC408FCD2CEE6123003E2257 /* Models */,
+				BC408FC92CEE60C7003E2257 /* ViewModels */,
 				BC1CC86D2CAF320D00E5FC48 /* Resources */,
 				BC0583D22CADACD20018E9C1 /* Views */,
 				FE01092A2C91265D00F074C8 /* GolfSwingTrainerApp.swift */,
@@ -846,7 +873,8 @@
 			files = (
 				BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */,
 				BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */,
-				BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */,
+				BC0583DB2CADD7D50018E9C1 /* SwingSessionView.swift in Sources */,
+				BC408FCC2CEE60FF003E2257 /* MotionTrackingViewModel.swift in Sources */,
 				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
 				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				636638502CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,

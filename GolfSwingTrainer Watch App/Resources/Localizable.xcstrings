@@ -4,14 +4,53 @@
     "" : {
 
     },
-    "Hello, world!" : {
-
+    "Attitude: Roll %lf, Pitch %lf, Yaw %lf" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Attitude: Roll %1$lf, Pitch %2$lf, Yaw %3$lf"
+          }
+        }
+      }
     },
-    "Hello, World!" : {
+    "Hello, world!" : {
 
     },
     "Home" : {
 
+    },
+    "Motion Tracking" : {
+
+    },
+    "Rotation Rate: %lf, %lf, %lf" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation Rate: %1$lf, %2$lf, %3$lf"
+          }
+        }
+      }
+    },
+    "Save Session" : {
+
+    },
+    "Start Tracking" : {
+
+    },
+    "Stop Tracking" : {
+
+    },
+    "User Acceleration: %lf, %lf, %lf" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "User Acceleration: %1$lf, %2$lf, %3$lf"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

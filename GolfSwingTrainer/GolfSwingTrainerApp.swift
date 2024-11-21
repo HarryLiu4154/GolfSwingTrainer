@@ -15,7 +15,7 @@ class  test : ObservableObject
 @main
 struct GolfSwingTrainerApp: App {
     @AppStorage("darkModeEnabled") private var darkModeEnabled: Bool = false
-    //@StateObject var t = test()
+    
     
     let persistenceController = PersistenceController.shared
     @StateObject var viewModel = AuthViewModel()
