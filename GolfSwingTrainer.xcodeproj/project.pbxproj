@@ -15,14 +15,45 @@
 		0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA582CBEC953007D10AA /* SessionView.swift */; };
 		0AB7CA5B2CBECEE0007D10AA /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */; };
 		0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */; };
+		6329FA8B2CDBBB7C00B9C0E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8A2CDBBB7C00B9C0E8 /* FirebaseAnalytics */; };
+		6329FA8D2CDBBB7C00B9C0E8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8C2CDBBB7C00B9C0E8 /* FirebaseAuth */; };
+		6329FA8F2CDBBB7C00B9C0E8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8E2CDBBB7C00B9C0E8 /* FirebaseDatabase */; };
+		6329FA912CDBBB7C00B9C0E8 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA902CDBBB7C00B9C0E8 /* FirebaseFirestore */; };
+		6329FA932CDBBB7C00B9C0E8 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA922CDBBB7C00B9C0E8 /* FirebaseFirestoreCombine-Community */; };
+		6329FA952CDBBB7C00B9C0E8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA942CDBBB7C00B9C0E8 /* FirebaseStorage */; };
+		6329FA972CDBBB7C00B9C0E8 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA962CDBBB7C00B9C0E8 /* FirebaseStorageCombine-Community */; };
+		6366384A2CE3FCE300CD48F7 /* UserAttributesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */; };
+		6366384C2CE3FDE300CD48F7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6366384B2CE3FDE300CD48F7 /* CoreData.framework */; };
+		6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */; };
+		636638502CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */; };
+		636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638512CE3FE7600CD48F7 /* PersistenceController.swift */; };
+		636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */; };
+		636638562CE40B5D00CD48F7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636638552CE40B5700CD48F7 /* Constants.swift */; };
 		BC0583D62CADD64C0018E9C1 /* HomeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */; };
 		BC0583D82CADD7190018E9C1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583D72CADD7190018E9C1 /* HomeView.swift */; };
 		BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */; };
+		BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */; };
 		BC1CC86F2CAF323B00E5FC48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */; };
-		BC1CC8722CAF326300E5FC48 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC8712CAF326300E5FC48 /* Localizable.xcstrings */; };
 		BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8742CAF336700E5FC48 /* LoginView.swift */; };
-		BC1CC8782CAF351E00E5FC48 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */; };
+		BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8772CAF351000E5FC48 /* AuthViewModel.swift */; };
 		BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */; };
+		BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
+		BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
+		BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8812CAF92DB00E5FC48 /* AppState.swift */; };
+		BC6921B12CC853DE00E7CD64 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */; };
+		BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */; };
+		BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */; };
+		BCB320172CE6E142005E9853 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320162CE6E142005E9853 /* HomeView.swift */; };
+		BCE638112CD9851000411D5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638102CD9850D00411D5B /* User.swift */; };
+		BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638142CD9865800411D5B /* UserProfileView.swift */; };
+		BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */; };
+		BCF714412CDAAD7E00BDB798 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714402CDAAD7E00BDB798 /* FirebaseAuth */; };
+		BCF714432CDAAD7E00BDB798 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714422CDAAD7E00BDB798 /* FirebaseDatabase */; };
+		BCF714452CDAAD7E00BDB798 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714442CDAAD7E00BDB798 /* FirebaseFirestore */; };
+		BCF714472CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714462CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community */; };
+		BCF714492CDAAD7E00BDB798 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = BCF714482CDAAD7E00BDB798 /* FirebaseStorage */; };
+		BCF7144B2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = BCF7144A2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community */; };
+		BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */; };
 		FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */; };
 		FE0109052C91265C00F074C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0109042C91265C00F074C8 /* ContentView.swift */; };
 		FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0109062C91265D00F074C8 /* Assets.xcassets */; };
@@ -101,14 +132,30 @@
 		0AB7CA582CBEC953007D10AA /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingVideoCaptureDelegate.swift; sourceTree = "<group>"; };
+		636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesViewModel.swift; sourceTree = "<group>"; };
+		6366384B2CE3FDE300CD48F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		636638512CE3FE7600CD48F7 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerUserInputComponentView.swift; sourceTree = "<group>"; };
+		636638552CE40B5700CD48F7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BC0583D52CADD64C0018E9C1 /* HomeToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolBar.swift; sourceTree = "<group>"; };
 		BC0583D72CADD7190018E9C1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BC0583DA2CADD7D50018E9C1 /* GolfSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSessionView.swift; sourceTree = "<group>"; };
+		BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInputComponentView.swift; sourceTree = "<group>"; };
 		BC1CC86E2CAF323B00E5FC48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		BC1CC8712CAF326300E5FC48 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		BC1CC8742CAF336700E5FC48 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		BC1CC8772CAF351000E5FC48 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC1CC8812CAF92DB00E5FC48 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		BCB320162CE6E142005E9853 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
+		BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesInputView.swift; sourceTree = "<group>"; };
 		FE0108FF2C91265C00F074C8 /* GolfSwingTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfSwingTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfSwingTrainerApp.swift; sourceTree = "<group>"; };
 		FE0109042C91265C00F074C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -136,6 +183,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6329FA8B2CDBBB7C00B9C0E8 /* FirebaseAnalytics in Frameworks */,
+				BCF714432CDAAD7E00BDB798 /* FirebaseDatabase in Frameworks */,
+				BCF714472CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				6329FA972CDBBB7C00B9C0E8 /* FirebaseStorageCombine-Community in Frameworks */,
+				6329FA912CDBBB7C00B9C0E8 /* FirebaseFirestore in Frameworks */,
+				BCF714412CDAAD7E00BDB798 /* FirebaseAuth in Frameworks */,
+				6329FA952CDBBB7C00B9C0E8 /* FirebaseStorage in Frameworks */,
+				6329FA932CDBBB7C00B9C0E8 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				BCF714492CDAAD7E00BDB798 /* FirebaseStorage in Frameworks */,
+				6366384C2CE3FDE300CD48F7 /* CoreData.framework in Frameworks */,
+				BCF7144B2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community in Frameworks */,
+				6329FA8F2CDBBB7C00B9C0E8 /* FirebaseDatabase in Frameworks */,
+				BCF714452CDAAD7E00BDB798 /* FirebaseFirestore in Frameworks */,
+				6329FA8D2CDBBB7C00B9C0E8 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,12 +238,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1AF9982CEFC5FE000BFD3A /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		0AB5E0452CAC68630035E5E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				0AB7CA572CBEC914007D10AA /* Session */,
+				BCB320152CE6E129005E9853 /* Home */,
+				BCB3200D2CE6D479005E9853 /* Settings */,
+				BCF7144D2CDABB8700BDB798 /* Start Dialog */,
+				BCE638152CD9865800411D5B /* Profile */,
 				BC1CC8732CAF32FE00E5FC48 /* Authentication */,
 				0AB5E0462CAC68880035E5E5 /* Progress */,
+				FE0109042C91265C00F074C8 /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,7 +333,8 @@
 		BC1CC8702CAF324B00E5FC48 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BC1CC8712CAF326300E5FC48 /* Localizable.xcstrings */,
+				FE0109062C91265D00F074C8 /* Assets.xcassets */,
+				BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -269,6 +344,7 @@
 			children = (
 				BC1CC8742CAF336700E5FC48 /* LoginView.swift */,
 				BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */,
+				BC064AE22CD2A58C0082B7D9 /* AuthInputComponentView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -276,10 +352,90 @@
 		BC1CC8762CAF34D800E5FC48 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				BC1CC8772CAF351000E5FC48 /* LoginViewModel.swift */,
-				0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */,
+				0A1AF9982CEFC5FE000BFD3A /* Session */,
+				BCB320122CE6DB87005E9853 /* Settings */,
+				BCB320112CE6DB6E005E9853 /* Start Dialog */,
+				BCB320102CE6DB32005E9853 /* Auth */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				636638552CE40B5700CD48F7 /* Constants.swift */,
+				BCE638102CD9850D00411D5B /* User.swift */,
+				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
+				636638512CE3FE7600CD48F7 /* PersistenceController.swift */,
+				6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BCB3200D2CE6D479005E9853 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BCB320102CE6DB32005E9853 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BC1CC8772CAF351000E5FC48 /* AuthViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		BCB320112CE6DB6E005E9853 /* Start Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */,
+			);
+			path = "Start Dialog";
+			sourceTree = "<group>";
+		};
+		BCB320122CE6DB87005E9853 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BCB320152CE6E129005E9853 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				BCB320162CE6E142005E9853 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		BCE638152CD9865800411D5B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BCE638142CD9865800411D5B /* UserProfileView.swift */,
+				BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BCE638192CD9CEB000411D5B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6366384B2CE3FDE300CD48F7 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCF7144D2CDABB8700BDB798 /* Start Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */,
+				636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */,
+			);
+			path = "Start Dialog";
 			sourceTree = "<group>";
 		};
 		FE0108F62C91265C00F074C8 = {
@@ -291,6 +447,7 @@
 				FE0109292C91265D00F074C8 /* GolfSwingTrainer Watch App */,
 				FE01093A2C91265E00F074C8 /* GolfSwingTrainer Watch AppTests */,
 				FE0109442C91265E00F074C8 /* GolfSwingTrainer Watch AppUITests */,
+				BCE638192CD9CEB000411D5B /* Frameworks */,
 				FE0109002C91265C00F074C8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -312,12 +469,12 @@
 			isa = PBXGroup;
 			children = (
 				0AB7CA5C2CBFE4EB007D10AA /* BLL */,
+				BC1CC8832CAF97EA00E5FC48 /* Models */,
+				0AB5E0452CAC68630035E5E5 /* Views */,
 				BC1CC8762CAF34D800E5FC48 /* ViewModels */,
 				BC1CC8702CAF324B00E5FC48 /* Resources */,
-				0AB5E0452CAC68630035E5E5 /* Views */,
 				FE0109022C91265C00F074C8 /* GolfSwingTrainerApp.swift */,
-				FE0109042C91265C00F074C8 /* ContentView.swift */,
-				FE0109062C91265D00F074C8 /* Assets.xcassets */,
+				BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */,
 				FE0109082C91265D00F074C8 /* Preview Content */,
 				0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */,
 			);
@@ -506,7 +663,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					FE0108FE2C91265C00F074C8 = {
 						CreatedOnToolsVersion = 15.4;
@@ -541,6 +698,9 @@
 				Base,
 			);
 			mainGroup = FE0108F62C91265C00F074C8;
+			packageReferences = (
+				6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FE0109002C91265C00F074C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -563,7 +723,8 @@
 				0AA2CAC82CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets in Resources */,
 				FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */,
-				BC1CC8722CAF326300E5FC48 /* Localizable.xcstrings in Resources */,
+				BC6921B12CC853DE00E7CD64 /* Localizable.xcstrings in Resources */,
+				BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +749,7 @@
 				FE0109322C91265E00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE01092F2C91265E00F074C8 /* Assets.xcassets in Resources */,
 				BC1CC86F2CAF323B00E5FC48 /* Localizable.xcstrings in Resources */,
+				BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,16 +776,31 @@
 			files = (
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
 				0AB7CA5B2CBECEE0007D10AA /* SessionViewModel.swift in Sources */,
+				636638562CE40B5D00CD48F7 /* Constants.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
+				6366384A2CE3FCE300CD48F7 /* UserAttributesViewModel.swift in Sources */,
+				BCB320172CE6E142005E9853 /* HomeView.swift in Sources */,
+				BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */,
+				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
+				BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
-				BC1CC8782CAF351E00E5FC48 /* LoginViewModel.swift in Sources */,
+				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */,
 				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
+				BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */,
+				636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */,
+				BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */,
+				6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
+				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
+				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
+				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
+				BCE638112CD9851000411D5B /* User.swift in Sources */,
+				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +830,7 @@
 				BC0583DB2CADD7D50018E9C1 /* GolfSessionView.swift in Sources */,
 				FE01092D2C91265D00F074C8 /* ContentView.swift in Sources */,
 				FE01092B2C91265D00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
+				636638502CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,6 +916,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -802,6 +981,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -832,7 +1012,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -862,7 +1042,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -888,13 +1068,12 @@
 		FE0109502C91265E00F074C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -922,13 +1101,12 @@
 		FE0109512C91265E00F074C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GolfSwingTrainer/Preview Content\"";
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
@@ -957,11 +1135,10 @@
 		FE0109532C91265E00F074C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -978,11 +1155,10 @@
 		FE0109542C91265E00F074C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -1000,10 +1176,9 @@
 		FE0109562C91265E00F074C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -1020,10 +1195,9 @@
 		FE0109572C91265E00F074C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
@@ -1041,11 +1215,10 @@
 		FE0109592C91265E00F074C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
@@ -1062,11 +1235,10 @@
 		FE01095A2C91265E00F074C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppTests";
@@ -1084,10 +1256,9 @@
 		FE01095C2C91265E00F074C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
@@ -1104,10 +1275,9 @@
 		FE01095D2C91265E00F074C8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8HQ7XX65SD;
+				DEVELOPMENT_TEAM = HB3XP4BKLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ca.sheridancollege.GolfSwingTrainer.GolfSwingTrainer-Watch-AppUITests";
@@ -1189,6 +1359,92 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6329FA8A2CDBBB7C00B9C0E8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6329FA8C2CDBBB7C00B9C0E8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6329FA8E2CDBBB7C00B9C0E8 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		6329FA902CDBBB7C00B9C0E8 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		6329FA922CDBBB7C00B9C0E8 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		6329FA942CDBBB7C00B9C0E8 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		6329FA962CDBBB7C00B9C0E8 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6329FA892CDBBB7C00B9C0E8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+		BCF714402CDAAD7E00BDB798 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseAuth;
+		};
+		BCF714422CDAAD7E00BDB798 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseDatabase;
+		};
+		BCF714442CDAAD7E00BDB798 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
+		BCF714462CDAAD7E00BDB798 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		BCF714482CDAAD7E00BDB798 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseStorage;
+		};
+		BCF7144A2CDAAD7E00BDB798 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "FirebaseStorageCombine-Community";
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */,
+			);
+			currentVersion = 6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FE0108F72C91265C00F074C8 /* Project object */;
 }
