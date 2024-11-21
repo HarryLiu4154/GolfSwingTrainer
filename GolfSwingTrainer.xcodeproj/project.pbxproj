@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AA2CAC82CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */; };
+		0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */; };
 		0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */; };
 		0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0492CAC69800035E5E5 /* ProgressView.swift */; };
 		0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */; };
@@ -91,6 +93,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = "SceneKit Asset Catalog.scnassets"; sourceTree = "<group>"; };
+		0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingARCaptureDelegate.swift; sourceTree = "<group>"; };
 		0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionComponentView.swift; sourceTree = "<group>"; };
 		0AB5E0492CAC69800035E5E5 /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		0AB5E04B2CAC69EE0035E5E5 /* ProgressDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressDetailsView.swift; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */,
+				0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */,
 			);
 			path = SwingAnalyzer;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				FE0109042C91265C00F074C8 /* ContentView.swift */,
 				FE0109062C91265D00F074C8 /* Assets.xcassets */,
 				FE0109082C91265D00F074C8 /* Preview Content */,
+				0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */,
 			);
 			path = GolfSwingTrainer;
 			sourceTree = "<group>";
@@ -554,6 +560,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA2CAC82CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets in Resources */,
 				FE01090A2C91265D00F074C8 /* Preview Assets.xcassets in Resources */,
 				FE0109072C91265D00F074C8 /* Assets.xcassets in Resources */,
 				BC1CC8722CAF326300E5FC48 /* Localizable.xcstrings in Resources */,
@@ -614,6 +621,7 @@
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* LoginViewModel.swift in Sources */,
+				0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */,
 				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 			);

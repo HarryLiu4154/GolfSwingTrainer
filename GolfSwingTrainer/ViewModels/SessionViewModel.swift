@@ -5,26 +5,35 @@
 //  Created by Kevin on 2024-10-15.
 //
 
+import ARKit
 import AVFoundation
 import CoreImage
+import RealityKit
+import SceneKit
 import SwiftUI
 
-@Observable class SessionViewModel{//}: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+@Observable
+class SessionViewModel{
     
     private var captureSession: AVCaptureSession = AVCaptureSession()
     private var videoDevice: AVCaptureDevice?
     private var videoStream = AVCaptureVideoDataOutput()
-    private var captureDelegate = SwingVideoCaptureDelegate()
+    private var avCaptureDelegate = SwingVideoCaptureDelegate()
+    private var arCaptureDelegate = SwingARCaptureDelegate()
     
-    var outputFrame: Image {
-        guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
-        return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
+    var outputARView = ARView()
+    var outputScene: SCNScene? {
+        return avCaptureDelegate.outputScene
     }
+    //    var outputFrame: Image {
+    //        guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
+    //        return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
+    //    }
     var bodyHeight: Float? {
-        return captureDelegate.bodyHeight
+        return avCaptureDelegate.bodyHeight
     }
     
-    var isAuthorized: Bool {
+    var isAVAuthorized: Bool {
         get async {
             let status = AVCaptureDevice.authorizationStatus(for: .video)
             
@@ -40,10 +49,22 @@ import SwiftUI
             return isAuthorized
         }
     }
+    
+    func setUpARCaptureSession() {
+        guard ARBodyTrackingConfiguration.isSupported else {
+            fatalError("This feature is only supported on devices with an A12 chip")
+        }
+        outputARView.session.delegate = self.arCaptureDelegate
+        
+        // Run a body tracking configuration.
+        let configuration = ARBodyTrackingConfiguration()
+        outputARView.session.run(configuration)
+        
+        outputARView.scene.addAnchor(arCaptureDelegate.characterAnchor)
+    }
 
-
-    func setUpCaptureSession() async {
-        guard await isAuthorized else { return }
+    func setUpAVCaptureSession() async {
+        guard await isAVAuthorized else { return }
         captureSession = AVCaptureSession()
         guard let videoDevice = AVCaptureDevice.userPreferredCamera else { return }
         self.videoDevice = videoDevice
@@ -56,24 +77,10 @@ import SwiftUI
         
         videoStream = AVCaptureVideoDataOutput()
         videoStream.videoSettings = nil // default uncompressed format
-        videoStream.setSampleBufferDelegate(captureDelegate, queue: DispatchQueue.global(qos: .userInteractive))
+        videoStream.setSampleBufferDelegate(avCaptureDelegate, queue: DispatchQueue.global(qos: .userInteractive))
         guard captureSession.canAddOutput(videoStream) else { return }
         captureSession.addOutput(videoStream)
         
         captureSession.startRunning()
     }
-    
-    /*
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let cvBuffer = sampleBuffer.imageBuffer else { return }
-        let ciImage = CIImage(cvImageBuffer: cvBuffer)
-        
-        self.outputFrame = UIImage(ciImage: ciImage, scale: 1, orientation: .up)
-        
-        /*
-        let ciBuffer = CIImage(cvImageBuffer: imageBuffer)
-        let ciContext = CIContext()
-        guard let cgImage = ciContext.createCGImage(ciBuffer, from: ciBuffer.extent) else { return }
-        self.outputImage = Image(*/
-    }*/
 }
