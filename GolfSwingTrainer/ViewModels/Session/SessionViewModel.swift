@@ -18,6 +18,7 @@ class SessionViewModel{
     private var captureSession: AVCaptureSession = AVCaptureSession()
     private var videoDevice: AVCaptureDevice?
     private var videoStream = AVCaptureVideoDataOutput()
+//    var videoFileOutput = AVCaptureMovieFileOutput()
     private var avCaptureDelegate = SwingVideoCaptureDelegate()
     private var arCaptureDelegate = SwingARCaptureDelegate()
     
@@ -25,10 +26,10 @@ class SessionViewModel{
     var outputScene: SCNScene? {
         return avCaptureDelegate.outputScene
     }
-    //    var outputFrame: Image {
-    //        guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
-    //        return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
-    //    }
+//        var outputFrame: Image {
+//            guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
+//            return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
+//        }
     var bodyHeight: Float? {
         return avCaptureDelegate.bodyHeight
     }
@@ -50,7 +51,7 @@ class SessionViewModel{
         }
     }
     
-    func setUpARCaptureSession() {
+    private func setUpARCaptureSession() {
         guard ARBodyTrackingConfiguration.isSupported else {
             fatalError("This feature is only supported on devices with an A12 chip")
         }
@@ -59,14 +60,20 @@ class SessionViewModel{
         // Run a body tracking configuration.
         let configuration = ARBodyTrackingConfiguration()
         outputARView.session.run(configuration)
-        
+    }
+    
+    private func startAR() {
         outputARView.scene.addAnchor(arCaptureDelegate.characterAnchor)
     }
-
-    func setUpAVCaptureSession() async {
+    
+    private func stopAR() {
+        outputARView.scene.removeAnchor(arCaptureDelegate.characterAnchor)
+    }
+    
+    private func setUpAVCaptureSession() async {
         guard await isAVAuthorized else { return }
         captureSession = AVCaptureSession()
-        guard let videoDevice = AVCaptureDevice.userPreferredCamera else { return }
+        guard let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera else { return }
         self.videoDevice = videoDevice
         
         guard
@@ -81,6 +88,34 @@ class SessionViewModel{
         guard captureSession.canAddOutput(videoStream) else { return }
         captureSession.addOutput(videoStream)
         
-        captureSession.startRunning()
+//        captureSession.addOutput(avCaptureDelegate.fileOutput)
+    }
+    
+    private func startAVRecording() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.captureSession.startRunning()
+        }
+//        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
+//        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
+    }
+    
+    private func stopAVRecording() {
+        avCaptureDelegate.fileOutput.stopRecording()
+        captureSession.stopRunning()
+    }
+    
+    func setup() async {
+        setUpARCaptureSession()
+        await setUpAVCaptureSession()
+    }
+
+    func startCapture() {
+        startAR()
+        startAVRecording()
+    }
+    
+    func stopCapture() {
+        stopAR()
+        stopAVRecording()
     }
 }

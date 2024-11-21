@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1AF99D2CEFF913000BFD3A /* SwingSessionFileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */; };
 		0AA2CAC82CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */; };
 		0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */; };
 		0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */; };
@@ -147,6 +148,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSessionFileDelegate.swift; sourceTree = "<group>"; };
 		0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = "SceneKit Asset Catalog.scnassets"; sourceTree = "<group>"; };
 		0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingARCaptureDelegate.swift; sourceTree = "<group>"; };
 		0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionComponentView.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			children = (
 				0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */,
 				0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */,
+				0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */,
 			);
 			path = SwingAnalyzer;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */,
+				0A1AF99D2CEFF913000BFD3A /* SwingSessionFileDelegate.swift in Sources */,
 				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
 				BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */,
 				636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */,
