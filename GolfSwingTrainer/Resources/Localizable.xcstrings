@@ -58,6 +58,9 @@
     "Don't have an account?" : {
 
     },
+    "Email Address" : {
+
+    },
     "Enter your password" : {
 
     },
@@ -88,10 +91,16 @@
     "Profile" : {
 
     },
+    "Progress" : {
+
+    },
     "Register" : {
 
     },
     "Select Dominant Hand" : {
+
+    },
+    "Session" : {
 
     },
     "Settings" : {

@@ -12,11 +12,14 @@ struct HomeView: View {
         NavigationStack{
             VStack{
                 TabView{
+                    ProgressView().tabItem{
+                        Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
+                    }
                     UserProfileView().tabItem{
-                        Label("Profile", systemImage: "person.fill")
+                        Label(String(localized: "Profile"), systemImage: "person.fill")
                     }
                     SettingsView().tabItem{
-                        Label("Settings", systemImage: "gear")
+                        Label(String(localized: "Settings"), systemImage: "gear")
                     }
                 }
             }
