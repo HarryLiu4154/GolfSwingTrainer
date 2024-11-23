@@ -10,43 +10,52 @@ import WatchKit
 
 struct SwingSessionView: View {
     @StateObject private var viewModel = MotionTrackingViewModel()
-    
+        
     var body: some View {
-        VStack {
-            Text("Motion Tracking")
-                .font(.headline)
-            
-            Text("Rotation Rate: \(viewModel.rotationRate.x), \(viewModel.rotationRate.y), \(viewModel.rotationRate.z)")
-                .font(.footnote)
-            Text("User Acceleration: \(viewModel.userAcceleration.x), \(viewModel.userAcceleration.y), \(viewModel.userAcceleration.z)")
-                .font(.footnote)
-            Text("Attitude: Roll \(viewModel.attitude.roll), Pitch \(viewModel.attitude.pitch), Yaw \(viewModel.attitude.yaw)")
-                .font(.footnote)
-            
-            Spacer()
-            
-            if viewModel.isTracking {
-                Button("Stop Tracking") {
-                    viewModel.stopTracking()
+        NavigationStack {
+            VStack {
+                Text("Motion Tracking")
+                    .font(.headline)
+                
+                Text("Rotation Rate: \(String(format: "%.2f", viewModel.rotationRate.x)), \(String(format: "%.2f", viewModel.rotationRate.y)), \(String(format: "%.2f", viewModel.rotationRate.z))")
+                    .font(.footnote)
+                Text("User Acceleration: \(String(format: "%.2f", viewModel.userAcceleration.x)), \(String(format: "%.2f", viewModel.userAcceleration.y)), \(String(format: "%.2f", viewModel.userAcceleration.z))")
+                    .font(.footnote)
+                /*Text("Attitude: Roll \(String(format: "%.2f", viewModel.attitude.roll)), Pitch \(String(format: "%.2f", viewModel.attitude.pitch)), Yaw \(String(format: "%.2f", viewModel.attitude.yaw))")
+                    .font(.footnote)*/
+                
+                Spacer()
+                
+                if viewModel.isTracking {
+                    Button("Stop Tracking") {
+                        viewModel.stopTracking()
+                    }
+                    .buttonStyle(.borderedProminent)
+                } else {
+                    Button("Start Tracking") {
+                        viewModel.startTracking()
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
-                .buttonStyle(.borderedProminent)
-            } else {
-                Button("Start Tracking") {
-                    viewModel.startTracking()
+                
+                Button("Save Session") {
+                    viewModel.saveSession()
                 }
-                .buttonStyle(.borderedProminent)
+                .disabled(!viewModel.isTracking)
             }
-            
-            Button("Save Session") {
-                viewModel.saveSession()
+            .padding()
+            .onAppear {
+                print("SwingSessionView appeared. Ready to track motion.")
             }
-            .disabled(!viewModel.isTracking)
+            .onDisappear {
+                print("SwingSessionView disappeared. Stopping tracking.")
+                viewModel.stopTracking()
+            }
         }
-        .padding()
     }
 }
 
 
 #Preview {
-    SwingSessionView().environmentObject(MotionTrackingViewModel())
+    SwingSessionView()
 }

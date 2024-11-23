@@ -18,7 +18,7 @@ class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
     @Published var userAcceleration: CMAcceleration = CMAcceleration()
     @Published var attitude: CMAttitude = CMAttitude()
     @Published var isTracking = false
-
+    
     // Storage for session data
     private var motionData: [(rotation: CMRotationRate, acceleration: CMAcceleration, attitude: CMAttitude, timestamp: TimeInterval)] = []
     
@@ -43,22 +43,26 @@ class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
     func startTracking() {
         guard !isTracking else { return }
         isTracking = true
-
+        
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 1.0 / 50.0 // 50 Hz
             motionManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
-                guard let self = self, let motion = motion, error == nil else { return }
-                let rotation = motion.rotationRate
-                let acceleration = motion.userAcceleration
-                let attitude = motion.attitude
+                guard let self = self, let motion = motion, error == nil else {
+                    print("Error receiving motion data: \(String(describing: error?.localizedDescription))")
+                    return
+                }
                 
-                self.rotationRate = rotation
-                self.userAcceleration = acceleration
-                self.attitude = attitude
-                
-                // Save the data for later
-                self.motionData.append((rotation: rotation, acceleration: acceleration, attitude: attitude, timestamp: motion.timestamp))
+                DispatchQueue.main.async {
+                    self.rotationRate = motion.rotationRate
+                    self.userAcceleration = motion.userAcceleration
+                    self.attitude = motion.attitude
+                    
+                    // Save data for later
+                    self.motionData.append((rotation: motion.rotationRate, acceleration: motion.userAcceleration, attitude: motion.attitude, timestamp: motion.timestamp))
+                }
             }
+        } else {
+            print("Device motion is not available.")
         }
     }
     
@@ -72,6 +76,7 @@ class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
     // Save data locally or send to iOS
     func saveSession() {
         guard !motionData.isEmpty else { return }
+        
         let dataToSend = motionData.map { data in
             return [
                 "rotationRate": ["x": data.rotation.x, "y": data.rotation.y, "z": data.rotation.z],
@@ -82,10 +87,11 @@ class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
         }
         
         if let session = session, session.isReachable {
-            session.sendMessage(["motionData": dataToSend], replyHandler: nil, errorHandler: nil)
+            session.sendMessage(["motionData": dataToSend], replyHandler: nil, errorHandler: { error in
+                print("Error sending motion data to iPhone: \(error.localizedDescription)")
+            })
         } else {
-            print("iOS device is not reachable. Saving data locally.")
-            // TODO: Implement local saving logic
+            print("iOS device is not reachable. Data not sent.")
         }
         
         motionData.removeAll() // Clear session data after saving
@@ -94,14 +100,14 @@ class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
     // WCSession Delegate Methods
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if let error = error {
-            print("Watch Connectivity activation failed: \(error.localizedDescription)")
+            print("WCSession activation failed: \(error.localizedDescription)")
         } else {
-            print("Watch Connectivity activated")
+            print("WCSession activated with state: \(activationState.rawValue)")
         }
     }
     
-    
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
-        // TODO: Handle messages from iOS device.
+        print("Received message from iPhone: \(message)")
+        // TODO: Handle received data
     }
 }

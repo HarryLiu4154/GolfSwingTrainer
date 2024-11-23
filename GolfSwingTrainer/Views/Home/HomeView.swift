@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack{
+            
             VStack{
                 //WeatherComponentView()
                 TabView{

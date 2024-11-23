@@ -4,16 +4,6 @@
     "" : {
 
     },
-    "Attitude: Roll %lf, Pitch %lf, Yaw %lf" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Attitude: Roll %1$lf, Pitch %2$lf, Yaw %3$lf"
-          }
-        }
-      }
-    },
     "Hello, world!" : {
 
     },
@@ -23,12 +13,12 @@
     "Motion Tracking" : {
 
     },
-    "Rotation Rate: %lf, %lf, %lf" : {
+    "Rotation Rate: %@, %@, %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Rotation Rate: %1$lf, %2$lf, %3$lf"
+            "value" : "Rotation Rate: %1$@, %2$@, %3$@"
           }
         }
       }
@@ -42,12 +32,12 @@
     "Stop Tracking" : {
 
     },
-    "User Acceleration: %lf, %lf, %lf" : {
+    "User Acceleration: %@, %@, %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "User Acceleration: %1$lf, %2$lf, %3$lf"
+            "value" : "User Acceleration: %1$@, %2$@, %3$@"
           }
         }
       }
