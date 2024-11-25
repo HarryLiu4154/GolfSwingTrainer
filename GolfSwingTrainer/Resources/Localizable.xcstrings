@@ -43,6 +43,9 @@
     "Delete" : {
 
     },
+    "Developer Settings" : {
+
+    },
     "Display" : {
 
     },
@@ -82,6 +85,9 @@
     "Feels Like: %@°C" : {
 
     },
+    "For Dev Eyes Only" : {
+
+    },
     "Gender" : {
 
     },
@@ -104,6 +110,9 @@
 
     },
     "Month" : {
+
+    },
+    "Motion Data" : {
 
     },
     "Password" : {
@@ -154,7 +163,13 @@
     "Temperature: %@°C" : {
 
     },
+    "Test Watch Sensor Ingestion" : {
+
+    },
     "This action will permanently delete your account." : {
+
+    },
+    "Timestamp: %lf" : {
 
     },
     "UV Index: %lld" : {

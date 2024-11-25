@@ -13,17 +13,10 @@
     "Motion Tracking" : {
 
     },
-    "Rotation Rate: %@, %@, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Rotation Rate: %1$@, %2$@, %3$@"
-          }
-        }
-      }
+    "No motion data yet." : {
+
     },
-    "Save Session" : {
+    "Send Data to iPhone" : {
 
     },
     "Start Tracking" : {
@@ -31,16 +24,6 @@
     },
     "Stop Tracking" : {
 
-    },
-    "User Acceleration: %@, %@, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "User Acceleration: %1$@, %2$@, %3$@"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

@@ -30,12 +30,19 @@ struct SettingsView: View {
                     }
                     
                 }
-                Button{
-                    authViewModel.signOut()
-                }label: {
-                    SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color.yellow)
+                Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
+                    NavigationLink("Test Watch Sensor Ingestion"){
+                        WatchMotionView()
+                    }
+                    Button{
+                        authViewModel.signOut()
+                    }label: {
+                        SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Emergency Sign out", tintColor: Color.yellow)
+                        
+                    }
                     
                 }
+                
             }.navigationTitle("Settings")
                 .preferredColorScheme(viewModel.darkModeEnabled ? .dark : .light) 
         }

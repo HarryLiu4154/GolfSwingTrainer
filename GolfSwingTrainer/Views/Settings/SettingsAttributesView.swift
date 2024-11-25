@@ -11,6 +11,7 @@ import CoreData
 import SwiftUI
 
 struct SettingsAttributesView: View {
+    //TODO: Impove seperation of concerns (UI + Logic)
     @EnvironmentObject var userDataViewModel: UserDataViewModel
 
     // Temporary local state for user attributes

@@ -11,6 +11,7 @@ import CoreData
 
 
 struct UserAttributesInputView: View {
+    //TODO: Impove seperation of concerns (UI + Logic)
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel
     @Environment(\.dismiss) private var dismiss
