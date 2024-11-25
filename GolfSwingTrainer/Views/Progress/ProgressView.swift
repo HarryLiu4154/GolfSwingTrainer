@@ -14,6 +14,11 @@ struct ProgressView: View {
         VStack{
             Text(String(localized: "Your Progress"))
                 .font(.title)
+            NavigationLink{
+                SessionView()
+            }label: {
+                Text(String(localized: "Session"))
+            }
             ScrollView{
                 Spacer()
                 ForEach(timeframes, id: \.self){timeframe in
