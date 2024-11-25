@@ -41,8 +41,10 @@ class AuthViewModel: ObservableObject {
     func signIn(withEmail email: String, password: String) async throws {
         let result = try await Auth.auth().signIn(withEmail: email, password: password)
         self.userSession = result.user
-        await userDataViewModel.loadUser() // Load user data after sign-in
+        await userDataViewModel.loadUser()
+        self.currentUser = userDataViewModel.user
     }
+
     
     // Create user
     func createUser(withEmail email: String, password: String, fullName: String) async throws {

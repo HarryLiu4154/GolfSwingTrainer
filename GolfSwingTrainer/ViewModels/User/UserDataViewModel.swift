@@ -15,7 +15,6 @@ class UserDataViewModel: ObservableObject {
     //Services
     let coreDataService: CoreDataService
     let firebaseService: FirebaseService
-    
     let auth: Auth
     
     init(coreDataService: CoreDataService, firebaseService: FirebaseService, auth: Auth = Auth.auth()) {
@@ -37,15 +36,11 @@ class UserDataViewModel: ObservableObject {
 
         if let coreDataUser = coreDataService.fetchUser(by: uid) {
             self.user = coreDataUser
-            print("UserDataViewModel: Successfully loaded user from Core Data.")
         } else {
-            // Fallback: Attempt to load from Firebase
             do {
-                let firebaseUser = try await firebaseService.fetchUser(uid: uid)
-                if let firebaseUser = firebaseUser {
+                if let firebaseUser = try await firebaseService.fetchUser(uid: uid) {
                     self.user = firebaseUser
                     coreDataService.saveUser(firebaseUser) // Sync to Core Data
-                    print("UserDataViewModel: Successfully loaded user from Firebase.")
                 } else {
                     print("UserDataViewModel: No user found in Firebase.")
                 }
