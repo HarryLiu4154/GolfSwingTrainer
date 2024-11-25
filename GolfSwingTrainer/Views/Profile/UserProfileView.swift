@@ -24,7 +24,7 @@ struct UserProfileView: View {
                                 .background(Color(.systemGray3))
                                 .clipShape(Circle())
                             VStack(alignment: .leading, spacing: 4){
-                                Text(user.fullname)
+                                Text(user.fullName)
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                     .padding(.top, 4)
@@ -78,5 +78,5 @@ struct UserProfileView: View {
 
 #Preview {
     
-    UserProfileView().environmentObject(AuthViewModel())
+    UserProfileView().environmentObject(AuthViewModel(userDataViewModel: UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService())))
 }

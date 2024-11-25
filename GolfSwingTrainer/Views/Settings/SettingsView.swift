@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = SettingsViewModel()
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
     @Environment(\.managedObjectContext) private var context // Access Core Data context from the environment
 
     var body: some View {
@@ -22,7 +24,16 @@ struct SettingsView: View {
                     
                 }
                 Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
-                    NavigationLink("Your attributes", destination: SettingsAttributesView(context: context))
+                    NavigationLink("Your attributes") {
+                        SettingsAttributesView()
+                            .environmentObject(userDataViewModel) 
+                    }
+                    
+                }
+                Button{
+                    authViewModel.signOut()
+                }label: {
+                    SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color.yellow)
                     
                 }
             }.navigationTitle("Settings")
@@ -33,5 +44,5 @@ struct SettingsView: View {
 
 #Preview {
     let context = PersistenceController.preview.container.viewContext
-    SettingsView().environment(\.managedObjectContext, context)
+    SettingsView().environment(\.managedObjectContext, context).environmentObject(AuthViewModel(userDataViewModel: UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService())))
 }

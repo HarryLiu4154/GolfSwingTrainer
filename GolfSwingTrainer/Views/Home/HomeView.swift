@@ -8,6 +8,7 @@
 import SwiftUI
 /*using this temporary home screen until team makes the refined one*/
 struct HomeView: View {
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
     var body: some View {
         NavigationStack{
             
@@ -30,5 +31,11 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    let coreDataService = CoreDataService()
+    let firebaseService = FirebaseService()
+    let userDataViewModel = UserDataViewModel(
+        coreDataService: coreDataService,
+        firebaseService: firebaseService
+    )
+    HomeView().environmentObject(userDataViewModel)
 }

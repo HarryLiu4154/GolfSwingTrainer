@@ -15,7 +15,7 @@ struct RegistrationView: View {
     @State private var confirmPasswword: String = ""
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var viewModel: AuthViewModel
-    @State private var navigationPath = NavigationPath() // Navigation path for programmatic navigation
+    //@State private var navigationPath = NavigationPath() // Navigation path for programmatic navigation
     
     var body: some View {
         VStack{
@@ -98,5 +98,5 @@ extension RegistrationView: AuthenticationFormProtocol{
 }
 
 #Preview {
-    RegistrationView().environmentObject(AuthViewModel())
+    RegistrationView().environmentObject(AuthViewModel(userDataViewModel: UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService())))
 }

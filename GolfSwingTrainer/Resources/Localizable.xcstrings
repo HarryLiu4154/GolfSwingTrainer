@@ -1,16 +1,10 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " (cm)" : {
-
-    },
-    " (kg)" : {
+    "%lld cm" : {
 
     },
     "%lld kg" : {
-
-    },
-    "%lldcm" : {
 
     },
     "Account" : {
@@ -94,7 +88,7 @@
     "General" : {
 
     },
-    "Height" : {
+    "Height (cm)" : {
 
     },
     "Height: %lld cm" : {
@@ -106,7 +100,7 @@
     "Humidity: %@%%" : {
 
     },
-    "Measurments" : {
+    "Measurements" : {
 
     },
     "Month" : {
@@ -124,13 +118,16 @@
     "Profile" : {
 
     },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
+
+    },
     "Register" : {
 
     },
     "Save" : {
 
     },
-    "Select Dominant Hand" : {
+    "Saving..." : {
 
     },
     "Settings" : {
@@ -160,9 +157,6 @@
     "This action will permanently delete your account." : {
 
     },
-    "TODO: " : {
-
-    },
     "UV Index: %lld" : {
 
     },
@@ -172,7 +166,7 @@
     "Week" : {
 
     },
-    "Weight" : {
+    "Weight (kg)" : {
 
     },
     "Weight: %lld kg" : {
@@ -199,7 +193,7 @@
     "Your Information" : {
 
     },
-    "Your physical attributes" : {
+    "Your Physical Attributes" : {
 
     },
     "Your Profile" : {

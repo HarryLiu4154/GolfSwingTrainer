@@ -46,7 +46,7 @@ class UserAttributesViewModel: ObservableObject {
                 self.birthDate = user.birthDate ?? Date.now
                 self.gender = user.gender ?? "Other"
                 self.dominantHand = user.dominantHand ?? "Right"
-                self.preferredMeasurement = user.preferredMeasurment ?? "Metric"
+                self.preferredMeasurement = user.preferredMeasurement ?? "Metric"
             }
         } catch {
             print("Failed to load user: \(error.localizedDescription)")
@@ -66,7 +66,7 @@ class UserAttributesViewModel: ObservableObject {
         userEntity?.birthDate = birthDate
         userEntity?.gender = gender
         userEntity?.dominantHand = dominantHand
-        userEntity?.preferredMeasurment = preferredMeasurement
+        userEntity?.preferredMeasurement = preferredMeasurement
         
         do {
             try context.save()

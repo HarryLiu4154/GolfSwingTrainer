@@ -5,68 +5,124 @@
 //  Created by David Romero on 2024-11-15.
 //
 
-import SwiftUI
+
 import Foundation
 import CoreData
-
+import SwiftUI
 
 struct SettingsAttributesView: View {
-    @StateObject private var viewModel: UserAttributesViewModel
-        
-    init(context: NSManagedObjectContext) {
-        _viewModel = StateObject(wrappedValue: UserAttributesViewModel(context: context))
-    }
-    
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
+
+    // Temporary local state for user attributes
+    @State private var height: Int = 170
+    @State private var weight: Int = 70
+    @State private var birthDate: Date = Date()
+    @State private var gender: String = "Male"
+    @State private var dominantHand: String = "Right"
+    @State private var preferredMeasurement: String = "Metric"
+    @State private var showSaveConfirmation: Bool = false // Show save confirmation
+
+    // Dropdown/picker options
+    private let genders = ["Male", "Female", "Other"]
+    private let dominantHands = ["Right", "Left"]
+    private let preferredMeasurements = ["Metric", "Imperial"]
+    private let heightRange = 120...250
+    private let weightRange = 30...200
+
     var body: some View {
         NavigationStack {
             Form {
                 Section("Physical Attributes") {
-                    Stepper(value: $viewModel.height, in: viewModel.heights, step: 1) {
-                        Text("Height: \(viewModel.height) cm")
+                    // Height
+                    Stepper(value: $height, in: heightRange, step: 1) {
+                        Text("Height: \(height) cm")
                     }
-                    Stepper(value: $viewModel.weight, in: viewModel.weights, step: 1) {
-                        Text("Weight: \(viewModel.weight) kg")
+
+                    // Weight
+                    Stepper(value: $weight, in: weightRange, step: 1) {
+                        Text("Weight: \(weight) kg")
                     }
-                    DatePicker("Birth Date", selection: $viewModel.birthDate, displayedComponents: .date)
-                    Picker("Gender", selection: $viewModel.gender) {
-                        ForEach(viewModel.genders, id: \.self) {
+
+                    // Birth Date
+                    DatePicker("Birth Date", selection: $birthDate, displayedComponents: .date)
+
+                    // Gender Picker
+                    Picker("Gender", selection: $gender) {
+                        ForEach(genders, id: \.self) {
                             Text($0)
                         }
                     }
-                    Picker("Dominant Hand", selection: $viewModel.dominantHand) {
-                        ForEach(viewModel.dominantHands, id: \.self) {
+
+                    // Dominant Hand Picker
+                    Picker("Dominant Hand", selection: $dominantHand) {
+                        ForEach(dominantHands, id: \.self) {
                             Text($0)
                         }
                     }
-                    Picker("Preferred Measurement", selection: $viewModel.preferredMeasurement) {
-                        ForEach(viewModel.preferredMeasurements, id: \.self) {
+
+                    // Preferred Measurement Picker
+                    Picker("Preferred Measurement", selection: $preferredMeasurement) {
+                        ForEach(preferredMeasurements, id: \.self) {
                             Text($0)
                         }
                     }
                 }
+            }
+            .onAppear {
+                loadAttributes()
             }
             .navigationTitle("Your Attributes")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        viewModel.saveAttributes()
+                        saveAttributes()
                     }
                 }
             }
         }
-        // Show temporary confirmation
-        if viewModel.showSaveConfirmation {
-            VStack {
-                Image(systemName: "checkmark.circle")
-                
+    }
+
+    // MARK: - Logic
+
+    private func loadAttributes() {
+        guard let user = userDataViewModel.user else { return }
+
+        height = user.height
+        weight = user.weight
+        birthDate = user.birthDate
+        gender = genders.contains(user.gender) ? user.gender : genders[0] // Default to first option if invalid
+        dominantHand = dominantHands.contains(user.dominantHand) ? user.dominantHand : dominantHands[0]
+        preferredMeasurement = preferredMeasurements.contains(user.preferredMeasurement) ? user.preferredMeasurement : preferredMeasurements[0]
+    }
+
+    private func saveAttributes() {
+        // Save updated attributes via UserDataViewModel
+        Task {
+            await userDataViewModel.updateUserAttributes(
+                preferredMeasurement: preferredMeasurement,
+                height: height,
+                weight: weight,
+                birthDate: birthDate,
+                gender: gender,
+                dominantHand: dominantHand
+            )
+            
+            // Show save confirmation
+            DispatchQueue.main.async {
+                showSaveConfirmation = true
             }
-            .transition(.opacity)
-            .animation(.easeInOut, value: viewModel.showSaveConfirmation)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                showSaveConfirmation = false
+            }
         }
     }
 }
 
 #Preview {
-    let context = PersistenceController.preview.container.viewContext
-    return SettingsAttributesView(context: context)
+    let coreDataService = CoreDataService()
+    let firebaseService = FirebaseService()
+    let userDataViewModel = UserDataViewModel(coreDataService: coreDataService, firebaseService: firebaseService)
+
+    return SettingsAttributesView()
+        .environmentObject(userDataViewModel)
 }

@@ -7,28 +7,39 @@
 
 import SwiftUI
 import Firebase
+import Foundation
 
-class  test : ObservableObject
-{
-    
-}
 @main
 struct GolfSwingTrainerApp: App {
-    @AppStorage("darkModeEnabled") private var darkModeEnabled: Bool = false
-    
-    
+    @AppStorage("darkModeEnabled") var darkModeEnabled: Bool = false
     let persistenceController = PersistenceController.shared
-    @StateObject var viewModel = AuthViewModel()
-    
-    init(){
+
+    @StateObject var userDataViewModel: UserDataViewModel
+    @StateObject var authViewModel: AuthViewModel
+
+    init() {
         FirebaseApp.configure()
+        
+        // Initialize `userDataViewModel` first
+        let userDataViewModelInstance = UserDataViewModel(
+            coreDataService: CoreDataService(),
+            firebaseService: FirebaseService()
+        )
+        _userDataViewModel = StateObject(wrappedValue: userDataViewModelInstance)
+        
+        // Then initialize `authViewModel` with the `userDataViewModel`
+        _authViewModel = StateObject(wrappedValue: AuthViewModel(userDataViewModel: userDataViewModelInstance))
     }
+
     var body: some Scene {
+        
         WindowGroup {
             NavigationStack{
-                RootView().environmentObject(viewModel)
+                RootView()
+                    .environmentObject(authViewModel)
+                    .environmentObject(userDataViewModel)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                    //.environmentObject(t)
+                    
                 
             }.preferredColorScheme(darkModeEnabled ? .dark : .light) // Apply dark mode globally
         }
@@ -37,23 +48,30 @@ struct GolfSwingTrainerApp: App {
 
 //MARK: - Root navigation
 struct RootView: View {
-    @EnvironmentObject var viewModel: AuthViewModel
-
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var viewModel: UserDataViewModel
     var body: some View {
-            if viewModel.userSession != nil {
-                if viewModel.isUserSetupComplete {
-                    //TODO: Add home screen
-                    HomeView()
-                } else {
-                    UserAttributesInputView() // Show setup view if not complete
-                }
-
+       
+        if authViewModel.userSession != nil {
+            if authViewModel.isUserSetupComplete {
+                HomeView()
             } else {
-                LoginView()
+                UserAttributesInputView() // Show setup view if not complete
             }
-        
+        } else {
+            LoginView()
+        }
     }
 }
 #Preview {
-    RootView().environmentObject(AuthViewModel())
+    let coreDataService = CoreDataService() // Replace with mock/in-memory service if needed
+    let firebaseService = FirebaseService() // Replace with a mock Firebase service
+    let userDataViewModel = UserDataViewModel(
+        coreDataService: coreDataService,
+        firebaseService: firebaseService
+    )
+    let authViewModel = AuthViewModel(userDataViewModel: userDataViewModel)
+    return RootView()
+        .environmentObject(authViewModel)
+        .environmentObject(userDataViewModel)
 }
