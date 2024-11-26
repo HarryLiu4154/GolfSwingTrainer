@@ -6,6 +6,7 @@
         <attribute name="firebaseUID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="rotationData" optional="YES" attributeType="Binary"/>
+        <attribute name="userUID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES" codeGenerationType="class">
         <attribute name="birthDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

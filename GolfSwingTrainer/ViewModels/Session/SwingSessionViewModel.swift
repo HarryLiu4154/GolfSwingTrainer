@@ -30,19 +30,29 @@ class SwingSessionViewModel: ObservableObject {
     func syncWithFirebase() async {
         do {
             let remoteSessions = try await firebaseService.fetchAllSwingSessions(forUser: userUID)
+            
+            // Save fetched sessions to Core Data
             for session in remoteSessions {
                 coreDataService.saveSwingSession(session)
             }
+            
+            // Reload sessions from Core Data
             sessions = coreDataService.fetchSwingSessions()
-        } catch {
-            print("Failed to sync sessions: \(error)")
+        } catch let error as NSError {
+            print("Failed to sync sessions: \(error.localizedDescription)")
+            if error.code == 7 {
+                print("Permission denied. Check Firestore security rules.")
+            }
         }
     }
 
     func addSession(_ session: SwingSession) async {
-        coreDataService.saveSwingSession(session)
+        var newSession = session
+        newSession.userUID = userUID 
+
+        coreDataService.saveSwingSession(newSession)
         do {
-            try await firebaseService.saveSwingSession(session, userUID: userUID)
+            try await firebaseService.saveSwingSession(newSession, userUID: userUID)
         } catch {
             print("Failed to save session to Firebase: \(error)")
         }

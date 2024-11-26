@@ -43,7 +43,17 @@ extension FirebaseService {
         let docRef = db.collection("swingSessions").document(session.firebaseUID ?? UUID().uuidString)
         var updatedSession = session
         updatedSession.firebaseUID = docRef.documentID
-        try docRef.setData(from: updatedSession)
+        updatedSession.userUID = userUID 
+        
+        print("Saving session to Firestore: \(updatedSession)")
+        
+        try docRef.setData(from: updatedSession) { error in
+            if let error = error {
+                print("Error saving session to Firestore: \(error.localizedDescription)")
+            } else {
+                print("Session successfully saved with ID: \(docRef.documentID)")
+            }
+        }
     }
 
     func deleteSwingSession(uid: String) async throws {

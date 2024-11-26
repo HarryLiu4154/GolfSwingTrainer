@@ -7,11 +7,28 @@
     "%lld kg" : {
 
     },
+    "%lld Rotation Samples, %lld Acceleration Samples" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Rotation Samples, %2$lld Acceleration Samples"
+          }
+        }
+      }
+    },
     "Acceleration Data" : {
 
     },
-    "Acceleration Samples: %lld" : {
-
+    "Acceleration: x: %.2f, y: %.2f, z: %.2f" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Acceleration: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+          }
+        }
+      }
     },
     "Account" : {
 
@@ -151,8 +168,15 @@
     "Rotation Data" : {
 
     },
-    "Rotation Samples: %lld" : {
-
+    "Rotation Rate: x: %.2f, y: %.2f, z: %.2f" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation Rate: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+          }
+        }
+      }
     },
     "Sample %lld:" : {
 
@@ -193,6 +217,9 @@
     "Swing Sessions" : {
 
     },
+    "Sync" : {
+
+    },
     "Temperature: %@°C" : {
 
     },
@@ -202,7 +229,7 @@
     "This action will permanently delete your account." : {
 
     },
-    "Timestamp: %lf" : {
+    "Timestamp: %@" : {
 
     },
     "UV Index: %lld" : {
@@ -232,9 +259,6 @@
     "Year" : {
 
     },
-    "Your attributes" : {
-
-    },
     "Your Attributes" : {
 
     },
@@ -248,6 +272,9 @@
 
     },
     "Your Progress" : {
+
+    },
+    "Your Swings" : {
 
     }
   },

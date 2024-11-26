@@ -8,7 +8,7 @@
 import Foundation
 import WatchConnectivity
 
-///Manages WatchConnectivity with watch Device
+///Manages Motion Data settings example
 class MotionDataViewModel: NSObject, ObservableObject, WCSessionDelegate {
     func sessionDidBecomeInactive(_ session: WCSession) {
         //Auto generated

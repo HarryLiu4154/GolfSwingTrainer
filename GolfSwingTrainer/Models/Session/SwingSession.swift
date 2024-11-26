@@ -10,24 +10,26 @@ import CoreData
 
 struct SwingSession: Identifiable, Codable {
     let id: UUID
-    var firebaseUID: String?
-    var date: Date
-    var rotationData: [[String: Double]] // Encoded CMRotationRate
-    var accelerationData: [[String: Double]] // Encoded CMAcceleration
-
+        var firebaseUID: String?
+        var userUID: String?
+        var date: Date
+        var rotationData: [[String: Double]] // Encoded CMRotationRate
+        var accelerationData: [[String: Double]] // Encoded CMAcceleration
     // Convenience initializer for Motion Data
-    init(id: UUID = UUID(), firebaseUID: String? = nil, date: Date, rotationData: [CMRotationRate], accelerationData: [CMAcceleration]) {
+    init(id: UUID = UUID(), firebaseUID: String? = nil, userUID: String?, date: Date, rotationData: [CMRotationRate], accelerationData: [CMAcceleration]) {
         self.id = id
         self.firebaseUID = firebaseUID
+        self.userUID = userUID
         self.date = date
         self.rotationData = rotationData.map { ["x": $0.x, "y": $0.y, "z": $0.z] }
         self.accelerationData = accelerationData.map { ["x": $0.x, "y": $0.y, "z": $0.z] }
     }
 
     // Convenience initializer for Firebase/CoreData-friendly format
-    init(id: UUID, firebaseUID: String?, date: Date, rotationData: [[String: Double]], accelerationData: [[String: Double]]) {
+    init(id: UUID, firebaseUID: String?, userUID: String?, date: Date, rotationData: [[String: Double]], accelerationData: [[String: Double]]) {
         self.id = id
         self.firebaseUID = firebaseUID
+        self.userUID = userUID
         self.date = date
         self.rotationData = rotationData
         self.accelerationData = accelerationData
@@ -42,6 +44,7 @@ extension SwingSessionEntity {
         return SwingSession(
             id: self.id ?? UUID(),
             firebaseUID: self.firebaseUID,
+            userUID: self.userUID,
             date: self.date ?? Date(),
             rotationData: rotationData,
             accelerationData: accelerationData
@@ -52,6 +55,7 @@ extension SwingSessionEntity {
     func update(from session: SwingSession) {
         self.id = session.id
         self.firebaseUID = session.firebaseUID
+        self.userUID = session.userUID
         self.date = session.date
         self.rotationData = try? JSONSerialization.data(withJSONObject: session.rotationData, options: [])
         self.accelerationData = try? JSONSerialization.data(withJSONObject: session.accelerationData, options: [])
@@ -76,6 +80,7 @@ extension SwingSession {
         return SwingSession(
             id: UUID(),
             firebaseUID: "mockFirebaseUID",
+            userUID: "mockUserUID",
             date: Date(),
             rotationData: mockRotationData,
             accelerationData: mockAccelerationData
@@ -87,6 +92,7 @@ extension SwingSessionEntity {
         let entity = SwingSessionEntity(context: context)
         entity.id = UUID()
         entity.firebaseUID = "mockFirebaseUID"
+        entity.firebaseUID = "mockUserUID"
         entity.date = Date()
         entity.rotationData = try? JSONSerialization.data(withJSONObject: [
             ["x": 1.2, "y": 0.5, "z": -0.8],

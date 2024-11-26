@@ -16,7 +16,7 @@ struct GolfSwingTrainerApp: App {
 
     @StateObject var userDataViewModel: UserDataViewModel
     @StateObject var authViewModel: AuthViewModel
-
+    @StateObject var swingSessionViewModel: SwingSessionViewModel
     init() {
         FirebaseApp.configure()
         
@@ -27,8 +27,17 @@ struct GolfSwingTrainerApp: App {
         )
         _userDataViewModel = StateObject(wrappedValue: userDataViewModelInstance)
         
-        // Then initialize `authViewModel` with the `userDataViewModel`
-        _authViewModel = StateObject(wrappedValue: AuthViewModel(userDataViewModel: userDataViewModelInstance))
+        // Initialize `authViewModel` with the `userDataViewModel`
+        let authViewModelInstance = AuthViewModel(userDataViewModel: userDataViewModelInstance)
+        _authViewModel = StateObject(wrappedValue: authViewModelInstance)
+        
+        // Initialize `swingSessionViewModel` with the userUID from `AuthViewModel`
+        let userUID = authViewModelInstance.userSession?.uid ?? "" // Ensure a default value
+        _swingSessionViewModel = StateObject(wrappedValue: SwingSessionViewModel(
+            coreDataService: userDataViewModelInstance.coreDataService,
+            firebaseService: userDataViewModelInstance.firebaseService,
+            userUID: userUID
+        ))
     }
 
     var body: some Scene {
@@ -38,6 +47,7 @@ struct GolfSwingTrainerApp: App {
                 RootView()
                     .environmentObject(authViewModel)
                     .environmentObject(userDataViewModel)
+                    .environmentObject(swingSessionViewModel)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     
                 

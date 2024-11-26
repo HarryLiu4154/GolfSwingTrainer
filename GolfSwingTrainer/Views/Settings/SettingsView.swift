@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = SettingsViewModel()
     @EnvironmentObject var userDataViewModel: UserDataViewModel
@@ -24,15 +25,20 @@ struct SettingsView: View {
                     
                 }
                 Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
-                    NavigationLink("Your attributes") {
+                    
+                    NavigationLink("Your Attributes") {
                         SettingsAttributesView()
-                            .environmentObject(userDataViewModel) 
+                            .environmentObject(userDataViewModel)
+                    }
+                    NavigationLink("Your Swings") {
+                        SwingSessionListView()
+                            .environmentObject(swingSessionViewModel)
                     }
                     
                 }
                 Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
                     NavigationLink("Test Watch Sensor Ingestion"){
-                        WatchMotionView()
+                        WatchMotionView().environmentObject(swingSessionViewModel)
                     }
                     Button{
                         authViewModel.signOut()
