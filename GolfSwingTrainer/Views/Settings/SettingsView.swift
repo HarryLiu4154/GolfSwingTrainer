@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = SettingsViewModel()
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @Environment(\.managedObjectContext) private var context // Access Core Data context from the environment
+
     var body: some View {
         NavigationStack{
             Form{
@@ -19,6 +24,31 @@ struct SettingsView: View {
                     })
                     
                 }
+                Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
+                    
+                    NavigationLink("Your Attributes") {
+                        SettingsAttributesView()
+                            .environmentObject(userDataViewModel)
+                    }
+                    NavigationLink("Your Swings") {
+                        SwingSessionListView()
+                            .environmentObject(swingSessionViewModel)
+                    }
+                    
+                }
+                Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
+                    NavigationLink("Test Watch Sensor Ingestion"){
+                        WatchMotionView().environmentObject(swingSessionViewModel)
+                    }
+                    Button{
+                        authViewModel.signOut()
+                    }label: {
+                        SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Emergency Sign out", tintColor: Color.yellow)
+                        
+                    }
+                    
+                }
+                
             }.navigationTitle("Settings")
                 .preferredColorScheme(viewModel.darkModeEnabled ? .dark : .light) 
         }
@@ -26,5 +56,6 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView().environmentObject(SettingsViewModel())
+    let context = PersistenceController.preview.container.viewContext
+    SettingsView().environment(\.managedObjectContext, context).environmentObject(AuthViewModel(userDataViewModel: UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService())))
 }

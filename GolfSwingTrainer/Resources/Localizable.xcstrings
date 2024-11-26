@@ -1,17 +1,34 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    " (cm)" : {
-
-    },
-    " (kg)" : {
+    "%lld cm" : {
 
     },
     "%lld kg" : {
 
     },
-    "%lldcm" : {
+    "%lld Rotation Samples, %lld Acceleration Samples" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld Rotation Samples, %2$lld Acceleration Samples"
+          }
+        }
+      }
+    },
+    "Acceleration Data" : {
 
+    },
+    "Acceleration: x: %.2f, y: %.2f, z: %.2f" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Acceleration: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+          }
+        }
+      }
     },
     "Account" : {
 
@@ -28,19 +45,37 @@
     "Are you sure?" : {
 
     },
+    "Attach a Swing Session (Optional)" : {
+
+    },
+    "Birth Date" : {
+
+    },
     "Birthday" : {
+
+    },
+    "Condition: %@" : {
 
     },
     "Continue" : {
 
     },
+    "Create Post" : {
+
+    },
     "Dark Mode" : {
+
+    },
+    "Date: %@" : {
 
     },
     "Day" : {
 
     },
     "Delete" : {
+
+    },
+    "Developer Settings" : {
 
     },
     "Display" : {
@@ -58,7 +93,13 @@
     "Don't have an account?" : {
 
     },
+    "Edit your information" : {
+
+    },
     "Email Address" : {
+
+    },
+    "Enter %@" : {
 
     },
     "Enter your password" : {
@@ -67,29 +108,77 @@
     "Enter your physical attributes" : {
 
     },
+    "Enter your post text" : {
+
+    },
+    "Feed" : {
+
+    },
+    "Feels Like: %@°C" : {
+
+    },
+    "For Dev Eyes Only" : {
+
+    },
     "Gender" : {
 
     },
     "General" : {
 
     },
-    "Height" : {
+    "Height (cm)" : {
+
+    },
+    "Height: %lld cm" : {
 
     },
     "Home" : {
 
     },
-    "Measurments" : {
+    "Humidity: %@%%" : {
+
+    },
+    "Measurements" : {
 
     },
     "Month" : {
 
     },
+    "Motion Data" : {
+
+    },
+    "No acceleration data available." : {
+
+    },
+    "No posts available. Create the first one!" : {
+
+    },
+    "No rotation data available." : {
+
+    },
+    "None" : {
+
+    },
     "Password" : {
+
+    },
+    "Physical Attributes" : {
+
+    },
+    "Post" : {
+
+    },
+    "Post Content" : {
+
+    },
+    "Preferred Measurement" : {
 
     },
     "Profile" : {
 
+    },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
+    
     },
     "Progress" : {
 
@@ -97,7 +186,32 @@
     "Register" : {
 
     },
-    "Select Dominant Hand" : {
+    "Rotation Data" : {
+
+    },
+    "Rotation Rate: x: %.2f, y: %.2f, z: %.2f" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation Rate: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+          }
+        }
+      }
+    },
+    "Sample %lld:" : {
+
+    },
+    "Save" : {
+
+    },
+    "Saving..." : {
+
+    },
+    "Select Session" : {
+
+    },
+    "Session Details" : {
 
     },
     "Session" : {
@@ -121,13 +235,34 @@
     "Swing" : {
 
     },
+    "Swing Duration: %@" : {
+
+    },
     "Swing Metadata" : {
+
+    },
+    "Swing Session Details" : {
+
+    },
+    "Swing Sessions" : {
+
+    },
+    "Sync" : {
+
+    },
+    "Temperature: %@°C" : {
+
+    },
+    "Test Watch Sensor Ingestion" : {
 
     },
     "This action will permanently delete your account." : {
 
     },
-    "TODO: " : {
+    "Timestamp: %@" : {
+
+    },
+    "UV Index: %lld" : {
 
     },
     "Version" : {
@@ -136,22 +271,40 @@
     "Week" : {
 
     },
-    "Weight" : {
+    "Weight (kg)" : {
+
+    },
+    "Weight: %lld kg" : {
 
     },
     "Why do we need this?" : {
 
     },
+    "Wind Direction: %@" : {
+
+    },
+    "Wind: %@ km/h" : {
+
+    },
     "Year" : {
 
     },
-    "Your physical attributes" : {
+    "Your Attributes" : {
+
+    },
+    "Your Information" : {
+
+    },
+    "Your Physical Attributes" : {
 
     },
     "Your Profile" : {
 
     },
     "Your Progress" : {
+
+    },
+    "Your Swings" : {
 
     }
   },

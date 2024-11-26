@@ -9,85 +9,100 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import SwiftUI
+import Firebase
 
 protocol AuthenticationFormProtocol{
     var formIsValid: Bool {get}
 }
 @MainActor
 class AuthViewModel: ObservableObject {
-    @Published var userSession: FirebaseAuth.User? //Help's determine if user is logged in or not
+    @Published var userSession: FirebaseAuth.User? // Helps determine if user is logged in or not
     @Published var currentUser: User?
+
+    private let _userDataViewModel: UserDataViewModel
     
-    @AppStorage("isUserSetupComplete") var isUserSetupComplete: Bool = false //Remembers whether the user set up their app in the beggining
+    @AppStorage("isUserSetupComplete") var isUserSetupComplete: Bool = false // Tracks setup completion
     
-    init(){
+    var userDataViewModel: UserDataViewModel {
+        _userDataViewModel
+    }
+    
+    init(userDataViewModel: UserDataViewModel) {
+        self._userDataViewModel = userDataViewModel
         self.userSession = Auth.auth().currentUser
-        Task{
-            await fetchUser()
-        }
-    }
-    func signIn(withEmail email: String, password: String) async throws {
-        do{
-            let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            self.userSession = result.user
-            await fetchUser()
-            print("AuthViewModel: signIn() -> Signing in \(String(describing: currentUser?.fullname)), with Email: \(String(email))...")
-        }catch{
-            print("AuthViewModel: signIn() -> FAILED Signing in with error: \(error.localizedDescription)...")
-        }
-    }
-    func createUser(withEmail email: String, password: String, fullName: String) async throws{
-        do{
-            let result = try await Auth.auth().createUser(withEmail: email, password: password)
-            self.userSession = result.user
-            let user = User(id: result.user.uid, fullname: fullName, email: email)
-            let encodedUser = try Firestore.Encoder().encode(user)
-            try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
-            print("AuthViewModel: createUser() -> Created a user with email: \(String(describing: email))")
-            await fetchUser()
-            self.userSession = result.user
-        }catch{
-            print("AuthViewModel: createUser() -> Failed to create a user with error: \(error.localizedDescription)")
-        }
-    }
-    func signOut(){
-        do{
-            try Auth.auth().signOut() //signs out the backend
-            self.userSession = nil //wipes user session and returns to login screen
-            self.currentUser = nil //wipes data model
-            print("AuthViewModel: signOut() -> Signing out User...")
-        }catch{
-            print("AuthViewModel: signOut() -> FAILED to sign out User with error \(error.localizedDescription)...")
-        }
         
-        print("AuthViewModel: signOut() -> Signing out User...")
+        Task {
+            await userDataViewModel.loadUser()
+            self.currentUser = userDataViewModel.user
+        }
     }
-    func deleteAccount() async {
-        guard let user = Auth.auth().currentUser else { return }
+    
+    // Sign in
+    func signIn(withEmail email: String, password: String) async throws {
+        let result = try await Auth.auth().signIn(withEmail: email, password: password)
+        self.userSession = result.user
+        await userDataViewModel.loadUser()
+        self.currentUser = userDataViewModel.user
+    }
+
+    
+    // Create user
+    func createUser(withEmail email: String, password: String, fullName: String) async throws {
         do {
-            // Remove the user document from Firestore
-            try await Firestore.firestore().collection("users").document(user.uid).delete()
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            let uid = result.user.uid // Firebase UID is non-optional
+            self.userSession = result.user
             
-            // Delete the user from Firebase Authentication
-            try await user.delete()
+            // Create the user object for storage
+            let newUser = User(
+                id: UUID(), // Generate a new UUID for Core Data
+                uid: uid, // Use the Firebase UID
+                fullName: fullName,
+                email: email,
+                birthDate: Date(), // Default values
+                dominantHand: "",
+                gender: "",
+                height: 0,
+                preferredMeasurement: "Metric",
+                weight: 0
+            )
             
-            // Clear session and user data
+            // Save the user to Core Data and Firebase
+            await userDataViewModel.updateUser(newUser)
+            self.currentUser = newUser
+            print("AuthViewModel: User successfully created and stored.")
+            isUserSetupComplete = false //reset setup flag
+        } catch let error as NSError {
+            print("AuthViewModel: Failed to create user: \(error.localizedDescription)")
+            throw error
+        }
+    }
+
+    
+    // Sign out
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
             self.userSession = nil
             self.currentUser = nil
-            print("AuthViewModel: deleteAccount() -> Account successfully deleted.")
+            print("AuthViewModel: Signed out successfully.")
         } catch {
-            print("AuthViewModel: deleteAccount() -> Failed to delete account with error: \(error.localizedDescription)")
+            print("AuthViewModel: Failed to sign out: \(error)")
         }
-                
     }
-    func fetchUser() async{
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
-        self.currentUser = try? snapshot.data(as: User.self)
+    
+    // Delete account
+    func deleteAccount() async {
+        guard (userSession?.uid) != nil else { return }
         
-      
-        print("AuthViewModel: fetching user \(String(describing: self.currentUser))...")
+        await _userDataViewModel.deleteUser() // Ensure the UserDataViewModel is updated
+        do {
+            try await Auth.auth().currentUser?.delete()
+            self.userSession = nil
+            self.currentUser = nil
+            print("AuthViewModel: Account deleted successfully.")
+        } catch {
+            print("AuthViewModel: Failed to delete account: \(error)")
+        }
     }
-
 }
-

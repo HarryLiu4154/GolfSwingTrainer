@@ -7,10 +7,22 @@
     "Hello, world!" : {
 
     },
-    "Hello, World!" : {
+    "Home" : {
 
     },
-    "Home" : {
+    "Motion Tracking" : {
+
+    },
+    "No motion data yet." : {
+
+    },
+    "Send Data to iPhone" : {
+
+    },
+    "Start Tracking" : {
+
+    },
+    "Stop Tracking" : {
 
     }
   },

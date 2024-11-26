@@ -37,7 +37,7 @@ struct HomeToolBar: View {
                                     
                                     NavigationLink {
                                         //
-                                        GolfSessionView()
+                                        //GolfSessionView()
                                     } label: {
                                         Image(systemName:"figure.golf")
                                     }

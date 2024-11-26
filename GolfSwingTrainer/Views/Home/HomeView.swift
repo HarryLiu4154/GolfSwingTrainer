@@ -8,9 +8,12 @@
 import SwiftUI
 /*using this temporary home screen until team makes the refined one*/
 struct HomeView: View {
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
     var body: some View {
         NavigationStack{
+            
             VStack{
+                //WeatherComponentView()
                 TabView{
                     ProgressView().tabItem{
                         Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
@@ -21,6 +24,9 @@ struct HomeView: View {
                     SettingsView().tabItem{
                         Label(String(localized: "Settings"), systemImage: "gear")
                     }
+                    FeedView().tabItem{
+                        Label("Feed", systemImage: "paperplane.circle")
+                    }
                 }
             }
         }.navigationTitle("Home")
@@ -28,5 +34,11 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    let coreDataService = CoreDataService()
+    let firebaseService = FirebaseService()
+    let userDataViewModel = UserDataViewModel(
+        coreDataService: coreDataService,
+        firebaseService: firebaseService
+    )
+    HomeView().environmentObject(userDataViewModel)
 }

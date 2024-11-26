@@ -70,5 +70,5 @@ extension LoginView: AuthenticationFormProtocol{
 }
 
 #Preview {
-    LoginView().environmentObject(AuthViewModel())
+    LoginView().environmentObject(AuthViewModel(userDataViewModel: UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService())))
 }
