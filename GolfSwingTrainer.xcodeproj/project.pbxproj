@@ -46,6 +46,11 @@
 		BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC46FFAF2CED1D570058F58D /* WeatherComponentView.swift */; };
 		BC56D0F42CF180480014205C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC56D0F32CF180480014205C /* Assets.xcassets */; };
 		BC6921B12CC853DE00E7CD64 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */; };
+		BCA464282CF53C9900F2C3E1 /* SwingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA464272CF53C8C00F2C3E1 /* SwingSession.swift */; };
+		BCA4642A2CF53E2D00F2C3E1 /* SwingSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA464292CF53E2C00F2C3E1 /* SwingSessionViewModel.swift */; };
+		BCA4642C2CF53E7500F2C3E1 /* SwingSessionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4642B2CF53E6A00F2C3E1 /* SwingSessionListView.swift */; };
+		BCA4642E2CF53F1000F2C3E1 /* WatchConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4642D2CF53F0B00F2C3E1 /* WatchConnectivityManager.swift */; };
+		BCA464302CF53FE300F2C3E1 /* MotionDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4642F2CF53FE300F2C3E1 /* MotionDataDetailView.swift */; };
 		BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */; };
 		BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */; };
 		BCB320172CE6E142005E9853 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320162CE6E142005E9853 /* HomeView.swift */; };
@@ -170,6 +175,11 @@
 		BC56D0F22CF1115C0014205C /* GolfSwingTrainer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GolfSwingTrainer Watch App.entitlements"; sourceTree = "<group>"; };
 		BC56D0F32CF180480014205C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC6921B02CC853DE00E7CD64 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		BCA464272CF53C8C00F2C3E1 /* SwingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSession.swift; sourceTree = "<group>"; };
+		BCA464292CF53E2C00F2C3E1 /* SwingSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSessionViewModel.swift; sourceTree = "<group>"; };
+		BCA4642B2CF53E6A00F2C3E1 /* SwingSessionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSessionListView.swift; sourceTree = "<group>"; };
+		BCA4642D2CF53F0B00F2C3E1 /* WatchConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityManager.swift; sourceTree = "<group>"; };
+		BCA4642F2CF53FE300F2C3E1 /* MotionDataDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionDataDetailView.swift; sourceTree = "<group>"; };
 		BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		BCB320162CE6E142005E9853 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -361,15 +371,16 @@
 		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BCA464262CF53C7E00F2C3E1 /* Session */,
+				BCA464252CF52E6300F2C3E1 /* Managers */,
+				BCA464242CF52E5500F2C3E1 /* Controllers */,
 				BCF1D2E82CF42E220010EB13 /* Feed */,
 				BCF1D2E72CF42E0E0010EB13 /* Weather */,
 				BCF1D2E62CF42E050010EB13 /* User */,
 				BCF1D2DC2CF3D7580010EB13 /* Services */,
 				636638552CE40B5700CD48F7 /* Constants.swift */,
 				BC1CC8812CAF92DB00E5FC48 /* AppState.swift */,
-				636638512CE3FE7600CD48F7 /* PersistenceController.swift */,
 				6366384D2CE3FE2E00CD48F7 /* Model.xcdatamodeld */,
-				BC0E65FC2CEC2091009BA763 /* LocationManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -430,13 +441,40 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		BCA464242CF52E5500F2C3E1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				636638512CE3FE7600CD48F7 /* PersistenceController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BCA464252CF52E6300F2C3E1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BCA4642D2CF53F0B00F2C3E1 /* WatchConnectivityManager.swift */,
+				BC0E65FC2CEC2091009BA763 /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		BCA464262CF53C7E00F2C3E1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				BCA464272CF53C8C00F2C3E1 /* SwingSession.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		BCB3200D2CE6D479005E9853 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				BCA4642B2CF53E6A00F2C3E1 /* SwingSessionListView.swift */,
 				BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */,
 				BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */,
 				BC408F982CED3D94003E2257 /* AttributeRowComponentView.swift */,
 				BCF1D2E42CF42D420010EB13 /* WatchMotionView.swift */,
+				BCA4642F2CF53FE300F2C3E1 /* MotionDataDetailView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -534,6 +572,7 @@
 		BCF1D2E92CF42FB50010EB13 /* Session */ = {
 			isa = PBXGroup;
 			children = (
+				BCA464292CF53E2C00F2C3E1 /* SwingSessionViewModel.swift */,
 				BCF1D2EA2CF42FCF0010EB13 /* MotionDataViewModel.swift */,
 			);
 			path = Session;
@@ -889,15 +928,18 @@
 			files = (
 				BC1CC8752CAF336700E5FC48 /* LoginView.swift in Sources */,
 				636638562CE40B5D00CD48F7 /* Constants.swift in Sources */,
+				BCA4642E2CF53F1000F2C3E1 /* WatchConnectivityManager.swift in Sources */,
 				FE0109052C91265C00F074C8 /* ContentView.swift in Sources */,
 				0AB5E04A2CAC69800035E5E5 /* ProgressView.swift in Sources */,
 				BCF1D2DE2CF3D7780010EB13 /* CoreDataService.swift in Sources */,
 				BC408F992CED3D94003E2257 /* AttributeRowComponentView.swift in Sources */,
 				6366384A2CE3FCE300CD48F7 /* UserAttributesViewModel.swift in Sources */,
+				BCA464282CF53C9900F2C3E1 /* SwingSession.swift in Sources */,
 				BCB320172CE6E142005E9853 /* HomeView.swift in Sources */,
 				BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */,
 				BCF1D2E32CF3D9260010EB13 /* UserDataViewModel.swift in Sources */,
 				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
+				BCA464302CF53FE300F2C3E1 /* MotionDataDetailView.swift in Sources */,
 				0AB5E04C2CAC69EE0035E5E5 /* ProgressDetailsView.swift in Sources */,
 				BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */,
 				FE0109032C91265C00F074C8 /* GolfSwingTrainerApp.swift in Sources */,
@@ -910,6 +952,7 @@
 				BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */,
 				6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
+				BCA4642C2CF53E7500F2C3E1 /* SwingSessionListView.swift in Sources */,
 				BCF1D2E52CF42D420010EB13 /* WatchMotionView.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 				BC408F9F2CED512B003E2257 /* FeedViewModel.swift in Sources */,
@@ -919,6 +962,7 @@
 				BCF1D2EB2CF42FD20010EB13 /* MotionDataViewModel.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
 				636638542CE40A6400CD48F7 /* PickerUserInputComponentView.swift in Sources */,
+				BCA4642A2CF53E2D00F2C3E1 /* SwingSessionViewModel.swift in Sources */,
 				BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */,
 				BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,

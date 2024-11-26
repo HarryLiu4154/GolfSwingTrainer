@@ -9,9 +9,6 @@ import Foundation
 import CoreMotion
 import WatchConnectivity
 
-import Foundation
-import CoreMotion
-import WatchConnectivity
 
 class MotionTrackingViewModel: NSObject, ObservableObject, WCSessionDelegate {
     let motionManager = CMMotionManager() // Core Motion Manager

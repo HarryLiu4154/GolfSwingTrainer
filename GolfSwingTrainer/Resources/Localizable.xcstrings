@@ -7,6 +7,12 @@
     "%lld kg" : {
 
     },
+    "Acceleration Data" : {
+
+    },
+    "Acceleration Samples: %lld" : {
+
+    },
     "Account" : {
 
     },
@@ -35,6 +41,9 @@
 
     },
     "Dark Mode" : {
+
+    },
+    "Date: %@" : {
 
     },
     "Day" : {
@@ -115,6 +124,12 @@
     "Motion Data" : {
 
     },
+    "No acceleration data available." : {
+
+    },
+    "No rotation data available." : {
+
+    },
     "Password" : {
 
     },
@@ -133,10 +148,22 @@
     "Register" : {
 
     },
+    "Rotation Data" : {
+
+    },
+    "Rotation Samples: %lld" : {
+
+    },
+    "Sample %lld:" : {
+
+    },
     "Save" : {
 
     },
     "Saving..." : {
+
+    },
+    "Session Details" : {
 
     },
     "Settings" : {
@@ -158,6 +185,12 @@
 
     },
     "Swing Metadata" : {
+
+    },
+    "Swing Session Details" : {
+
+    },
+    "Swing Sessions" : {
 
     },
     "Temperature: %@°C" : {

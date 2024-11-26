@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 
+///Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for syncronized funionality.
 @MainActor
 class UserDataViewModel: ObservableObject {
     @Published var user: User? // Current user model

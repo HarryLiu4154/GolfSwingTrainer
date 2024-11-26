@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class FirebaseService {
     private lazy var db = Firestore.firestore()
+    
+    //MARK: - User Services
 
     func fetchUser(uid: String) async throws -> User? {
         let document = try await db.collection("users").document(uid).getDocument()
@@ -24,5 +26,27 @@ class FirebaseService {
 
     func deleteUser(uid: String) async throws {
         try await db.collection("users").document(uid).delete()
+    }
+    
+
+}
+//MARK: - Swing Session Services
+extension FirebaseService {
+    func fetchAllSwingSessions(forUser userUID: String) async throws -> [SwingSession] {
+        let querySnapshot = try await db.collection("swingSessions")
+            .whereField("userUID", isEqualTo: userUID)
+            .getDocuments()
+        return querySnapshot.documents.compactMap { try? $0.data(as: SwingSession.self) }
+    }
+
+    func saveSwingSession(_ session: SwingSession, userUID: String) async throws {
+        let docRef = db.collection("swingSessions").document(session.firebaseUID ?? UUID().uuidString)
+        var updatedSession = session
+        updatedSession.firebaseUID = docRef.documentID
+        try docRef.setData(from: updatedSession)
+    }
+
+    func deleteSwingSession(uid: String) async throws {
+        try await db.collection("swingSessions").document(uid).delete()
     }
 }

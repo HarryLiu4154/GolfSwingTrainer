@@ -14,6 +14,8 @@ class CoreDataService {
     init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.context = context
     }
+    
+    //MARK: - User Services
 
     func fetchUser(by uid: String) -> User? {
         let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
@@ -48,3 +50,31 @@ class CoreDataService {
         }
     }
 }
+//MARK: - Swing Session Services
+extension CoreDataService {
+    func fetchSwingSessions() -> [SwingSession] {
+        let request: NSFetchRequest<SwingSessionEntity> = SwingSessionEntity.fetchRequest()
+        guard let entities = try? context.fetch(request) else { return [] }
+        return entities.map { $0.toSwingSession() }
+    }
+
+    func saveSwingSession(_ session: SwingSession) {
+        let request: NSFetchRequest<SwingSessionEntity> = SwingSessionEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", session.id as CVarArg)
+        
+        let entity = (try? context.fetch(request).first) ?? SwingSessionEntity(context: context)
+        entity.update(from: session)
+        try? context.save()
+    }
+
+    func deleteSwingSession(_ session: SwingSession) {
+        let request: NSFetchRequest<SwingSessionEntity> = SwingSessionEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", session.id as CVarArg)
+        
+        if let entity = try? context.fetch(request).first {
+            context.delete(entity)
+            try? context.save()
+        }
+    }
+}
+//MARK: - TBD

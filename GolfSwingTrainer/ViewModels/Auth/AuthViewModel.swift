@@ -93,7 +93,7 @@ class AuthViewModel: ObservableObject {
     
     // Delete account
     func deleteAccount() async {
-        guard let uid = userSession?.uid else { return }
+        guard (userSession?.uid) != nil else { return }
         
         await _userDataViewModel.deleteUser() // Ensure the UserDataViewModel is updated
         do {
