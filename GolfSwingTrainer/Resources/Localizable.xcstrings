@@ -45,6 +45,9 @@
     "Are you sure?" : {
 
     },
+    "Attach a Swing Session (Optional)" : {
+
+    },
     "Birth Date" : {
 
     },
@@ -55,6 +58,9 @@
 
     },
     "Continue" : {
+
+    },
+    "Create Post" : {
 
     },
     "Dark Mode" : {
@@ -96,13 +102,13 @@
     "Enter %@" : {
 
     },
-    "Enter Post text" : {
-
-    },
     "Enter your password" : {
 
     },
     "Enter your physical attributes" : {
+
+    },
+    "Enter your post text" : {
 
     },
     "Feed" : {
@@ -144,13 +150,25 @@
     "No acceleration data available." : {
 
     },
+    "No posts available. Create the first one!" : {
+
+    },
     "No rotation data available." : {
+
+    },
+    "None" : {
 
     },
     "Password" : {
 
     },
     "Physical Attributes" : {
+
+    },
+    "Post" : {
+
+    },
+    "Post Content" : {
 
     },
     "Preferred Measurement" : {
@@ -187,6 +205,9 @@
     "Saving..." : {
 
     },
+    "Select Session" : {
+
+    },
     "Session Details" : {
 
     },
@@ -206,6 +227,9 @@
 
     },
     "Swing" : {
+
+    },
+    "Swing Duration: %@" : {
 
     },
     "Swing Metadata" : {

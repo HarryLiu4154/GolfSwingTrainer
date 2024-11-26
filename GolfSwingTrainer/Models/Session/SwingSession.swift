@@ -8,7 +8,7 @@ import Foundation
 import CoreMotion
 import CoreData
 
-struct SwingSession: Identifiable, Codable {
+struct SwingSession: Identifiable, Codable, Hashable {
     let id: UUID
         var firebaseUID: String?
         var userUID: String?
@@ -33,6 +33,21 @@ struct SwingSession: Identifiable, Codable {
         self.date = date
         self.rotationData = rotationData
         self.accelerationData = accelerationData
+    }
+    
+    // Conformance to Hashable
+    static func == (lhs: SwingSession, rhs: SwingSession) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.firebaseUID == rhs.firebaseUID &&
+        lhs.userUID == rhs.userUID &&
+        lhs.date == rhs.date
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(firebaseUID)
+        hasher.combine(userUID)
+        hasher.combine(date)
     }
 }
 extension SwingSessionEntity {
