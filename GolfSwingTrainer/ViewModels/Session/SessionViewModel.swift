@@ -18,7 +18,7 @@ class SessionViewModel{
     private var captureSession: AVCaptureSession = AVCaptureSession()
     private var videoDevice: AVCaptureDevice?
     private var videoStream = AVCaptureVideoDataOutput()
-//    var videoFileOutput = AVCaptureMovieFileOutput()
+    var videoFileOutput = AVCaptureMovieFileOutput()
     private var avCaptureDelegate = SwingVideoCaptureDelegate()
     private var arCaptureDelegate = SwingARCaptureDelegate()
     
@@ -73,34 +73,43 @@ class SessionViewModel{
     private func setUpAVCaptureSession() async {
         guard await isAVAuthorized else { return }
         captureSession = AVCaptureSession()
-        guard let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera else { return }
+        print("configurablecapturedevice:")
+        print(ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera)
+        print("-----------------------")
+        let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera ?? AVCaptureDevice.default(for: .video)!
         self.videoDevice = videoDevice
+        print(self.videoDevice)
         
         guard
             let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
             captureSession.canAddInput(videoDeviceInput)
         else { return }
         captureSession.addInput(videoDeviceInput)
+        print("Can add input: \(captureSession)")
         
-        videoStream = AVCaptureVideoDataOutput()
-        videoStream.videoSettings = nil // default uncompressed format
-        videoStream.setSampleBufferDelegate(avCaptureDelegate, queue: DispatchQueue.global(qos: .userInteractive))
-        guard captureSession.canAddOutput(videoStream) else { return }
-        captureSession.addOutput(videoStream)
+//        videoStream = AVCaptureVideoDataOutput()
+//        videoStream.videoSettings = nil // default uncompressed format
+//        videoStream.setSampleBufferDelegate(avCaptureDelegate, queue: DispatchQueue.global(qos: .userInteractive))
+//        guard captureSession.canAddOutput(videoStream) else { return }
+//        captureSession.addOutput(videoStream)
+//        print("Can add data output: \(captureSession)")
         
-//        captureSession.addOutput(avCaptureDelegate.fileOutput)
+        guard captureSession.canAddOutput(videoFileOutput) else { return }
+        captureSession.addOutput(videoFileOutput)
+        print("Can add file output: \(captureSession)")
     }
     
     private func startAVRecording() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.captureSession.startRunning()
         }
-//        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
-//        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
+        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
+        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
     }
     
     private func stopAVRecording() {
-        avCaptureDelegate.fileOutput.stopRecording()
+        videoFileOutput.stopRecording()
+        //        avCaptureDelegate.fileOutput.stopRecording()
         captureSession.stopRunning()
     }
     

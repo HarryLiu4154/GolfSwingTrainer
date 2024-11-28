@@ -18,7 +18,7 @@ class SwingVideoCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferD
     var bodyHeight: Float?
     
     private let defaultScene = SCNScene(named: "MyScene3.scn", inDirectory: "SceneKit Asset Catalog.scnassets")
-    private let modelScene = SCNScene(named: "Humanoid", inDirectory: "SceneKit Asset Catalog.scnassets")
+    private let modelScene = SCNScene(named: "Humanoid.scn", inDirectory: "SceneKit Asset Catalog.scnassets")
     private var firstTime = false
     private var modelNode: SCNNode {
         if !firstTime{
@@ -31,7 +31,7 @@ class SwingVideoCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferD
     var fileOutput = AVCaptureMovieFileOutput()
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        print("!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!! Entered datastream captureOutput")
         do {
             let docDir = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             let fileURL = docDir.appendingPathComponent(UUID().uuidString + ".mov")
