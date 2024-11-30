@@ -60,7 +60,13 @@
     "Continue" : {
 
     },
+    "Create an Account" : {
+
+    },
     "Create Post" : {
+
+    },
+    "Creating an account alias allows you to share your achievements and progress with your friends, colleagues, and trainer! It helps you stay competitive, showcase your personal records, and give your trainer more insights into your game. Creating an account also helps us tailor the app to your needs as a player." : {
 
     },
     "Dark Mode" : {
@@ -165,6 +171,12 @@
     "Physical Attributes" : {
 
     },
+    "Player Level" : {
+
+    },
+    "Player Status" : {
+
+    },
     "Post" : {
 
     },
@@ -177,10 +189,13 @@
     "Profile" : {
 
     },
-    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
-    
+    "Profile Image" : {
+
     },
     "Progress" : {
+
+    },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
 
     },
     "Register" : {
@@ -211,10 +226,10 @@
     "Select Session" : {
 
     },
-    "Session Details" : {
+    "Session" : {
 
     },
-    "Session" : {
+    "Session Details" : {
 
     },
     "Settings" : {
@@ -262,6 +277,9 @@
     "Timestamp: %@" : {
 
     },
+    "Username (required)" : {
+
+    },
     "UV Index: %lld" : {
 
     },
@@ -275,6 +293,9 @@
 
     },
     "Weight: %lld kg" : {
+
+    },
+    "Why create an account?" : {
 
     },
     "Why do we need this?" : {
