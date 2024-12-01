@@ -62,7 +62,7 @@
 		BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */; };
 		BCB320172CE6E142005E9853 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320162CE6E142005E9853 /* HomeView.swift */; };
 		BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */; };
-		BCCE88F12CFADAA000B61188 /* PersonalizationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE88F02CFADAA000B61188 /* PersonalizationInputView.swift */; };
+		BCCE88F12CFADAA000B61188 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */; };
 		BCE638112CD9851000411D5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638102CD9850D00411D5B /* User.swift */; };
 		BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638142CD9865800411D5B /* UserProfileView.swift */; };
 		BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */; };
@@ -199,8 +199,7 @@
 		BCB320132CE6DBA3005E9853 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		BCB320162CE6E142005E9853 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAttributesView.swift; sourceTree = "<group>"; };
-		BCCE88F02CFADAA000B61188 /* PersonalizationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalizationInputView.swift; sourceTree = "<group>"; };
-		BCCE88F22CFAE3B500B61188 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
@@ -437,6 +436,32 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		BC3C5C962CFC0A3900E07B5B /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */,
+				BC3C5C942CFBFEC000E07B5B /* SettingsAccountView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		BC3C5C972CFC0A5300E07B5B /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				BCF1D2E42CF42D420010EB13 /* WatchMotionView.swift */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		BC3C5C982CFC0AC800E07B5B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				BCA4642B2CF53E6A00F2C3E1 /* SwingSessionListView.swift */,
+				BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		BC408F9C2CED510E003E2257 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,13 +547,12 @@
 		BCB3200D2CE6D479005E9853 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				BCA4642B2CF53E6A00F2C3E1 /* SwingSessionListView.swift */,
+				BC3C5C982CFC0AC800E07B5B /* User */,
+				BC3C5C972CFC0A5300E07B5B /* Dev */,
+				BC3C5C962CFC0A3900E07B5B /* Account */,
 				BCB3200E2CE6D4A4005E9853 /* SettingsView.swift */,
-				BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */,
 				BC408F982CED3D94003E2257 /* AttributeRowComponentView.swift */,
-				BCF1D2E42CF42D420010EB13 /* WatchMotionView.swift */,
 				BCA4642F2CF53FE300F2C3E1 /* MotionDataDetailView.swift */,
-				BC3C5C942CFBFEC000E07B5B /* SettingsAccountView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -602,7 +626,6 @@
 		BCF1D2E62CF42E050010EB13 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				BCCE88F22CFAE3B500B61188 /* Account.swift */,
 				BCE638102CD9850D00411D5B /* User.swift */,
 			);
 			path = User;
@@ -638,7 +661,6 @@
 			children = (
 				BCF7144E2CDABD6600BDB798 /* UserAttributesInputView.swift */,
 				636638532CE40A6400CD48F7 /* PickerUserInputComponentView.swift */,
-				BCCE88F02CFADAA000B61188 /* PersonalizationInputView.swift */,
 			);
 			path = "Start Dialog";
 			sourceTree = "<group>";
@@ -1014,7 +1036,7 @@
 				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
 				BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */,
 				636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */,
-				BCCE88F12CFADAA000B61188 /* PersonalizationInputView.swift in Sources */,
+				BCCE88F12CFADAA000B61188 /* CreateAccountView.swift in Sources */,
 				BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */,
 				6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,

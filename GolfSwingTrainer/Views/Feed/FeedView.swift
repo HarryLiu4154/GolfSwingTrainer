@@ -48,6 +48,7 @@ struct FeedView: View {
             }
             .refreshable {
                 feedViewModel.fetchPosts()
+                //TODO: Refresh page
             }
         }
     }

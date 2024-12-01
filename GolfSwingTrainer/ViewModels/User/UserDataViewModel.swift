@@ -7,13 +7,14 @@
 
 import Foundation
 import FirebaseAuth
+import UIKit
 
 ///Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for syncronized funionality.
 @MainActor
 class UserDataViewModel: ObservableObject {
     //Models
     @Published var user: User? // Current user model
-        
+    
     //Services
     let coreDataService: CoreDataService
     let firebaseService: FirebaseService
@@ -35,7 +36,7 @@ class UserDataViewModel: ObservableObject {
             print("UserDataViewModel: No authenticated user.")
             return
         }
-
+        
         if let coreDataUser = coreDataService.fetchUser(by: uid) {
             self.user = coreDataUser
         } else {
@@ -84,7 +85,7 @@ class UserDataViewModel: ObservableObject {
             print("UserDataViewModel: No current user to update.")
             return
         }
-
+        
         // Update the user object
         var updatedUser = currentUser
         updatedUser.preferredMeasurement = preferredMeasurement
@@ -93,43 +94,62 @@ class UserDataViewModel: ObservableObject {
         updatedUser.birthDate = birthDate
         updatedUser.gender = gender
         updatedUser.dominantHand = dominantHand
-
+        
         // Save changes to Firebase and Core Data
         await updateUser(updatedUser)
     }
     // MARK: - Manage Account Data
-        func updateAccountData(
-            userName: String,
-            profilePictureURL: String?,
-            playerLevel: String,
-            playerStatus: String
-        ) async {
-            guard var currentUser = user else {
-                print("UserDataViewModel: No current user to update.")
+    func updateAccountData(
+        userName: String,
+        profileImage: UIImage?,
+        playerLevel: String,
+        playerStatus: String
+    ) async {
+        guard var currentUser = user else {
+            print("UserDataViewModel: No current user to update.")
+            return
+        }
+
+        var profilePictureURL = currentUser.account?.profilePictureURL
+
+        // Upload the profile image if provided
+        if let image = profileImage {
+            do {
+                print("Uploading image...")
+                profilePictureURL = try await firebaseService.uploadProfileImage(image: image)
+                print("Image uploaded successfully: \(profilePictureURL ?? "nil")")
+            } catch {
+                print("Failed to upload profile image: \(error.localizedDescription)")
                 return
             }
+        }
 
-            let account = Account(
-                id: currentUser.account?.id ?? UUID(),
-                userName: userName,
-                profilePictureURL: profilePictureURL,
-                playerLevel: playerLevel,
-                playerStatus: playerStatus
-            )
+        // Create or update the account
+        let account = Account(
+            id: currentUser.account?.id ?? UUID(),
+            userName: userName,
+            profilePictureURL: profilePictureURL,
+            playerLevel: playerLevel,
+            playerStatus: playerStatus
+        )
 
-            currentUser.account = account
-            await updateUser(currentUser)
+        currentUser.account = account
+        await updateUser(currentUser)
+
+        print("Updated account saved with profilePictureURL: \(profilePictureURL ?? "nil")")
+    }
+
+
+    
+    func removeAccount() async {
+        guard var currentUser = user else {
+            print("UserDataViewModel: No current user to update.")
+            return
         }
         
-        func removeAccount() async {
-            guard var currentUser = user else {
-                print("UserDataViewModel: No current user to update.")
-                return
-            }
-
-            currentUser.account = nil
-            await updateUser(currentUser)
-        }
+        currentUser.account = nil
+        await updateUser(currentUser)
+    }
     
     // MARK: - Update Entire User
     func updateUser(_ updatedUser: User) async {
@@ -138,11 +158,12 @@ class UserDataViewModel: ObservableObject {
         // Save to Core Data
         coreDataService.saveUser(updatedUser)
         
-        // Save to Firebase
+        // Save to Firestore
         do {
             try await firebaseService.saveUser(updatedUser)
+            print("User updated successfully in Firestore.")
         } catch {
-            print("UserDataViewModel: Failed to update user in Firebase: \(error)")
+            print("UserDataViewModel: Failed to update user in Firestore: \(error.localizedDescription)")
         }
     }
     
@@ -165,17 +186,17 @@ class UserDataViewModel: ObservableObject {
         )
     }
     // MARK: - Helper Method to Populate Account Attributes
-        func getAccountAttributes() -> (
-            userName: String?,
-            profilePictureURL: String?,
-            playerLevel: String?,
-            playerStatus: String?
-        ) {
-            return (
-                user?.account?.userName,
-                user?.account?.profilePictureURL,
-                user?.account?.playerLevel,
-                user?.account?.playerStatus
-            )
-        }
+    func getAccountAttributes() -> (
+        userName: String?,
+        profilePictureURL: String?,
+        playerLevel: String?,
+        playerStatus: String?
+    ) {
+        return (
+            user?.account?.userName,
+            user?.account?.profilePictureURL,
+            user?.account?.playerLevel,
+            user?.account?.playerStatus
+        )
+    }
 }

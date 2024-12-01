@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
+import FirebaseCore
 import Foundation
 
 @main
@@ -20,7 +22,10 @@ struct GolfSwingTrainerApp: App {
     @StateObject var feedViewModel: FeedViewModel
     
     init() {
+        //Firebase configs
         FirebaseApp.configure()
+        let storage = Storage.storage()
+               print("Default Firebase Storage Bucket: \(storage.reference().bucket)")
         
         // Initialize `userDataViewModel` first
         let userDataViewModelInstance = UserDataViewModel(

@@ -9,57 +9,82 @@ import SwiftUI
 
 struct UserProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
     @State private var showDeleteConfirmation = false //Controls the delete account pop up confirmation
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             if let user = viewModel.currentUser {
-                List{
-                    Section{
-                        HStack{
-                            Text(user.initials)
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .frame(width: 72, height: 72)
-                                .background(Color(.systemGray3))
-                                .clipShape(Circle())
-                            VStack(alignment: .leading, spacing: 4){
+                List {
+                    Section {
+                        HStack {
+                            // Profile Image or Initials
+                            ZStack {
+                                if let profilePictureURL = user.account?.profilePictureURL, !profilePictureURL.isEmpty {
+                                    AsyncImage(url: URL(string: profilePictureURL)) { image in
+                                        image.resizable()
+                                            .scaledToFill()
+                                            .frame(width: 72, height: 72)
+                                            .clipShape(Circle())
+                                    } placeholder: {
+                                        Circle()
+                                            .fill(Color(.systemGray3))
+                                            .frame(width: 72, height: 72)
+                                    }
+                                } else {
+                                    Circle()
+                                        .fill(Color(.systemGray3))
+                                        .frame(width: 72, height: 72)
+                                        .overlay(
+                                            Text(user.initials)
+                                                .font(.title)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.white)
+                                        )
+                                }
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text(user.fullName)
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
-                                    .padding(.top, 4)
+                                
+                                Text(user.account?.userName ?? "No username")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                                
                                 Text(user.email)
                                     .font(.footnote)
-                                    .foregroundStyle(.gray)
-                                
+                                    .foregroundColor(.gray)
                             }
-                            
                         }
                     }
-                    Section("General"){
-                        HStack{
+                    
+                    Section("General") {
+                        HStack {
                             SettingRowComponentView(imageName: "gear", title: String(localized: "Version"), tintColor: Color(.systemGray))
-                            
                             Spacer()
-                            
-                            Text("v1.0.0" + " - " + String(localized: "Alpha")).foregroundStyle(.gray)
-                            
-                            
+                            Text("v1.0.0 - " + String(localized: "Alpha"))
+                                .foregroundStyle(.gray)
                         }
                     }
-                    Section("Account"){
-                        Button{
+                    
+                    Section("Account") {
+                        Button {
                             viewModel.signOut()
-                        }label: {
+                        } label: {
                             SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color.yellow)
-                            
                         }
-                        Button{
-                            print("Button: Delete user account pressed")
+                        
+                        Button {
                             showDeleteConfirmation = true
-                        }label: {
+                        } label: {
                             SettingRowComponentView(imageName: "trash", title: "DELETE ACCOUNT", tintColor: Color.red)
-                        }.alert(isPresented: $showDeleteConfirmation) {
+                        }.refreshable {
+                            Task{
+                                await userDataViewModel.loadUser()
+                            }
+                        }
+                        .alert(isPresented: $showDeleteConfirmation) {
                             Alert(
                                 title: Text("Are you sure?"),
                                 message: Text("This action will permanently delete your account."),
@@ -72,7 +97,8 @@ struct UserProfileView: View {
                             )
                         }
                     }
-                }.navigationTitle("Your Profile")
+                }
+                .navigationTitle("Your Profile")
             }
         }
     }

@@ -13,16 +13,10 @@ struct SettingsAccountView: View {
     
     // Temporary state variables for editing
     @State private var userName = ""
-    @State private var profilePictureURL: String? = nil
+    @State private var selectedImage: UIImage? = nil // For updated profile picture
+    @State private var showImagePicker = false
     @State private var playerLevel = ""
     @State private var playerStatus = ""
-    var profilePictureURLBinding: Binding<String> {
-        Binding<String>(
-            get: { profilePictureURL ?? "" },
-            set: { profilePictureURL = $0.isEmpty ? nil : $0 }
-        )
-    }
-
     
     // Account Levels and Statuses
     let playerLevels = ["Beginner", "Intermediate", "Amateur", "Expert"]
@@ -48,12 +42,26 @@ struct SettingsAccountView: View {
                                     Text("Profile Picture")
                                     Spacer()
                                     AsyncImage(url: URL(string: profilePictureURL)) { image in
-                                        image.resizable().scaledToFill().frame(width: 50, height: 50).clipShape(Circle())
+                                        image.resizable()
+                                            .scaledToFill()
+                                            .frame(width: 50, height: 50)
+                                            .clipShape(Circle())
                                     } placeholder: {
-                                        Circle().fill(Color.gray).frame(width: 50, height: 50)
+                                        Circle().fill(Color.gray)
+                                            .frame(width: 50, height: 50)
                                     }
                                 }
+                            } else {
+                                HStack {
+                                        Text("Profile Picture")
+                                        Spacer()
+                                        Circle()
+                                            .fill(Color.gray)
+                                            .frame(width: 50, height: 50)
+                                            .overlay(Text(viewModel.user!.initials))
+                                    }
                             }
+
                             
                             HStack {
                                 Text("Player Level")
@@ -71,7 +79,26 @@ struct SettingsAccountView: View {
                         } else {
                             // Edit account data
                             TextField("Username", text: $userName)
-                            TextField("Profile Picture URL", text: profilePictureURLBinding)
+                            
+                            HStack {
+                                Text("Profile Picture")
+                                Spacer()
+                                if let image = selectedImage {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 50, height: 50)
+                                        .clipShape(Circle())
+                                } else {
+                                    Button(action: {
+                                        showImagePicker = true
+                                    }) {
+                                        Image(systemName: "camera.fill")
+                                            .foregroundColor(.blue)
+                                    }
+                                }
+                            }
+                            
                             Picker("Player Level", selection: $playerLevel) {
                                 ForEach(playerLevels, id: \.self) { level in
                                     Text(level)
@@ -90,8 +117,7 @@ struct SettingsAccountView: View {
                         Text("No account found. Create one to unlock more features.")
                             .foregroundColor(.secondary)
                         NavigationLink("Create Account") {
-                            PersonalizationInputView().environmentObject(viewModel)
-                               
+                            CreateAccountView().environmentObject(viewModel)
                         }
                     }
                 }
@@ -129,6 +155,9 @@ struct SettingsAccountView: View {
                 }
             }
             .navigationTitle("Your Account Information")
+            .sheet(isPresented: $showImagePicker) {
+                ImagePicker(selectedImage: $selectedImage)
+            }
             .task {
                 // Load initial data for editing
                 loadAccountData()
@@ -140,15 +169,15 @@ struct SettingsAccountView: View {
     private func loadAccountData() {
         if let account = viewModel.user?.account {
             userName = account.userName
-            profilePictureURL = account.profilePictureURL
             playerLevel = account.playerLevel
             playerStatus = account.playerStatus
+            selectedImage = nil // Reset the selected image for editing
         } else {
             // Default values for new account creation
             userName = ""
-            profilePictureURL = nil
             playerLevel = playerLevels.first ?? ""
             playerStatus = playerStatuses.first ?? ""
+            selectedImage = nil
         }
     }
     
@@ -167,16 +196,36 @@ struct SettingsAccountView: View {
             return
         }
         
-        await viewModel.updateAccountData(
-            userName: userName,
-            profilePictureURL: profilePictureURL,
-            playerLevel: playerLevel,
-            playerStatus: playerStatus
-        )
+        print("SettingsAccountView: Starting to save changes...")
+        
+        // Prevent further editing while saving
+        isEditing = false
+        
+        // Compress or validate the selected image
+        if let image = selectedImage {
+            print("SettingsAccountView: Image selected. Preparing to upload...")
+            print("Image size before upload: \(image.size.width)x\(image.size.height)")
+            
+            await viewModel.updateAccountData(
+                userName: userName,
+                profileImage: image,
+                playerLevel: playerLevel,
+                playerStatus: playerStatus
+            )
+            print("SettingsAccountView: Image upload completed.")
+        } else {
+            print("SettingsAccountView: No image selected.")
+            await viewModel.updateAccountData(
+                userName: userName,
+                profileImage: nil,
+                playerLevel: playerLevel,
+                playerStatus: playerStatus
+            )
+        }
+        
+        
     }
 }
-
-
 #Preview {
     SettingsAccountView().environmentObject(UserDataViewModel(coreDataService: CoreDataService(), firebaseService: FirebaseService()))
 }

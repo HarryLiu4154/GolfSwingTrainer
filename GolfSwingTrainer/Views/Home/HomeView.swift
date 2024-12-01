@@ -15,9 +15,9 @@ struct HomeView: View {
             VStack{
                 //WeatherComponentView()
                 TabView{
-                    ProgressView().tabItem{
+                    /*ProgressView().tabItem{
                         Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
-                    }
+                    }*/
                     UserProfileView().tabItem{
                         Label(String(localized: "Profile"), systemImage: "person.fill")
                     }

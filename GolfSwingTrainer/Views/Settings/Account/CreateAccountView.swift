@@ -8,7 +8,7 @@
 import SwiftUI
 import Foundation
 
-struct PersonalizationInputView: View {
+struct CreateAccountView: View {
     @State private var username: String = ""
     @State private var selectedImage: UIImage? = nil
     @State private var showImagePicker: Bool = false
@@ -78,7 +78,7 @@ struct PersonalizationInputView: View {
                         HStack {
                             Spacer()
                             if isSaving {
-                               //
+                                SettingsView()
                             } else {
                                 Text("Continue")
                                 Image(systemName: "arrow.right")
@@ -98,22 +98,28 @@ struct PersonalizationInputView: View {
     }
     
     private func saveUserInfo() {
-        isSaving = true
-                
-        // Convert UIImage to Data for uploading, if necessary
-        var profilePictureURL: String? = nil
-        if let image = selectedImage {
-            //profilePictureURL = uploadImageToBackend(image)
+        guard !username.isEmpty else {
+            print("CreateAccountView: Username cannot be empty.")
+            return
         }
-                
-        // Update account data
+        isSaving = true
+        guard let image = selectedImage else {
+            print("No image selected for upload.")
+            isSaving = false
+            return
+        }
+
+        print("Selected image dimensions: \(image.size.width)x\(image.size.height)")
+        print("Preparing to upload image.")
+
         Task {
             await viewModel.updateAccountData(
                 userName: username,
-                profilePictureURL: profilePictureURL,
+                profileImage: image, // Pass the selected image directly
                 playerLevel: playerLevel,
                 playerStatus: playerStatus
             )
+            print("CreateAccountView: User info saved successfully.")
             isSaving = false
             dismiss()
         }
@@ -145,12 +151,16 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             if let image = info[.editedImage] as? UIImage ?? info[.originalImage] as? UIImage {
+                print("Image selected with dimensions: \(image.size.width)x\(image.size.height)")
                 parent.selectedImage = image
+            } else {
+                print("No valid image selected.")
             }
             picker.dismiss(animated: true)
         }
+
         
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             picker.dismiss(animated: true)
@@ -159,5 +169,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    PersonalizationInputView()
+    CreateAccountView()
 }
