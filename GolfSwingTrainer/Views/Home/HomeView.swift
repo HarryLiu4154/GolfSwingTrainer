@@ -56,6 +56,8 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack{
+            WeatherComponentView()
+
             Button(action: {
                 withAnimation{
                     self.showMenu = true
@@ -64,23 +66,22 @@ struct HomeView: View {
             },label:{
                 Text("Show Menu")
             })
-            VStack{
-                //WeatherComponentView()
-                TabView{
-                    ProgressView().tabItem{
-                        Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
-                    }
-                    UserProfileView().tabItem{
-                        Label(String(localized: "Profile"), systemImage: "person.fill")
-                    }
-                    SettingsView().environmentObject(swingSessionViewModel).tabItem{
-                        Label(String(localized: "Settings"), systemImage: "gear")
-                    }
-                    FeedView().tabItem{
-                        Label("Feed", systemImage: "paperplane.circle")
-                    }
-                }
-            }
+//            VStack{
+//                                TabView{
+//                    ProgressView().tabItem{
+//                        Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
+//                    }
+//                    UserProfileView().tabItem{
+//                        Label(String(localized: "Profile"), systemImage: "person.fill")
+//                    }
+//                    SettingsView().environmentObject(swingSessionViewModel).tabItem{
+//                        Label(String(localized: "Settings"), systemImage: "gear")
+//                    }
+//                    FeedView().tabItem{
+//                        Label("Feed", systemImage: "paperplane.circle")
+//                    }
+//                }
+//            }
         }.navigationTitle("Home")
     }
 }
