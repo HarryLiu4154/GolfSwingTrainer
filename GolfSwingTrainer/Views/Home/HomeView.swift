@@ -9,6 +9,7 @@ import SwiftUI
 /*using this temporary home screen until team makes the refined one*/
 struct HomeView: View {
     @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     var body: some View {
         NavigationStack{
             
@@ -21,7 +22,7 @@ struct HomeView: View {
                     UserProfileView().tabItem{
                         Label(String(localized: "Profile"), systemImage: "person.fill")
                     }
-                    SettingsView().tabItem{
+                    SettingsView().environmentObject(swingSessionViewModel).tabItem{
                         Label(String(localized: "Settings"), systemImage: "gear")
                     }
                     FeedView().tabItem{

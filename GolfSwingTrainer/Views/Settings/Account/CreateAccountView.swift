@@ -78,7 +78,7 @@ struct CreateAccountView: View {
                         HStack {
                             Spacer()
                             if isSaving {
-                                SettingsView()
+                                //SettingsView()
                             } else {
                                 Text("Continue")
                                 Image(systemName: "arrow.right")

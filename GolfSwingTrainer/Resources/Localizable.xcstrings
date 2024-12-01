@@ -174,9 +174,6 @@
     "Motion Data" : {
 
     },
-    "New post" : {
-
-    },
     "No acceleration data available." : {
 
     },
@@ -344,6 +341,9 @@
 
     },
     "Year" : {
+
+    },
+    "You need an account to access the feed." : {
 
     },
     "Your Account" : {
