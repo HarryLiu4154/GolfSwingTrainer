@@ -93,6 +93,9 @@
     "Delete Account" : {
 
     },
+    "Delete Post" : {
+
+    },
     "Developer Settings" : {
 
     },
@@ -169,6 +172,9 @@
 
     },
     "Motion Data" : {
+
+    },
+    "New post" : {
 
     },
     "No acceleration data available." : {

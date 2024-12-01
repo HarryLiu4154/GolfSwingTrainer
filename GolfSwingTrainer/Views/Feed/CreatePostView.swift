@@ -13,10 +13,10 @@ struct CreatePostView: View {
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel // Access user's profile info
     @Environment(\.dismiss) var dismiss
-
+    
     @State private var postText: String = ""
     @State private var selectedSession: SwingSession? = nil
-
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -24,12 +24,12 @@ struct CreatePostView: View {
                     TextField("Enter your post text", text: $postText)
                         .textFieldStyle(.roundedBorder)
                 }
-
+                
                 Section(header: Text("Attach a Swing Session (Optional)")) {
                     Picker("Select Session", selection: $selectedSession) {
                         Text("None").tag(SwingSession?.none)
                         ForEach(swingSessionViewModel.sessions) { session in
-                            Text(session.date.formatted(date: .abbreviated, time: .shortened) ?? "No Date")
+                            Text(session.date.formatted(date: .abbreviated, time: .shortened))
                                 .tag(session as SwingSession?)
                         }
                     }
@@ -38,7 +38,7 @@ struct CreatePostView: View {
             .navigationTitle("Create Post")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Post") {
+                    Button(action: {
                         guard let user = userDataViewModel.user else { return }
                         let duration = selectedSession.map { "\($0.rotationData.count) sec" }
                         feedViewModel.addPost(
@@ -48,6 +48,8 @@ struct CreatePostView: View {
                             profilePictureURL: user.account?.profilePictureURL
                         )
                         dismiss()
+                    }) {
+                        Text("Post")
                     }
                     .disabled(postText.isEmpty)
                 }

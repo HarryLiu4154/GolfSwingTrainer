@@ -11,6 +11,7 @@ struct FeedView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -20,61 +21,78 @@ struct FeedView: View {
                         .padding()
                 } else {
                     List(feedViewModel.posts) { post in
-                        NavigationLink(destination: PostDetailView(post: post)) {
-                            HStack(alignment: .top, spacing: 10) {
+                        NavigationLink(destination: PostDetailView(post: post).environmentObject(feedViewModel)) {
+                            HStack(alignment: .top, spacing: 12) {
                                 // Profile Picture
-                                if let url = post.profilePictureURL, let imageURL = URL(string: url) {
-                                    AsyncImage(url: imageURL) { image in
+                                if let profilePictureURL = post.profilePictureURL, !profilePictureURL.isEmpty {
+                                    AsyncImage(url: URL(string: profilePictureURL)) { image in
                                         image.resizable()
                                             .scaledToFill()
                                             .frame(width: 50, height: 50)
                                             .clipShape(Circle())
                                     } placeholder: {
                                         Circle()
-                                            .fill(Color.gray)
+                                            .fill(Color(.systemGray3))
                                             .frame(width: 50, height: 50)
                                     }
                                 } else {
                                     Circle()
-                                        .fill(Color.gray)
+                                        .fill(Color(.systemGray3))
                                         .frame(width: 50, height: 50)
+                                        .overlay(
+                                            Text(post.userName.prefix(1))
+                                                .font(.title)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(.white)
+                                        )
                                 }
-
+                                
                                 // Post Content
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text(post.userName)
                                         .font(.headline)
+                                    
                                     Text(post.text)
                                         .font(.body)
+                                    
                                     if let duration = post.duration {
                                         Text("Swing Duration: \(duration)")
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
                                     }
-                                    Text(post.timestamp, style: .date)
+                                    
+                                    Text(post.timestamp, style: .relative)
                                         .font(.caption)
                                         .foregroundColor(.gray)
                                 }
                             }
+                            .padding(.vertical, 5)
                         }
-                        .padding(.vertical, 5)
                     }
-                }
-                NavigationLink("Create Post") {
-                    CreatePostView()
+                    NavigationLink("New post", destination: CreatePostView()
                         .environmentObject(feedViewModel)
                         .environmentObject(swingSessionViewModel)
-                        .environmentObject(userDataViewModel)
+                        .environmentObject(userDataViewModel))
+                }
+            }.toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: CreatePostView()
+                        .environmentObject(feedViewModel)
+                        .environmentObject(swingSessionViewModel)
+                        .environmentObject(userDataViewModel)) {
+                            Image(systemName: "plus.circle")
+                                .font(.title2)
+                        }
                 }
             }
             .navigationTitle("Feed")
+            
             .refreshable {
                 feedViewModel.fetchPosts()
             }
         }
     }
 }
-
 #Preview {
     FeedView().environmentObject(FeedViewModel())
 }

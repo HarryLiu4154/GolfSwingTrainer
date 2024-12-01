@@ -60,6 +60,10 @@ class UserDataViewModel: ObservableObject {
             return
         }
         
+        // Delete all posts by the user
+        let feedViewModel = FeedViewModel() // Create a FeedViewModel instance
+        await feedViewModel.deleteAllPostsByUser(userUID: user.id.uuidString)
+        
         // Delete from Core Data
         coreDataService.deleteUser(user)
         
@@ -142,14 +146,29 @@ class UserDataViewModel: ObservableObject {
 
     
     func removeAccount() async {
-        guard var currentUser = user else {
+        guard let currentUser = user else {
             print("UserDataViewModel: No current user to update.")
             return
         }
-        
-        currentUser.account = nil
-        await updateUser(currentUser)
+
+        do {
+            // Delete all posts by the user
+            let feedViewModel = FeedViewModel() // Create a FeedViewModel instance
+            await feedViewModel.deleteAllPostsByUser(userUID: currentUser.id.uuidString)
+
+            // Clear the account information
+            var updatedUser = currentUser
+            updatedUser.account = nil
+
+            // Save the updated user (locally and on Firestore)
+            await updateUser(updatedUser)
+
+            print("Account information cleared and all posts deleted successfully.")
+        } catch {
+            print("Error while removing account: \(error.localizedDescription)")
+        }
     }
+
     
     // MARK: - Update Entire User
     func updateUser(_ updatedUser: User) async {
