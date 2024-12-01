@@ -10,11 +10,12 @@ import Foundation
 
 struct CreatePostView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
-        @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
-        @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
+    @EnvironmentObject var userDataViewModel: UserDataViewModel // Access user's profile info
+    @Environment(\.dismiss) var dismiss
 
-        @State private var postText: String = ""
-        @State private var selectedSession: SwingSession? = nil
+    @State private var postText: String = ""
+    @State private var selectedSession: SwingSession? = nil
 
     var body: some View {
         NavigationStack {
@@ -23,12 +24,12 @@ struct CreatePostView: View {
                     TextField("Enter your post text", text: $postText)
                         .textFieldStyle(.roundedBorder)
                 }
-                
+
                 Section(header: Text("Attach a Swing Session (Optional)")) {
                     Picker("Select Session", selection: $selectedSession) {
                         Text("None").tag(SwingSession?.none)
                         ForEach(swingSessionViewModel.sessions) { session in
-                            Text(session.date.formatted(date: .abbreviated, time: .shortened))
+                            Text(session.date.formatted(date: .abbreviated, time: .shortened) ?? "No Date")
                                 .tag(session as SwingSession?)
                         }
                     }
@@ -38,9 +39,15 @@ struct CreatePostView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Post") {
+                        guard let user = userDataViewModel.user else { return }
                         let duration = selectedSession.map { "\($0.rotationData.count) sec" }
-                        feedViewModel.addPost(text: postText, duration: duration)
-                        dismiss() // Return to FeedView
+                        feedViewModel.addPost(
+                            text: postText,
+                            duration: duration,
+                            userName: user.account?.userName ?? "Unknown User",
+                            profilePictureURL: user.account?.profilePictureURL
+                        )
+                        dismiss()
                     }
                     .disabled(postText.isEmpty)
                 }
@@ -48,6 +55,7 @@ struct CreatePostView: View {
         }
     }
 }
+
 
 #Preview {
     CreatePostView().environmentObject(FeedViewModel())
