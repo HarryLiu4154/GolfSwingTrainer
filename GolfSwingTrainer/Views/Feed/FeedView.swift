@@ -67,6 +67,11 @@ struct FeedView: View {
                                             .font(.caption)
                                             .foregroundColor(.gray)
                                     }
+                                    NavigationLink(destination: CreatePostView().environmentObject(feedViewModel)
+                                        .environmentObject(swingSessionViewModel)
+                                        .environmentObject(userDataViewModel)){
+                                        Text("Create Post")
+                                    }
                                 }
                                 .padding(.vertical, 5)
                             }

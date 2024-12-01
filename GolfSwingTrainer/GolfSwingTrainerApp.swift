@@ -74,7 +74,7 @@ struct RootView: View {
        
         if authViewModel.userSession != nil {
             if authViewModel.isUserSetupComplete {
-                HomeView()
+                HomeScreen()
             } else {
                 UserAttributesInputView() // Show setup view if not complete
             }
