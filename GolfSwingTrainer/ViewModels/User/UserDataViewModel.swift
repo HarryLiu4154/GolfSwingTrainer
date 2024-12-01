@@ -11,8 +11,9 @@ import FirebaseAuth
 ///Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for syncronized funionality.
 @MainActor
 class UserDataViewModel: ObservableObject {
+    //Models
     @Published var user: User? // Current user model
-    
+        
     //Services
     let coreDataService: CoreDataService
     let firebaseService: FirebaseService
@@ -96,6 +97,39 @@ class UserDataViewModel: ObservableObject {
         // Save changes to Firebase and Core Data
         await updateUser(updatedUser)
     }
+    // MARK: - Manage Account Data
+        func updateAccountData(
+            userName: String,
+            profilePictureURL: String?,
+            playerLevel: String,
+            playerStatus: String
+        ) async {
+            guard var currentUser = user else {
+                print("UserDataViewModel: No current user to update.")
+                return
+            }
+
+            let account = Account(
+                id: currentUser.account?.id ?? UUID(),
+                userName: userName,
+                profilePictureURL: profilePictureURL,
+                playerLevel: playerLevel,
+                playerStatus: playerStatus
+            )
+
+            currentUser.account = account
+            await updateUser(currentUser)
+        }
+        
+        func removeAccount() async {
+            guard var currentUser = user else {
+                print("UserDataViewModel: No current user to update.")
+                return
+            }
+
+            currentUser.account = nil
+            await updateUser(currentUser)
+        }
     
     // MARK: - Update Entire User
     func updateUser(_ updatedUser: User) async {
@@ -130,4 +164,18 @@ class UserDataViewModel: ObservableObject {
             user?.dominantHand ?? "Right"
         )
     }
+    // MARK: - Helper Method to Populate Account Attributes
+        func getAccountAttributes() -> (
+            userName: String?,
+            profilePictureURL: String?,
+            playerLevel: String?,
+            playerStatus: String?
+        ) {
+            return (
+                user?.account?.userName,
+                user?.account?.profilePictureURL,
+                user?.account?.playerLevel,
+                user?.account?.playerStatus
+            )
+        }
 }

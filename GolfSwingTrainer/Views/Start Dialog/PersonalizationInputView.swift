@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct PersonalizationInputView: View {
     @State private var username: String = ""
@@ -14,7 +15,9 @@ struct PersonalizationInputView: View {
     @State private var playerLevel: String = ""
     @State private var playerStatus: String = ""
     @State private var isSaving = false
-
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var viewModel: UserDataViewModel
+    
     let levels = ["Beginner", "Intermediate", "Amateur", "Expert"]
     let statuses = ["Just for fun", "Trainer", "Competitor/Professional"]
     
@@ -75,7 +78,7 @@ struct PersonalizationInputView: View {
                         HStack {
                             Spacer()
                             if isSaving {
-                                ProgressView()
+                               //
                             } else {
                                 Text("Continue")
                                 Image(systemName: "arrow.right")
@@ -96,10 +99,23 @@ struct PersonalizationInputView: View {
     
     private func saveUserInfo() {
         isSaving = true
-        // Simulate save action
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                
+        // Convert UIImage to Data for uploading, if necessary
+        var profilePictureURL: String? = nil
+        if let image = selectedImage {
+            //profilePictureURL = uploadImageToBackend(image)
+        }
+                
+        // Update account data
+        Task {
+            await viewModel.updateAccountData(
+                userName: username,
+                profilePictureURL: profilePictureURL,
+                playerLevel: playerLevel,
+                playerStatus: playerStatus
+            )
             isSaving = false
-            // Handle post-save logic, e.g., navigate to home screen
+            dismiss()
         }
     }
 }

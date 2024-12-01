@@ -24,7 +24,13 @@ struct SettingsView: View {
                     })
                     
                 }
-                Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
+                Section(header: Text(String(localized: "Your Account Information")), footer: Text(String(localized: "Edit & view your account information"))){
+                    NavigationLink("Your Attributes") {
+                        SettingsAccountView()
+                            .environmentObject(userDataViewModel)
+                    }
+                }
+                Section(header: Text(String(localized: "Your Personal Information")), footer: Text(String(localized: "Edit your information"))){
                     
                     NavigationLink("Your Attributes") {
                         SettingsAttributesView()

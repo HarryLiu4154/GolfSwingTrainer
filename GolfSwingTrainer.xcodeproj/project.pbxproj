@@ -41,6 +41,7 @@
 		BC1CC87C2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC87D2CAF7CF300E5FC48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */; };
 		BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1CC8812CAF92DB00E5FC48 /* AppState.swift */; };
+		BC3C5C952CFBFEC000E07B5B /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3C5C942CFBFEC000E07B5B /* SettingsAccountView.swift */; };
 		BC408F992CED3D94003E2257 /* AttributeRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408F982CED3D94003E2257 /* AttributeRowComponentView.swift */; };
 		BC408F9B2CED50D9003E2257 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408F9A2CED50D4003E2257 /* PostModel.swift */; };
 		BC408F9F2CED512B003E2257 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC408F9E2CED5128003E2257 /* FeedViewModel.swift */; };
@@ -173,6 +174,7 @@
 		BC1CC8792CAF36AB00E5FC48 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		BC1CC87B2CAF7CF300E5FC48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC1CC8812CAF92DB00E5FC48 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		BC3C5C942CFBFEC000E07B5B /* SettingsAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		BC408F732CED2B5C003E2257 /* GolfSwingTrainerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GolfSwingTrainerDebug.entitlements; sourceTree = "<group>"; };
 		BC408F982CED3D94003E2257 /* AttributeRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeRowComponentView.swift; sourceTree = "<group>"; };
 		BC408F9A2CED50D4003E2257 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 				BC408F982CED3D94003E2257 /* AttributeRowComponentView.swift */,
 				BCF1D2E42CF42D420010EB13 /* WatchMotionView.swift */,
 				BCA4642F2CF53FE300F2C3E1 /* MotionDataDetailView.swift */,
+				BC3C5C942CFBFEC000E07B5B /* SettingsAccountView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */,
 				BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
+				BC3C5C952CFBFEC000E07B5B /* SettingsAccountView.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
 			);

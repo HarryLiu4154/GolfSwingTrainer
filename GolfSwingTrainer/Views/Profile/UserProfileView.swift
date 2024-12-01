@@ -43,6 +43,8 @@ struct UserProfileView: View {
                             Spacer()
                             
                             Text("v1.0.0" + " - " + String(localized: "Alpha")).foregroundStyle(.gray)
+                            
+                            
                         }
                     }
                     Section("Account"){

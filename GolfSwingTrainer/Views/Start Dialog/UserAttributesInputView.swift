@@ -121,6 +121,7 @@ struct UserAttributesInputView: View {
             // Mark user setup as complete and dismiss
             authViewModel.isUserSetupComplete = true
             dismiss()
+            
         }
     }
 

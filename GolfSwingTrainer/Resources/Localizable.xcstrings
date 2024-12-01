@@ -33,6 +33,9 @@
     "Account" : {
 
     },
+    "Account Information" : {
+
+    },
     "Adjust your screen" : {
 
     },
@@ -54,10 +57,16 @@
     "Birthday" : {
 
     },
+    "Cancel" : {
+
+    },
     "Condition: %@" : {
 
     },
     "Continue" : {
+
+    },
+    "Create Account" : {
 
     },
     "Create an Account" : {
@@ -81,6 +90,9 @@
     "Delete" : {
 
     },
+    "Delete Account" : {
+
+    },
     "Developer Settings" : {
 
     },
@@ -97,6 +109,12 @@
 
     },
     "Don't have an account?" : {
+
+    },
+    "Edit & view your account information" : {
+
+    },
+    "Edit Account" : {
 
     },
     "Edit your information" : {
@@ -156,6 +174,9 @@
     "No acceleration data available." : {
 
     },
+    "No account found. Create one to unlock more features." : {
+
+    },
     "No posts available. Create the first one!" : {
 
     },
@@ -192,6 +213,12 @@
     "Profile Image" : {
 
     },
+    "Profile Picture" : {
+
+    },
+    "Profile Picture URL" : {
+
+    },
     "Progress" : {
 
     },
@@ -218,6 +245,9 @@
 
     },
     "Save" : {
+
+    },
+    "Save Changes" : {
 
     },
     "Saving..." : {
@@ -277,6 +307,9 @@
     "Timestamp: %@" : {
 
     },
+    "Username" : {
+
+    },
     "Username (required)" : {
 
     },
@@ -310,10 +343,16 @@
     "Year" : {
 
     },
+    "Your Account Information" : {
+
+    },
     "Your Attributes" : {
 
     },
     "Your Information" : {
+
+    },
+    "Your Personal Information" : {
 
     },
     "Your Physical Attributes" : {
