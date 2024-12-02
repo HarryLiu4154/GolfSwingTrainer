@@ -49,20 +49,13 @@ struct MainTabView: View {
                             }
                             .tag(Tab.feed)
 
-                        ProgressView()
-                            .tabItem {
-                                Label("Progress", systemImage: selectedTab == .progress ? "chart.bar.fill" : "chart.bar")
-                            }
-                            .tag(Tab.progress)
+//                        ProgressView()
+//                            .tabItem {
+//                                Label("Progress", systemImage: selectedTab == .progress ? "chart.bar.fill" : "chart.bar")
+//                            }
+//                            .tag(Tab.progress)
 
-                        UserProfileView()
-                            .environmentObject(userDataViewModel)
-                            .environmentObject(authViewModel)
-                            .environmentObject(swingSessionViewModel)
-                            .tabItem {
-                                Label("Profile", systemImage: selectedTab == .profile ? "person.fill" : "person")
-                            }
-                            .tag(Tab.profile)
+
                     }
                     .offset(x: showMenu ? geometry.size.width / 2 : 0) // Slide content when menu is open
                     .disabled(showMenu) // Disable TabView interaction when menu is open
@@ -101,7 +94,7 @@ enum Tab: Hashable {
     case home
     case feed
     case progress
-    case profile
+    //case profile
 }
 #Preview {
     MainTabView()

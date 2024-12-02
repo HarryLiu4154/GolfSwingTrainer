@@ -94,7 +94,7 @@ class AuthViewModel: ObservableObject {
     // Delete account
     func deleteAccount() async {
         guard (userSession?.uid) != nil else { return }
-        
+
         await _userDataViewModel.deleteUser() // Ensure the UserDataViewModel is updated
         do {
             try await Auth.auth().currentUser?.delete()
@@ -105,4 +105,5 @@ class AuthViewModel: ObservableObject {
             print("AuthViewModel: Failed to delete account: \(error)")
         }
     }
+
 }

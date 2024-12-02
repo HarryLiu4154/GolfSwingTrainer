@@ -15,6 +15,8 @@ struct Account: Identifiable, Codable, Hashable {
     var profilePictureURL: String? // Optional profile picture URL
     var playerLevel: String // Player level (Beginner, Intermediate, Amateur, Expert)
     var playerStatus: String // Player status (Just for fun, Trainer, Competitor/Professional)
+    var friends: [String] // List of friend IDs
+    var friendRequests: [String] // List of incoming friend request IDs
 }
 extension AccountEntity {
     func toAccount() -> Account {
@@ -23,7 +25,9 @@ extension AccountEntity {
             userName: self.userName ?? "",
             profilePictureURL: self.profilePictureURL,
             playerLevel: self.playerLevel ?? "",
-            playerStatus: self.playerStatus ?? ""
+            playerStatus: self.playerStatus ?? "",
+            friends: self.friends as? [String] ?? [],
+            friendRequests: self.friendRequests as? [String] ?? []
         )
     }
 
@@ -33,6 +37,8 @@ extension AccountEntity {
         self.profilePictureURL = account.profilePictureURL
         self.playerLevel = account.playerLevel
         self.playerStatus = account.playerStatus
+        self.friends = account.friends as NSArray
+        self.friendRequests = account.friendRequests as NSArray
         try? context.save()
     }
 }
@@ -122,7 +128,9 @@ extension User{
                 userName: "tigerwoods",
                 profilePictureURL: "",
                 playerLevel: "Expert",
-                playerStatus: "Competitor/Professional"
+                playerStatus: "Competitor/Professional",
+                friends: ["",""],
+                friendRequests: ["",""]
             )
         )
 }

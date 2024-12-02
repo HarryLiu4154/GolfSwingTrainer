@@ -11,12 +11,28 @@ struct FeedView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel
-
+    @State private var friendUsername: String = "" // To input username for friend operations
+    
     var body: some View {
         NavigationStack {
-            if let user = userDataViewModel.user, user.account != nil {
-                // User has an account
+            if let user = userDataViewModel.user {
                 VStack {
+                    // Navigate to Friends Management
+                    NavigationLink(destination: FriendsView()
+                        .environmentObject(userDataViewModel)) {
+                            Text("Manage Friends")
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .padding([.leading, .trailing])
+                        }
+                    
+                    Divider()
+                    
+                    // Posts Section
                     if feedViewModel.posts.isEmpty {
                         Text("No posts available. Create the first one!")
                             .foregroundColor(.gray)
@@ -24,74 +40,26 @@ struct FeedView: View {
                     } else {
                         List(feedViewModel.posts) { post in
                             NavigationLink(destination: PostDetailView(post: post).environmentObject(feedViewModel)) {
-                                HStack(alignment: .top, spacing: 12) {
-                                    // Profile Picture
-                                    if let profilePictureURL = post.profilePictureURL, !profilePictureURL.isEmpty {
-                                        AsyncImage(url: URL(string: profilePictureURL)) { image in
-                                            image.resizable()
-                                                .scaledToFill()
-                                                .frame(width: 50, height: 50)
-                                                .clipShape(Circle())
-                                        } placeholder: {
-                                            Circle()
-                                                .fill(Color(.systemGray3))
-                                                .frame(width: 50, height: 50)
-                                        }
-                                    } else {
-                                        Circle()
-                                            .fill(Color(.systemGray3))
-                                            .frame(width: 50, height: 50)
-                                            .overlay(
-                                                Text(post.userName.prefix(1))
-                                                    .font(.title)
-                                                    .fontWeight(.bold)
-                                                    .foregroundColor(.white)
-                                            )
-                                    }
-
-                                    // Post Content
-                                    VStack(alignment: .leading, spacing: 5) {
-                                        Text(post.userName)
-                                            .font(.headline)
-
-                                        Text(post.text)
-                                            .font(.body)
-
-                                        if let duration = post.duration {
-                                            Text("Swing Duration: \(duration)")
-                                                .font(.subheadline)
-                                                .foregroundColor(.secondary)
-                                        }
-
-                                        Text(post.timestamp, style: .relative)
-                                            .font(.caption)
-                                            .foregroundColor(.gray)
-                                    }
-                                    NavigationLink(destination: CreatePostView().environmentObject(feedViewModel)
-                                        .environmentObject(swingSessionViewModel)
-                                        .environmentObject(userDataViewModel)){
-                                        Text("Create Post")
-                                    }
-                                }
-                                .padding(.vertical, 5)
+                                PostRowComponentView(post: post)
                             }
                         }
                     }
                 }
                 .navigationTitle("Feed")
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
+                    ToolbarItem(placement: .topBarLeading) {
                         NavigationLink(destination: CreatePostView()
                             .environmentObject(feedViewModel)
                             .environmentObject(swingSessionViewModel)
                             .environmentObject(userDataViewModel)) {
-                            Image(systemName: "plus.circle")
-                                .font(.title2)
-                        }
+                                Image(systemName: "plus.circle")
+                                    .font(.title2)
+                            }
                     }
                 }
                 .refreshable {
                     feedViewModel.fetchPosts()
+                    await userDataViewModel.loadUser()
                 }
             } else {
                 // User does not have an account
@@ -100,7 +68,7 @@ struct FeedView: View {
                         .font(.headline)
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
-
+                    
                     NavigationLink("Create Account") {
                         CreateAccountView()
                             .environmentObject(userDataViewModel)

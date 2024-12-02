@@ -64,7 +64,7 @@ extension FirebaseService {
         try await db.collection("swingSessions").document(uid).delete()
     }
 }
-//MARK: - Account
+//MARK: - Account services
 extension FirebaseService {
     func uploadProfileImage(image: UIImage) async throws -> String {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
@@ -84,5 +84,95 @@ extension FirebaseService {
         // Retrieve the download URL
         let downloadURL = try await storageRef.downloadURL()
         return downloadURL.absoluteString
+    }
+}
+//MARK: - Friends services
+extension FirebaseService {
+    // Fetch an account by username
+    func fetchAccountByUsername(username: String) async throws -> Account? {
+        let querySnapshot = try await db.collection("users")
+            .whereField("account.userName", isEqualTo: username)
+            .getDocuments()
+        
+        guard let document = querySnapshot.documents.first else { return nil }
+        let data = document.data()
+        guard let accountData = data["account"] as? [String: Any] else { return nil }
+        
+        return Account(
+            id: UUID(uuidString: document.documentID) ?? UUID(),
+            userName: accountData["userName"] as? String ?? "",
+            profilePictureURL: accountData["profilePictureURL"] as? String,
+            playerLevel: accountData["playerLevel"] as? String ?? "",
+            playerStatus: accountData["playerStatus"] as? String ?? "",
+            friends: accountData["friends"] as? [String] ?? [],
+            friendRequests: accountData["friendRequests"] as? [String] ?? []
+        )
+    }
+
+
+    // Add a friend to the current account
+    func addFriend(currentUserId: String, friendUserId: String) async throws {
+        let batch = db.batch()
+        
+        let currentUserRef = db.collection("users").document(currentUserId)
+        let friendUserRef = db.collection("users").document(friendUserId)
+        
+        // Update current user's friend list
+        batch.updateData(["account.friends": FieldValue.arrayUnion([friendUserId])], forDocument: currentUserRef)
+        
+        // Update friend's friend list
+        batch.updateData(["account.friends": FieldValue.arrayUnion([currentUserId])], forDocument: friendUserRef)
+        
+        try await batch.commit()
+    }
+
+
+    // Send a friend request
+    func sendFriendRequest(to userId: String, from currentUserId: String) async throws {
+        let userRef = db.collection("users").document(userId)
+        try await userRef.updateData(["account.friendRequests": FieldValue.arrayUnion([currentUserId])])
+    }
+
+
+    // Accept a friend request
+    func acceptFriendRequest(currentUserId: String, from friendUserId: String) async throws {
+        let batch = db.batch()
+        
+        let currentUserRef = db.collection("users").document(currentUserId)
+        let friendUserRef = db.collection("users").document(friendUserId)
+        
+        // Remove the friend request and add the friend
+        batch.updateData([
+            "account.friendRequests": FieldValue.arrayRemove([friendUserId]),
+            "account.friends": FieldValue.arrayUnion([friendUserId])
+        ], forDocument: currentUserRef)
+        
+        // Add the current user as a friend in the other user's account
+        batch.updateData([
+            "account.friends": FieldValue.arrayUnion([currentUserId])
+        ], forDocument: friendUserRef)
+        
+        try await batch.commit()
+    }
+
+
+    // Decline a friend request
+    func declineFriendRequest(currentAccountId: String, from userId: String) async throws {
+        let currentAccountRef = db.collection("accounts").document(currentAccountId)
+        try await currentAccountRef.updateData(["friendRequests": FieldValue.arrayRemove([userId])])
+    }
+
+    // Remove a friend
+    func removeFriend(currentUserId: String, friendUserId: String) async throws {
+        let batch = db.batch()
+        
+        let currentUserRef = db.collection("users").document(currentUserId)
+        let friendUserRef = db.collection("users").document(friendUserId)
+        
+        // Remove from both friend lists
+        batch.updateData(["account.friends": FieldValue.arrayRemove([friendUserId])], forDocument: currentUserRef)
+        batch.updateData(["account.friends": FieldValue.arrayRemove([currentUserId])], forDocument: friendUserRef)
+        
+        try await batch.commit()
     }
 }

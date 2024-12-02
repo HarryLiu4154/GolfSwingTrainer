@@ -30,10 +30,19 @@
         }
       }
     },
+    "Accept" : {
+
+    },
     "Account" : {
 
     },
     "Account Information" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add a Friend" : {
 
     },
     "Adjust your screen" : {
@@ -87,6 +96,9 @@
     "Day" : {
 
     },
+    "Decline" : {
+
+    },
     "Delete" : {
 
     },
@@ -129,6 +141,9 @@
     "Enter %@" : {
 
     },
+    "Enter username" : {
+
+    },
     "Enter your password" : {
 
     },
@@ -147,6 +162,12 @@
     "For Dev Eyes Only" : {
 
     },
+    "Friend Requests" : {
+
+    },
+    "Friends" : {
+
+    },
     "Gender" : {
 
     },
@@ -163,6 +184,9 @@
 
     },
     "Humidity: %@%%" : {
+
+    },
+    "Manage Friends" : {
 
     },
     "Measurements" : {
@@ -213,22 +237,19 @@
     "Preferred Measurement" : {
 
     },
-    "Profile" : {
-
-    },
     "Profile Image" : {
 
     },
     "Profile Picture" : {
 
     },
-    "Progress" : {
-
-    },
     "Providing accurate information helps us customize your experience and optimize training recommendations." : {
 
     },
     "Register" : {
+
+    },
+    "Remove" : {
 
     },
     "Rotation Data" : {
@@ -356,6 +377,9 @@
 
     },
     "You need an account to access the feed." : {
+
+    },
+    "You need an account to manage friends." : {
 
     },
     "Your Account" : {
