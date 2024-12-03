@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="24A348" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="ownerUid" optional="YES" attributeType="String"/>
         <attribute name="playerLevel" optional="YES" attributeType="String"/>
         <attribute name="playerStatus" optional="YES" attributeType="String"/>
         <attribute name="profilePictureURL" optional="YES" attributeType="String"/>
@@ -11,7 +12,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="account" inverseEntity="UserEntity"/>
     </entity>
     <entity name="FriendEntity" representedClassName="FriendEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="playerLevel" optional="YES" attributeType="String"/>
         <attribute name="profilePictureURL" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>

@@ -16,9 +16,10 @@ import UIKit
 class FirebaseService {
     private lazy var firestore = Firestore.firestore()
     private lazy var storage = Storage.storage()
+}
 
-    //MARK: - User Services
-
+//MARK: - User Services
+extension FirebaseService{
     func fetchUser(uid: String) async throws -> User? {
         let document = try await firestore.collection("users").document(uid).getDocument()
         return try document.data(as: User.self)
@@ -31,8 +32,6 @@ class FirebaseService {
     func deleteUser(uid: String) async throws {
         try await firestore.collection("users").document(uid).delete()
     }
-    
-
 }
 //MARK: - Swing Session Services
 extension FirebaseService {
@@ -68,54 +67,95 @@ extension FirebaseService {
 }
 //MARK: - Account services
 extension FirebaseService {
+    ///Fetch Account by UID
+    func fetchAccount(for uid: String) async throws -> Account? {
+        let query = firestore.collection("accounts").whereField("ownerUid", isEqualTo: uid).limit(to: 1)
+        let snapshot = try await query.getDocuments()
+        guard let document = snapshot.documents.first else { return nil }
+        return try document.data(as: Account.self)
+    }
+
+    ///Save Account
+    func saveAccount(_ account: Account) async throws {
+        try await firestore.collection("accounts").document(account.userName).setData(Firestore.Encoder().encode(account))
+    }
+
+    ///Delete Account by Username
+    func deleteAccount(userName: String) async throws {
+        try await firestore.collection("accounts").document(userName).delete()
+    }
+
+    ///Upload profile image to firebase STORAGE
     func uploadProfileImage(image: UIImage) async throws -> String {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to convert image to JPEG data"])
         }
-        
-        // Generate a unique file path
         let imageId = UUID().uuidString
         let filePath = "profileImages/\(imageId).jpeg"
-        let storageRef = Storage.storage().reference(withPath: filePath)
+        let storageRef = storage.reference(withPath: filePath)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        
-        // Upload image with async/await
-        let _ = try await storageRef.putDataAsync(imageData, metadata: metadata)
-        
-        // Retrieve the download URL
-        let downloadURL = try await storageRef.downloadURL()
-        return downloadURL.absoluteString
+        try await storageRef.putDataAsync(imageData, metadata: metadata)
+        return try await storageRef.downloadURL().absoluteString
     }
 }
+
 // MARK: - Friend Services
 extension FirebaseService {
-    func sendFriendRequest(from senderUserName: String, to recipientUserName: String) async throws {
-        let recipientRef = firestore.collection("accounts").document(recipientUserName)
-        let senderRef = firestore.collection("accounts").document(senderUserName)
+    /// Checks if a username is available in the accounts collection.
+    func isUserNameAvailable(_ userName: String) async throws -> Bool {
+        let documentRef = firestore.collection("accounts").document(userName)
         
+        // Fetch the document for the given username
+        let document = try await documentRef.getDocument()
+        
+        // If the document does not exist, the username is available
+        return !document.exists
+    }
+    
+    ///
+    func sendFriendRequest(from senderUid: String, to recipientUid: String) async throws {
+        // Query the sender's account
+        let senderQuery = firestore.collection("accounts").whereField("ownerUid", isEqualTo: senderUid).limit(to: 1)
+        let recipientQuery = firestore.collection("accounts").whereField("ownerUid", isEqualTo: recipientUid).limit(to: 1)
+        
+        // Fetch documents for both sender and recipient
+        let senderSnapshot = try await senderQuery.getDocuments()
+        let recipientSnapshot = try await recipientQuery.getDocuments()
+        
+        guard let senderDocument = senderSnapshot.documents.first else {
+            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Sender account not found"])
+        }
+        guard let recipientDocument = recipientSnapshot.documents.first else {
+            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Recipient account not found"])
+        }
+        
+        let senderRef = senderDocument.reference
+        let recipientRef = recipientDocument.reference
+
+        // Run transaction to update friend requests
         try await firestore.runTransaction { transaction, errorPointer in
             do {
-                let recipientSnapshot = try transaction.getDocument(recipientRef)
-                let senderSnapshot = try transaction.getDocument(senderRef)
+                let senderData = try transaction.getDocument(senderRef).data()
+                let recipientData = try transaction.getDocument(recipientRef).data()
                 
-                guard var recipientData = recipientSnapshot.data(),
-                      var senderData = senderSnapshot.data() else {
+                guard var senderData = senderData,
+                      var recipientData = recipientData else {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
-                
-                // Update incoming requests for recipient
-                var incomingRequests = recipientData["friendRequests.incoming"] as? [String] ?? []
-                if !incomingRequests.contains(senderUserName) {
-                    incomingRequests.append(senderUserName)
-                    transaction.updateData(["friendRequests.incoming": incomingRequests], forDocument: recipientRef)
-                }
-                
+
                 // Update outgoing requests for sender
-                var outgoingRequests = senderData["friendRequests.outgoing"] as? [String] ?? []
-                if !outgoingRequests.contains(recipientUserName) {
-                    outgoingRequests.append(recipientUserName)
-                    transaction.updateData(["friendRequests.outgoing": outgoingRequests], forDocument: senderRef)
+                var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
+                if !senderOutgoing.contains(recipientUid) {
+                    senderOutgoing.append(recipientUid)
+                    transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
+                }
+
+                // Update incoming requests for recipient
+                var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
+                if !recipientIncoming.contains(senderUid) {
+                    recipientIncoming.append(senderUid)
+                    transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
                 }
             } catch {
                 errorPointer?.pointee = error as NSError
@@ -125,41 +165,40 @@ extension FirebaseService {
         }
     }
 
+
+
+    ///
     func acceptFriendRequest(recipientUserName: String, senderUserName: String) async throws {
         let recipientRef = firestore.collection("accounts").document(recipientUserName)
         let senderRef = firestore.collection("accounts").document(senderUserName)
-        
+
         try await firestore.runTransaction { transaction, errorPointer in
             do {
                 let recipientSnapshot = try transaction.getDocument(recipientRef)
                 let senderSnapshot = try transaction.getDocument(senderRef)
-                
+
                 guard var recipientData = recipientSnapshot.data(),
                       var senderData = senderSnapshot.data() else {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
-                
-                // Add to friends array
+
                 var recipientFriends = recipientData["friends"] as? [String] ?? []
-                if !recipientFriends.contains(senderUserName) {
-                    recipientFriends.append(senderUserName)
-                    transaction.updateData(["friends": recipientFriends], forDocument: recipientRef)
-                }
-                
                 var senderFriends = senderData["friends"] as? [String] ?? []
-                if !senderFriends.contains(recipientUserName) {
-                    senderFriends.append(recipientUserName)
-                    transaction.updateData(["friends": senderFriends], forDocument: senderRef)
-                }
-                
-                // Remove from friend requests
-                var incomingRequests = recipientData["friendRequests.incoming"] as? [String] ?? []
-                incomingRequests.removeAll(where: { $0 == senderUserName })
-                transaction.updateData(["friendRequests.incoming": incomingRequests], forDocument: recipientRef)
-                
-                var outgoingRequests = senderData["friendRequests.outgoing"] as? [String] ?? []
-                outgoingRequests.removeAll(where: { $0 == recipientUserName })
-                transaction.updateData(["friendRequests.outgoing": outgoingRequests], forDocument: senderRef)
+
+                recipientFriends.append(senderUserName)
+                senderFriends.append(recipientUserName)
+
+                transaction.updateData(["friends": recipientFriends], forDocument: recipientRef)
+                transaction.updateData(["friends": senderFriends], forDocument: senderRef)
+
+                var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
+                var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
+
+                recipientIncoming.removeAll { $0 == senderUserName }
+                senderOutgoing.removeAll { $0 == recipientUserName }
+
+                transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
+                transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
             } catch {
                 errorPointer?.pointee = error as NSError
                 return nil
@@ -168,28 +207,29 @@ extension FirebaseService {
         }
     }
 
+    ///
     func declineFriendRequest(recipientUserName: String, senderUserName: String) async throws {
         let recipientRef = firestore.collection("accounts").document(recipientUserName)
         let senderRef = firestore.collection("accounts").document(senderUserName)
-        
+
         try await firestore.runTransaction { transaction, errorPointer in
             do {
                 let recipientSnapshot = try transaction.getDocument(recipientRef)
                 let senderSnapshot = try transaction.getDocument(senderRef)
-                
+
                 guard var recipientData = recipientSnapshot.data(),
                       var senderData = senderSnapshot.data() else {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
-                
-                // Remove from friend requests
-                var incomingRequests = recipientData["friendRequests.incoming"] as? [String] ?? []
-                incomingRequests.removeAll(where: { $0 == senderUserName })
-                transaction.updateData(["friendRequests.incoming": incomingRequests], forDocument: recipientRef)
-                
-                var outgoingRequests = senderData["friendRequests.outgoing"] as? [String] ?? []
-                outgoingRequests.removeAll(where: { $0 == recipientUserName })
-                transaction.updateData(["friendRequests.outgoing": outgoingRequests], forDocument: senderRef)
+
+                var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
+                var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
+
+                recipientIncoming.removeAll { $0 == senderUserName }
+                senderOutgoing.removeAll { $0 == recipientUserName }
+
+                transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
+                transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
             } catch {
                 errorPointer?.pointee = error as NSError
                 return nil
@@ -198,4 +238,3 @@ extension FirebaseService {
         }
     }
 }
-

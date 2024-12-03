@@ -18,7 +18,7 @@ struct MenuView: View {
             // Menu Header
             HStack {
                 ZStack {
-                    if let profilePictureURL = authViewModel.currentUser?.account?.profilePictureURL, !profilePictureURL.isEmpty {
+                    if let profilePictureURL = authViewModel.currentUser?.firestoreAccount?.profilePictureURL, !profilePictureURL.isEmpty {
                         AsyncImage(url: URL(string: profilePictureURL)) { image in
                             image.resizable()
                                 .scaledToFill()

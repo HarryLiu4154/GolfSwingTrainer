@@ -14,7 +14,7 @@ struct FriendsView: View {
 
     var body: some View {
         NavigationStack {
-            if let account = userDataViewModel.user?.account {
+            if let account = userDataViewModel.user?.firestoreAccount {
                 VStack {
                     // Add Friend Section
                     VStack(alignment: .leading, spacing: 10) {

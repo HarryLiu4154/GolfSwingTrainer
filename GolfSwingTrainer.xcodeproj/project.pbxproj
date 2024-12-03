@@ -70,6 +70,7 @@
 		BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */; };
 		BCCE88F12CFADAA000B61188 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */; };
 		BCD774562CFEDF3500C91918 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774552CFEDF3200C91918 /* Account.swift */; };
+		BCD774582CFF921700C91918 /* FirestoreAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774572CFF920900C91918 /* FirestoreAccount.swift */; };
 		BCE638112CD9851000411D5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638102CD9850D00411D5B /* User.swift */; };
 		BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638142CD9865800411D5B /* UserProfileView.swift */; };
 		BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */; };
@@ -214,6 +215,7 @@
 		BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAttributesView.swift; sourceTree = "<group>"; };
 		BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		BCD774552CFEDF3200C91918 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BCD774572CFF920900C91918 /* FirestoreAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAccount.swift; sourceTree = "<group>"; };
 		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
@@ -663,6 +665,7 @@
 		BCF1D2E62CF42E050010EB13 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				BCD774572CFF920900C91918 /* FirestoreAccount.swift */,
 				BCE638102CD9850D00411D5B /* User.swift */,
 			);
 			path = User;
@@ -1099,6 +1102,7 @@
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
 				BC3C5C952CFBFEC000E07B5B /* SettingsAccountView.swift in Sources */,
 				BC3C5C9C2CFC5E2D00E07B5B /* PostDetailView.swift in Sources */,
+				BCD774582CFF921700C91918 /* FirestoreAccount.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
 			);

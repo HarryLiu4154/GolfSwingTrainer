@@ -32,7 +32,7 @@ class UserDataViewModel: ObservableObject {
     }
 }
 
-// MARK: - User Loading and Updates
+// MARK: - User Management
 extension UserDataViewModel {
     /// Load the user from Core Data or Firebase.
     func loadUser() async {
@@ -67,10 +67,8 @@ extension UserDataViewModel {
             print("UserDataViewModel: Failed to update user in Firebase: \(error.localizedDescription)")
         }
     }
-}
-
-// MARK: - Delete User
-extension UserDataViewModel {
+    
+    ///Delete whole user
     func deleteUser() async {
         guard let currentUser = user else {
             print("UserDataViewModel: No user available to delete.")
@@ -145,72 +143,104 @@ extension UserDataViewModel {
 // MARK: - Account Management
 extension UserDataViewModel {
     /// Update account data such as username, profile picture, player level, and player status.
-    func updateAccountData(
-        userName: String,
-        profileImage: UIImage?,
-        playerLevel: String,
-        playerStatus: String
+    func updateAccount(
+        userName: String? = nil,
+        profileImage: UIImage? = nil,
+        playerLevel: String? = nil,
+        playerStatus: String? = nil
     ) async {
-        guard var currentUser = user else {
-            print("UserDataViewModel: No current user to update.")
-            return
-        }
-
-        // Upload the profile image if provided
-        var profilePictureURL = currentUser.account?.profilePictureURL
+        guard var currentUser = user, var currentAccount = currentUser.firestoreAccount else { return }
+        
+        if let userName = userName { currentAccount.userName = userName }
+        if let playerLevel = playerLevel { currentAccount.playerLevel = playerLevel }
+        if let playerStatus = playerStatus { currentAccount.playerStatus = playerStatus }
+        
         if let image = profileImage {
             do {
-                profilePictureURL = try await firebaseService.uploadProfileImage(image: image)
+                currentAccount.profilePictureURL = try await firebaseService.uploadProfileImage(image: image)
             } catch {
                 print("Failed to upload profile image: \(error.localizedDescription)")
                 return
             }
         }
-
-        // Maintain existing friends and friend requests
-        let friends = currentUser.account?.friends ?? []
-        let friendRequests = currentUser.account?.friendRequests ?? FriendRequests(incoming: [], outgoing: [])
-
-        // Create updated account
-        let updatedAccount = Account(
-            id: currentUser.account?.id ?? UUID(),
-            userName: userName,
-            profilePictureURL: profilePictureURL,
-            playerLevel: playerLevel,
-            playerStatus: playerStatus,
-            friends: friends,
-            friendRequests: friendRequests
-        )
-
-        // Update Core Data and Firebase
-        currentUser.account = updatedAccount
-        await updateUser(currentUser) // Sync updated user to Firebase and Core Data
+        
+        do {
+            try await firebaseService.saveAccount(currentAccount)
+            currentUser.firestoreAccount = currentAccount
+            user = currentUser
+        } catch {
+            print("Failed to update account: \(error.localizedDescription)")
+        }
     }
-
-    /// Private method to update an account in Core Data and Firebase.
-    private func updateAccount(_ account: Account) async {
-        guard var currentUser = user else {
-            print("UserDataViewModel: No current user to update.")
+    func fetchOrCreateAccount(for uid: String) async {
+        guard var currentUser = user else { return }
+        
+        do {
+            // Try to fetch the existing account
+            if let fetchedAccount = try await firebaseService.fetchAccount(for: uid) {
+                currentUser.firestoreAccount = fetchedAccount
+            } else {
+                // Dynamically generate a unique username if needed
+                let baseUserName = currentUser.fullName.replacingOccurrences(of: " ", with: "").lowercased()
+                var newUserName = baseUserName
+                var isUnique = false
+                var counter = 1
+                
+                // Check for username uniqueness
+                while !isUnique {
+                    if try await firebaseService.isUserNameAvailable(newUserName) {
+                        isUnique = true
+                    } else {
+                        newUserName = "\(baseUserName)\(counter)"
+                        counter += 1
+                    }
+                }
+                
+                // Create a new account
+                let newAccount = Account(
+                    id: UUID(),
+                    ownerUid: uid, // The Firebase UID of the user creating the account
+                    userName: newUserName, // Unique username, ensure validated for uniqueness
+                    profilePictureURL: nil, // Default to nil; can be updated later
+                    playerLevel: "Beginner", // Default player level
+                    playerStatus: "Just for fun", // Default player status
+                    friends: [], // Empty list as the user starts with no friends
+                    friendRequests: FriendRequests(incoming: [], outgoing: []) // No requests at creation
+                )
+                
+                // Save the new account to Firestore
+                try await firebaseService.saveAccount(newAccount)
+                
+                // Update the user with the new account
+                currentUser.firestoreAccount = newAccount
+            }
+            
+            // Update the local user state
+            user = currentUser
+        } catch {
+            print("Failed to fetch or create account: \(error.localizedDescription)")
+        }
+        
+    }
+    /// Deletes the user's account without deleting the user itself.
+    func deleteAccount() async {
+        guard var currentUser = user, let account = currentUser.firestoreAccount else {
+            print("UserDataViewModel: No account to delete.")
             return
         }
 
-        // Update Core Data
-        coreDataService.saveAccount(account)
+        do {
+            // Remove the account from Firebase
+            try await firebaseService.deleteAccount(userName: account.userName)
 
-        // Update Firebase
-        currentUser.account = account
-        await updateUser(currentUser)
-    }
-    /// Remove the account from the user object.
-    func removeAccount() async {
-        guard let currentUser = user else {
-            print("UserDataViewModel: No current user to update.")
-            return
+            // Clear the account locally
+            currentUser.firestoreAccount = nil
+            user = currentUser
+            
+            print("UserDataViewModel: Account deleted successfully.")
+        } catch {
+            print("UserDataViewModel: Failed to delete account: \(error.localizedDescription)")
         }
-
-        var updatedUser = currentUser
-        updatedUser.account = nil
-        await updateUser(updatedUser)
     }
 }
 
@@ -218,63 +248,34 @@ extension UserDataViewModel {
 extension UserDataViewModel {
     /// Send a friend request to another user.
     func sendFriendRequest(to recipientUserName: String) async {
-        guard let senderUserName = user?.account?.userName else {
-            print("No account for current user to send a friend request.")
-            return
-        }
-
+        guard let senderUserName = user?.firestoreAccount?.userName else { return }
         do {
             try await firebaseService.sendFriendRequest(from: senderUserName, to: recipientUserName)
-            print("Friend request sent from \(senderUserName) to \(recipientUserName).")
-            await loadUser() // Reload user to sync data
+            print("Friend request sent.")
         } catch {
             print("Failed to send friend request: \(error.localizedDescription)")
         }
     }
-
+    
     /// Accept a friend request from another user.
     func acceptFriendRequest(from senderUserName: String) async {
-        guard let recipientUserName = user?.account?.userName else {
-            print("No account for current user to accept a friend request.")
-            return
-        }
-
+        guard let recipientUserName = user?.firestoreAccount?.userName else { return }
         do {
             try await firebaseService.acceptFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
-            print("Friend request accepted from \(senderUserName).")
-            await loadUser() // Reload user to sync data
+            print("Friend request accepted.")
         } catch {
             print("Failed to accept friend request: \(error.localizedDescription)")
         }
     }
-
+    
     /// Decline a friend request from another user.
     func declineFriendRequest(from senderUserName: String) async {
-        guard let recipientUserName = user?.account?.userName else {
-            print("No account for current user to decline a friend request.")
-            return
-        }
-
+        guard let recipientUserName = user?.firestoreAccount?.userName else { return }
         do {
             try await firebaseService.declineFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
-            print("Friend request declined from \(senderUserName).")
-            await loadUser() // Reload user to sync data
+            print("Friend request declined.")
         } catch {
             print("Failed to decline friend request: \(error.localizedDescription)")
         }
-    }
-
-    /// Remove a friend from the current user's account.
-    func removeFriend(friendId: String) async {
-        guard var currentAccount = user?.account else {
-            print("No account for current user to remove a friend.")
-            return
-        }
-
-        // Remove friend locally
-        currentAccount.friends.removeAll { $0.id.uuidString == friendId }
-
-        // Update Core Data and Firebase
-        await updateAccount(currentAccount)
     }
 }

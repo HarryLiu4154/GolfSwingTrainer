@@ -19,7 +19,7 @@ struct UserProfileView: View {
                         HStack {
                             // Profile Image or Initials
                             ZStack {
-                                if let profilePictureURL = user.account?.profilePictureURL, !profilePictureURL.isEmpty {
+                                if let profilePictureURL = user.firestoreAccount?.profilePictureURL, !profilePictureURL.isEmpty {
                                     AsyncImage(url: URL(string: profilePictureURL)) { image in
                                         image.resizable()
                                             .scaledToFill()
@@ -48,7 +48,7 @@ struct UserProfileView: View {
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
                                 
-                                Text(user.account?.userName ?? "No username")
+                                Text(user.firestoreAccount?.userName ?? "No username")
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                                 

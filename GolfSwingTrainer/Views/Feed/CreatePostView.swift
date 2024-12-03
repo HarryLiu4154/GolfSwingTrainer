@@ -44,8 +44,8 @@ struct CreatePostView: View {
                         feedViewModel.addPost(
                             text: postText,
                             duration: duration,
-                            userName: user.account?.userName ?? "Unknown User",
-                            profilePictureURL: user.account?.profilePictureURL
+                            userName: user.firestoreAccount?.userName ?? "Unknown User",
+                            profilePictureURL: user.firestoreAccount?.profilePictureURL
                         )
                         dismiss()
                     }) {

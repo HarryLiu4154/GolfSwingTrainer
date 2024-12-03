@@ -12,6 +12,7 @@ import UIKit
 // MARK: - Account Model
 struct Account: Identifiable, Codable, Hashable {
     let id: UUID // Unique identifier for the account
+    var ownerUid: String
     var userName: String // Unique username for the user
     var profilePictureURL: String? // Optional profile picture URL
     var playerLevel: String // Player level (Beginner, Intermediate, Amateur, Expert)
@@ -19,10 +20,12 @@ struct Account: Identifiable, Codable, Hashable {
     var friends: [Friend] // List of friends
     var friendRequests: FriendRequests // Friend request details (incoming and outgoing)
 }
+/// AccountEntity Extension (Core Data)
 extension AccountEntity {
     func toAccount() -> Account {
         return Account(
             id: self.id ?? UUID(),
+            ownerUid: self.ownerUid ?? "",
             userName: self.userName ?? "",
             profilePictureURL: self.profilePictureURL,
             playerLevel: self.playerLevel ?? "",
@@ -31,32 +34,24 @@ extension AccountEntity {
             friendRequests: self.friendRequests?.toFriendRequests() ?? FriendRequests(incoming: [], outgoing: [])
         )
     }
-    
+
     func update(from account: Account, context: NSManagedObjectContext) {
-        // Update basic attributes
         self.id = account.id
+        self.ownerUid = account.ownerUid
         self.userName = account.userName
         self.profilePictureURL = account.profilePictureURL
         self.playerLevel = account.playerLevel
         self.playerStatus = account.playerStatus
-        
-        // Update friends using mutableSetValue(forKey:)
+
+        // Update friends
         let friendsSet = self.mutableSetValue(forKey: "friends")
-        friendsSet.removeAllObjects() // Clear existing friends if needed
+        friendsSet.removeAllObjects()
         for friend in account.friends {
-            let fetchRequest: NSFetchRequest<FriendEntity> = FriendEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id == %@", friend.id as CVarArg)
-            
-            let friendEntity: FriendEntity
-            if let existingEntity = (try? context.fetch(fetchRequest))?.first {
-                friendEntity = existingEntity
-            } else {
-                friendEntity = FriendEntity(context: context)
-            }
+            let friendEntity = FriendEntity(context: context)
             friendEntity.update(from: friend)
-            friendsSet.add(friendEntity) // Add the friend to the relationship
+            friendsSet.add(friendEntity)
         }
-        
+
         // Update friendRequests
         if let existingFriendRequestsEntity = self.friendRequests {
             existingFriendRequestsEntity.update(from: account.friendRequests, context: context)
@@ -65,8 +60,7 @@ extension AccountEntity {
             newFriendRequestsEntity.update(from: account.friendRequests, context: context)
             self.friendRequests = newFriendRequestsEntity
         }
-        
-        // Save the context
+
         do {
             try context.save()
         } catch {
@@ -74,17 +68,18 @@ extension AccountEntity {
         }
     }
 }
-//MARK: - Friend Models:
+//MARK: - Friend Model
 struct Friend: Identifiable, Codable, Hashable {
-    let id: UUID // Unique ID of the friend
+    let id: String // uid of the friend
     let userName: String // Friend's username
-    let profilePictureURL: String? // Optional profile picture
-    let playerLevel: String // Friend's player level
+    var profilePictureURL: String? // Optional profile picture
+    var playerLevel: String // Friend's player level
 }
+
 extension FriendEntity {
     func toFriend() -> Friend {
         return Friend(
-            id: self.id ?? UUID(),
+            id: self.id ?? "",
             userName: self.userName ?? "",
             profilePictureURL: self.profilePictureURL,
             playerLevel: self.playerLevel ?? ""
@@ -100,11 +95,12 @@ extension FriendEntity {
 }
 
 
-// Represents friend request data
+// MARK: - FriendRequests Model
 struct FriendRequests: Codable, Hashable {
-    var incoming: [String] // List of usernames who sent requests
-    var outgoing: [String] // List of usernames to whom requests were sent
+    var incoming: [String] // Usernames of incoming requests
+    var outgoing: [String] // Usernames of outgoing requests
 }
+
 extension FriendRequestsEntity {
     func toFriendRequests() -> FriendRequests {
         return FriendRequests(
@@ -114,38 +110,8 @@ extension FriendRequestsEntity {
     }
 
     func update(from friendRequests: FriendRequests, context: NSManagedObjectContext) {
-        // Update incoming friend requests
-        let incomingEntities = friendRequests.incoming.map { username in
-            let fetchRequest: NSFetchRequest<FriendEntity> = FriendEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "userName == %@", username)
-
-            let friendEntity: FriendEntity
-            if let existingEntity = (try? context.fetch(fetchRequest))?.first {
-                friendEntity = existingEntity
-            } else {
-                friendEntity = FriendEntity(context: context)
-                friendEntity.userName = username
-            }
-            return friendEntity
-        }
-
-        // Update outgoing friend requests
-        let outgoingEntities = friendRequests.outgoing.map { username in
-            let fetchRequest: NSFetchRequest<FriendEntity> = FriendEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "userName == %@", username)
-
-            let friendEntity: FriendEntity
-            if let existingEntity = (try? context.fetch(fetchRequest))?.first {
-                friendEntity = existingEntity
-            } else {
-                friendEntity = FriendEntity(context: context)
-                friendEntity.userName = username
-            }
-            return friendEntity
-        }
-
-        // Assign incoming and outgoing requests
-        self.incoming = NSSet(array: incomingEntities)
-        self.outgoing = NSSet(array: outgoingEntities)
+        // Convert Swift arrays to NSSet
+        self.incoming = NSSet(array: friendRequests.incoming)
+        self.outgoing = NSSet(array: friendRequests.outgoing)
     }
 }

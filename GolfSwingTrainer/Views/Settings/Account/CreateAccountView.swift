@@ -113,7 +113,7 @@ struct CreateAccountView: View {
         print("Preparing to upload image.")
 
         Task {
-            await viewModel.updateAccountData(
+            await viewModel.updateAccount(
                 userName: username,
                 profileImage: image, // Pass the selected image directly
                 playerLevel: playerLevel,

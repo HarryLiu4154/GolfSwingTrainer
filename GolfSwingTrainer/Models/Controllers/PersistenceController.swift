@@ -8,31 +8,23 @@
 import Foundation
 import CoreData
 
+
 struct PersistenceController {
     static let shared = PersistenceController()
 
-    // Persistent container
     let container: NSPersistentContainer
 
-    // Preview for SwiftUI Previews
-    static var preview: PersistenceController = {
-        let result = PersistenceController(inMemory: true)
-        let viewContext = result.container.viewContext
-        // Add dummy data here if needed for previews
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
-        return result
-    }()
-
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Model") //File Name
+        container = NSPersistentContainer(name: "Model") // Replace "Model" with your .xcdatamodeld file name
+
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
+
+        let description = container.persistentStoreDescriptions.first
+        description?.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+        description?.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
+
         container.loadPersistentStores { description, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -40,4 +32,10 @@ struct PersistenceController {
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
+
+    static var preview: PersistenceController = {
+        let result = PersistenceController(inMemory: true)
+        let viewContext = result.container.viewContext
+        return result
+    }()
 }
