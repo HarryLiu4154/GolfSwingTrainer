@@ -10,6 +10,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseCore
 import Foundation
+import UserNotifications
 
 @main
 struct GolfSwingTrainerApp: App {
@@ -26,6 +27,9 @@ struct GolfSwingTrainerApp: App {
         FirebaseApp.configure()
         let storage = Storage.storage()
                print("Default Firebase Storage Bucket: \(storage.reference().bucket)")
+        
+        //Request Notif Permissions
+        requestNotificationPermissions()
         
         // Initialize `userDataViewModel` first
         let userDataViewModelInstance = UserDataViewModel(
@@ -70,16 +74,42 @@ struct GolfSwingTrainerApp: App {
 struct RootView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var viewModel: UserDataViewModel
+    @State private var isNotificationVisible = false
+    @State private var notificationTitle = ""
+    @State private var notificationMessage = ""
     var body: some View {
-       
-        if authViewModel.userSession != nil {
-            if authViewModel.isUserSetupComplete {
-                MainTabView() //Home Screen
+        ZStack{
+            if authViewModel.userSession != nil {
+                if authViewModel.isUserSetupComplete {
+                    MainTabView() //Home Screen
+                } else {
+                    UserAttributesInputView() // Show setup view if not complete
+                }
             } else {
-                UserAttributesInputView() // Show setup view if not complete
+                LoginView()
             }
-        } else {
-            LoginView()
+            
+            InAppNotificationView(
+                            title: notificationTitle,
+                            message: notificationMessage,
+                            isVisible: $isNotificationVisible
+                        )
+            
+        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("WindDirectionChanged"))) { notification in
+            if let userInfo = notification.userInfo,
+               let title = userInfo["title"] as? String,
+               let message = userInfo["message"] as? String {
+                print("In-app notification received: \(title) - \(message)")
+                notificationTitle = title
+                notificationMessage = message
+                isNotificationVisible = true
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    isNotificationVisible = false
+                }
+            } else {
+                print("Notification data is missing or malformed.")
+            }
         }
     }
 }
@@ -91,7 +121,20 @@ struct RootView: View {
         firebaseService: firebaseService
     )
     let authViewModel = AuthViewModel(userDataViewModel: userDataViewModel)
-    return RootView()
+    RootView()
         .environmentObject(authViewModel)
         .environmentObject(userDataViewModel)
+}
+
+//MARK: - Permissions
+
+///Notifications
+func requestNotificationPermissions() {
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        if let error = error {
+            print("Notification permission error: \(error)")
+        } else if granted {
+            print("Permission granted for notifications.")
+        }
+    }
 }

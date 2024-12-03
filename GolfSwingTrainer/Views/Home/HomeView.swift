@@ -63,6 +63,9 @@ struct HomeView: View {
             
 
         }.navigationTitle("Home")
+            .refreshable {
+                 
+            }
     }
 }
 
