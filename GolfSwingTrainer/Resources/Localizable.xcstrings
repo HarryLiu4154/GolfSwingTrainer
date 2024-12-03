@@ -61,9 +61,6 @@
         }
       }
     },
-    "Accept" : {
-
-    },
     "Account" : {
 
     },
@@ -122,9 +119,6 @@
 
     },
     "Day" : {
-
-    },
-    "Decline" : {
 
     },
     "Delete" : {
@@ -191,9 +185,6 @@
 
     },
     "For Dev Eyes Only" : {
-
-    },
-    "Friend Requests" : {
 
     },
     "Friends" : {
@@ -272,9 +263,6 @@
 
     },
     "Register" : {
-
-    },
-    "Remove" : {
 
     },
     "Retry" : {

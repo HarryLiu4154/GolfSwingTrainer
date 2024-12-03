@@ -142,7 +142,6 @@ extension UserDataViewModel {
     }
 }
 
-
 // MARK: - Account Management
 extension UserDataViewModel {
     /// Update account data such as username, profile picture, player level, and player status.
@@ -157,8 +156,8 @@ extension UserDataViewModel {
             return
         }
 
+        // Upload the profile image if provided
         var profilePictureURL = currentUser.account?.profilePictureURL
-
         if let image = profileImage {
             do {
                 profilePictureURL = try await firebaseService.uploadProfileImage(image: image)
@@ -168,10 +167,12 @@ extension UserDataViewModel {
             }
         }
 
+        // Maintain existing friends and friend requests
         let friends = currentUser.account?.friends ?? []
-        let friendRequests = currentUser.account?.friendRequests ?? []
+        let friendRequests = currentUser.account?.friendRequests ?? FriendRequests(incoming: [], outgoing: [])
 
-        let account = Account(
+        // Create updated account
+        let updatedAccount = Account(
             id: currentUser.account?.id ?? UUID(),
             userName: userName,
             profilePictureURL: profilePictureURL,
@@ -181,10 +182,25 @@ extension UserDataViewModel {
             friendRequests: friendRequests
         )
 
+        // Update Core Data and Firebase
+        currentUser.account = updatedAccount
+        await updateUser(currentUser) // Sync updated user to Firebase and Core Data
+    }
+
+    /// Private method to update an account in Core Data and Firebase.
+    private func updateAccount(_ account: Account) async {
+        guard var currentUser = user else {
+            print("UserDataViewModel: No current user to update.")
+            return
+        }
+
+        // Update Core Data
+        coreDataService.saveAccount(account)
+
+        // Update Firebase
         currentUser.account = account
         await updateUser(currentUser)
     }
-
     /// Remove the account from the user object.
     func removeAccount() async {
         guard let currentUser = user else {
@@ -200,85 +216,65 @@ extension UserDataViewModel {
 
 // MARK: - Friends Management
 extension UserDataViewModel {
-    /// Add a friend by username.
-    func addFriend(by username: String) async {
-        guard let currentAccount = user?.account else { return }
-        do {
-            if let friendAccount = try await firebaseService.fetchAccountByUsername(username: username) {
-                try await firebaseService.addFriend(
-                    currentUserId: currentAccount.id.uuidString,
-                    friendUserId: friendAccount.id.uuidString
-                )
-                print("Friend added successfully.")
-                await loadUser() // Refresh user data
-            } else {
-                print("User with username '\(username)' not found.")
-            }
-        } catch {
-            print("Failed to add friend: \(error.localizedDescription)")
+    /// Send a friend request to another user.
+    func sendFriendRequest(to recipientUserName: String) async {
+        guard let senderUserName = user?.account?.userName else {
+            print("No account for current user to send a friend request.")
+            return
         }
-    }
-    
-    /// Send a friend request to another user by username.
-    func sendFriendRequest(to username: String) async {
-        guard let currentAccount = user?.account else { return }
+
         do {
-            if let friendAccount = try await firebaseService.fetchAccountByUsername(username: username) {
-                try await firebaseService.sendFriendRequest(
-                    to: friendAccount.id.uuidString,
-                    from: currentAccount.id.uuidString
-                )
-                print("Friend request sent successfully.")
-            } else {
-                print("User with username '\(username)' not found.")
-            }
+            try await firebaseService.sendFriendRequest(from: senderUserName, to: recipientUserName)
+            print("Friend request sent from \(senderUserName) to \(recipientUserName).")
+            await loadUser() // Reload user to sync data
         } catch {
             print("Failed to send friend request: \(error.localizedDescription)")
         }
     }
-    
+
     /// Accept a friend request from another user.
-    func acceptFriendRequest(from userId: String) async {
-        guard let currentAccount = user?.account else { return }
+    func acceptFriendRequest(from senderUserName: String) async {
+        guard let recipientUserName = user?.account?.userName else {
+            print("No account for current user to accept a friend request.")
+            return
+        }
+
         do {
-            try await firebaseService.acceptFriendRequest(
-                currentUserId: currentAccount.id.uuidString,
-                from: userId
-            )
-            print("Friend request accepted.")
-            await loadUser() // Refresh user data
+            try await firebaseService.acceptFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
+            print("Friend request accepted from \(senderUserName).")
+            await loadUser() // Reload user to sync data
         } catch {
             print("Failed to accept friend request: \(error.localizedDescription)")
         }
     }
-    
-    /// Decline a friend request.
-    func declineFriendRequest(from userId: String) async {
-        guard let currentAccount = user?.account else { return }
+
+    /// Decline a friend request from another user.
+    func declineFriendRequest(from senderUserName: String) async {
+        guard let recipientUserName = user?.account?.userName else {
+            print("No account for current user to decline a friend request.")
+            return
+        }
+
         do {
-            try await firebaseService.declineFriendRequest(
-                currentAccountId: currentAccount.id.uuidString,
-                from: userId
-            )
-            print("Friend request declined.")
-            await loadUser() // Refresh user data
+            try await firebaseService.declineFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
+            print("Friend request declined from \(senderUserName).")
+            await loadUser() // Reload user to sync data
         } catch {
             print("Failed to decline friend request: \(error.localizedDescription)")
         }
     }
-    
-    /// Remove a friend.
+
+    /// Remove a friend from the current user's account.
     func removeFriend(friendId: String) async {
-        guard let currentAccount = user?.account else { return }
-        do {
-            try await firebaseService.removeFriend(
-                currentUserId: currentAccount.id.uuidString,
-                friendUserId: friendId
-            )
-            print("Friend removed successfully.")
-            await loadUser() // Refresh user data
-        } catch {
-            print("Failed to remove friend: \(error.localizedDescription)")
+        guard var currentAccount = user?.account else {
+            print("No account for current user to remove a friend.")
+            return
         }
+
+        // Remove friend locally
+        currentAccount.friends.removeAll { $0.id.uuidString == friendId }
+
+        // Update Core Data and Firebase
+        await updateAccount(currentAccount)
     }
 }

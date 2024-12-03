@@ -14,9 +14,8 @@ class CoreDataService {
     init(context: NSManagedObjectContext = PersistenceController.shared.container.viewContext) {
         self.context = context
     }
-    
-    //MARK: - User Services
 
+    // MARK: - User Services
     func fetchUser(by uid: String) -> User? {
         let request: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         request.predicate = NSPredicate(format: "uid == %@", uid)
@@ -77,4 +76,32 @@ extension CoreDataService {
         }
     }
 }
-//MARK: - TBD
+// MARK: - Account Services
+extension CoreDataService {
+    func fetchAccount(by id: UUID) -> Account? {
+        let request: NSFetchRequest<AccountEntity> = AccountEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        if let accountEntity = try? context.fetch(request).first {
+            return accountEntity.toAccount()
+        }
+        return nil
+    }
+
+    func saveAccount(_ account: Account) {
+        let request: NSFetchRequest<AccountEntity> = AccountEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", account.id as CVarArg)
+
+        let accountEntity = (try? context.fetch(request).first) ?? AccountEntity(context: context)
+        accountEntity.update(from: account, context: context)
+    }
+
+    func deleteAccount(by id: UUID) {
+        let request: NSFetchRequest<AccountEntity> = AccountEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+
+        if let accountEntity = try? context.fetch(request).first {
+            context.delete(accountEntity)
+            try? context.save()
+        }
+    }
+}

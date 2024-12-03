@@ -69,6 +69,7 @@
 		BCB320172CE6E142005E9853 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB320162CE6E142005E9853 /* HomeView.swift */; };
 		BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */; };
 		BCCE88F12CFADAA000B61188 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */; };
+		BCD774562CFEDF3500C91918 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774552CFEDF3200C91918 /* Account.swift */; };
 		BCE638112CD9851000411D5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638102CD9850D00411D5B /* User.swift */; };
 		BCE638162CD9865800411D5B /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638142CD9865800411D5B /* UserProfileView.swift */; };
 		BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */; };
@@ -212,6 +213,7 @@
 		BCB320162CE6E142005E9853 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAttributesView.swift; sourceTree = "<group>"; };
 		BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		BCD774552CFEDF3200C91918 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BCE638102CD9850D00411D5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BCE638142CD9865800411D5B /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		BCE638172CD9BC9B00411D5B /* SettingRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowComponentView.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 		BC1CC8832CAF97EA00E5FC48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BCD774542CFEDF2200C91918 /* Account */,
 				BCA464262CF53C7E00F2C3E1 /* Session */,
 				BCA464252CF52E6300F2C3E1 /* Managers */,
 				BCA464242CF52E5500F2C3E1 /* Controllers */,
@@ -613,6 +616,14 @@
 				BC3C5CA12CFD0BC800E07B5B /* MainTabView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		BCD774542CFEDF2200C91918 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				BCD774552CFEDF3200C91918 /* Account.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		BCE638152CD9865800411D5B /* Profile */ = {
@@ -1050,6 +1061,7 @@
 				BCA464282CF53C9900F2C3E1 /* SwingSession.swift in Sources */,
 				BCB320172CE6E142005E9853 /* HomeView.swift in Sources */,
 				BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */,
+				BCD774562CFEDF3500C91918 /* Account.swift in Sources */,
 				BCF1D2E32CF3D9260010EB13 /* UserDataViewModel.swift in Sources */,
 				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
 				BCA464302CF53FE300F2C3E1 /* MotionDataDetailView.swift in Sources */,

@@ -8,42 +8,6 @@
 import Foundation
 import CoreData
 
-// MARK: - AccountModel
-struct Account: Identifiable, Codable, Hashable {
-    let id: UUID // Unique identifier for the account
-    var userName: String // Unique username for the user
-    var profilePictureURL: String? // Optional profile picture URL
-    var playerLevel: String // Player level (Beginner, Intermediate, Amateur, Expert)
-    var playerStatus: String // Player status (Just for fun, Trainer, Competitor/Professional)
-    var friends: [String] // List of friend IDs
-    var friendRequests: [String] // List of incoming friend request IDs
-}
-extension AccountEntity {
-    func toAccount() -> Account {
-        return Account(
-            id: self.id ?? UUID(),
-            userName: self.userName ?? "",
-            profilePictureURL: self.profilePictureURL,
-            playerLevel: self.playerLevel ?? "",
-            playerStatus: self.playerStatus ?? "",
-            friends: self.friends as? [String] ?? [],
-            friendRequests: self.friendRequests as? [String] ?? []
-        )
-    }
-
-
-    func update(from account: Account, context: NSManagedObjectContext) {
-        self.id = account.id
-        self.userName = account.userName
-        self.profilePictureURL = account.profilePictureURL
-        self.playerLevel = account.playerLevel
-        self.playerStatus = account.playerStatus
-        self.friends = account.friends as NSArray
-        self.friendRequests = account.friendRequests as NSArray
-        try? context.save()
-    }
-}
-// MARK: - UserModel
 struct User: Identifiable, Codable{
     let id: UUID // Core Data identifier
     let uid: String // Firebase identifier
@@ -130,8 +94,14 @@ extension User{
                 profilePictureURL: "",
                 playerLevel: "Expert",
                 playerStatus: "Competitor/Professional",
-                friends: ["",""],
-                friendRequests: ["",""]
+                friends: [
+                    Friend(id: UUID(), userName: "jacknicklaus", profilePictureURL: "", playerLevel: "Expert"),
+                    Friend(id: UUID(), userName: "phil", profilePictureURL: "", playerLevel: "Intermediate")
+                ],
+                friendRequests: FriendRequests(
+                    incoming: ["arnoldpalmer", "severiano"],
+                    outgoing: ["johnsmith"]
+                )
             )
         )
 }
