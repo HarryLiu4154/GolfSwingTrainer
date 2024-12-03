@@ -56,16 +56,11 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack{
-            WeatherComponentView()
+            ScrollView{
+                WeatherComponentView()
+            }
 
-            Button(action: {
-                withAnimation{
-                    self.showMenu = true
-                }
-                
-            },label:{
-                Text("Show Menu")
-            })
+            
 
         }.navigationTitle("Home")
     }

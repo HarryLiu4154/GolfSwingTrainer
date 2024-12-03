@@ -1,6 +1,25 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ km/h (%@)" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ km/h (%2$@)"
+          }
+        }
+      }
+    },
+    "%@%%" : {
+
+    },
+    "%@°C" : {
+
+    },
+    "%lld" : {
+
+    },
     "%lld cm" : {
 
     },
@@ -16,6 +35,18 @@
           }
         }
       }
+    },
+    "☀️ UV Index:" : {
+
+    },
+    "🌡️ Temperature:" : {
+
+    },
+    "🌬️ Wind:" : {
+
+    },
+    "💧 Humidity:" : {
+
     },
     "Acceleration Data" : {
 
@@ -67,9 +98,6 @@
 
     },
     "Cancel" : {
-
-    },
-    "Condition: %@" : {
 
     },
     "Continue" : {
@@ -153,10 +181,13 @@
     "Enter your post text" : {
 
     },
+    "Error: %@" : {
+
+    },
     "Feed" : {
 
     },
-    "Feels Like: %@°C" : {
+    "Fetching Weather..." : {
 
     },
     "For Dev Eyes Only" : {
@@ -181,12 +212,6 @@
 
     },
     "Home" : {
-
-    },
-    "Humidity: %@%%" : {
-
-    },
-    "Manage Friends" : {
 
     },
     "Measurements" : {
@@ -252,6 +277,9 @@
     "Remove" : {
 
     },
+    "Retry" : {
+
+    },
     "Rotation Data" : {
 
     },
@@ -289,9 +317,6 @@
     "Settings" : {
 
     },
-    "Show Menu" : {
-
-    },
     "Side Menu" : {
 
     },
@@ -325,9 +350,6 @@
     "Sync" : {
 
     },
-    "Temperature: %@°C" : {
-
-    },
     "Test Watch Sensor Ingestion" : {
 
     },
@@ -341,9 +363,6 @@
 
     },
     "Username (required)" : {
-
-    },
-    "UV Index: %lld" : {
 
     },
     "Version" : {
@@ -365,12 +384,6 @@
 
     },
     "Why do we need this?" : {
-
-    },
-    "Wind Direction: %@" : {
-
-    },
-    "Wind: %@ km/h" : {
 
     },
     "Year" : {

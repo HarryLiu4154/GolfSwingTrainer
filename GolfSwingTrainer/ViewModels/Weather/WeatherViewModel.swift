@@ -38,7 +38,8 @@ class WeatherViewModel: ObservableObject {
                 windDirection: windDirection,
                 humidity: weather.currentWeather.humidity * 100, // Convert to percentage
                 //precipitationProbability: weather.currentWeather.precipitationChance * 100,
-                uvIndex: weather.currentWeather.uvIndex.value
+                uvIndex: weather.currentWeather.uvIndex.value,
+                symbolName: weather.currentWeather.symbolName
             )
         } catch {
             errorMessage = "Failed to fetch weather data: \(error.localizedDescription)"

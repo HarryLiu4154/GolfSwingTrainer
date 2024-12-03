@@ -8,12 +8,12 @@
 import Foundation
 
 struct WeatherModel {
-    let temperature: Double //IMPORTANT
-    let condition: String //IMPORTANT
+    let temperature: Double
+    let condition: String
     let feelsLike: Double
-    let windSpeed: Double //IMPORTANT
-    let windDirection: String //IMPORTANT
+    let windSpeed: Double
+    let windDirection: String
     let humidity: Double
-    //let precipitationProbability: Double
     let uvIndex: Int
+    let symbolName: String? 
 }

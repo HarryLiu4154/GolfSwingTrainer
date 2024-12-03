@@ -11,33 +11,71 @@ import CoreLocation
 struct WeatherComponentView: View {
     @StateObject private var locationManager = LocationManager()
     @StateObject private var weatherViewModel = WeatherViewModel()
-
+    
     var body: some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 20) {
             if let weather = weatherViewModel.currentWeather {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Condition: \(weather.condition)")
-                    Text("Temperature: \(String(format: "%.1f", weather.temperature))°C")
-                        .font(.headline)
-                    Text("Feels Like: \(String(format: "%.1f", weather.feelsLike))°C")
+                VStack(alignment: .leading, spacing: 15) {
+                    HStack(spacing: 15) {
+                        if let symbolName = weather.symbolName {
+                            Image(systemName: symbolName).resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                        }
+                        Text(weather.condition)
+                            .font(.title)
+                            .bold()
+                    }
                     
-                    Text("Wind: \(String(format: "%.1f", weather.windSpeed)) km/h")
-                    Text("Wind Direction: \(weather.windDirection)")
-                    Text("Humidity: \(String(format: "%.0f", weather.humidity))%")
-                    /*Text("Precipitation: \(String(format: "%.0f", weather.precipitationProbability))%")*/
-                    Text("UV Index: \(weather.uvIndex)")
+                    Divider()
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("🌡️ Temperature:")
+                                .bold()
+                            Text("\(String(format: "%.1f", weather.temperature))°C")
+                        }
+                        HStack {
+                            Text("🌬️ Wind:")
+                                .bold()
+                            Text("\(String(format: "%.1f", weather.windSpeed)) km/h (\(weather.windDirection))")
+                        }
+                        HStack {
+                            Text("💧 Humidity:")
+                                .bold()
+                            Text("\(String(format: "%.0f", weather.humidity))%")
+                        }
+                        HStack {
+                            Text("☀️ UV Index:")
+                                .bold()
+                            Text("\(weather.uvIndex)")
+                        }
+                    }
                 }
                 .padding()
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(10)
+                .background(
+                    LinearGradient(colors: [Color.blue.opacity(0.2), Color.white], startPoint: .top, endPoint: .bottom)
+                )
+                .cornerRadius(15)
+                .shadow(radius: 5)
             } else if let error = weatherViewModel.errorMessage {
-                Text(error)
-                    .foregroundColor(.red)
-                    .font(.caption)
+                VStack {
+                    Text("Error: \(error)")
+                        .foregroundColor(.red)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                    Button("Retry") {
+                        locationManager.requestLocation()
+                    }
+                    .padding()
+                    .background(Color.red.opacity(0.2))
+                    .cornerRadius(8)
+                }
             } else {
-                //
+                Text("Fetching Weather...") //loading
             }
         }
+        .padding()
         .onAppear {
             locationManager.requestLocation()
         }

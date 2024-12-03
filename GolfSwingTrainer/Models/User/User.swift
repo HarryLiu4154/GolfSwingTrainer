@@ -31,6 +31,7 @@ extension AccountEntity {
         )
     }
 
+
     func update(from account: Account, context: NSManagedObjectContext) {
         self.id = account.id
         self.userName = account.userName

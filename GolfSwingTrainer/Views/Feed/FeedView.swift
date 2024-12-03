@@ -17,20 +17,8 @@ struct FeedView: View {
         NavigationStack {
             if let user = userDataViewModel.user {
                 VStack {
-                    // Navigate to Friends Management
-                    NavigationLink(destination: FriendsView()
-                        .environmentObject(userDataViewModel)) {
-                            Text("Manage Friends")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .padding([.leading, .trailing])
-                        }
+                   
                     
-                    Divider()
                     
                     // Posts Section
                     if feedViewModel.posts.isEmpty {
@@ -44,19 +32,12 @@ struct FeedView: View {
                             }
                         }
                     }
+                }.toolbar {
+                    
+                    
                 }
                 .navigationTitle("Feed")
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        NavigationLink(destination: CreatePostView()
-                            .environmentObject(feedViewModel)
-                            .environmentObject(swingSessionViewModel)
-                            .environmentObject(userDataViewModel)) {
-                                Image(systemName: "plus.circle")
-                                    .font(.title2)
-                            }
-                    }
-                }
+                
                 .refreshable {
                     feedViewModel.fetchPosts()
                     await userDataViewModel.loadUser()

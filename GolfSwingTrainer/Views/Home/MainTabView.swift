@@ -12,6 +12,7 @@ struct MainTabView: View {
     @EnvironmentObject var userDataViewModel: UserDataViewModel
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var feedViewModel: FeedViewModel
 
     @State private var selectedTab: Tab = .home
     @State private var showMenu: Bool = false // Manage MenuView visibility
@@ -73,8 +74,9 @@ struct MainTabView: View {
                 }
             }
             .gesture(drag) // Allow drag to close menu
+            //MARK: - Tab Controls
             .toolbar {
-                // Menu Toggle Button
+                // Menu Toggle Button (always on)
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         withAnimation {
@@ -84,6 +86,39 @@ struct MainTabView: View {
                         Image(systemName: "line.horizontal.3")
                             .imageScale(.large)
                     }
+                }
+                
+                if selectedTab == Tab.feed{
+                    ToolbarItem(placement: .topBarTrailing) {
+                        NavigationLink(destination: CreatePostView()
+                            .environmentObject(feedViewModel)
+                            .environmentObject(swingSessionViewModel)
+                            .environmentObject(userDataViewModel)) {
+                                Image(systemName: "plus.circle")
+                                    .font(.title2)
+                        }
+                    }
+                    ToolbarItem(placement: .topBarTrailing){
+                        // Navigate to Friends Management
+                        //TODO: Make button invalid if user != account
+                        
+                        NavigationLink(destination: FriendsView()
+                            .environmentObject(userDataViewModel)) {
+                                
+                                Image(systemName: "person.badge.plus")
+                                    .font(.title2)
+                                
+                                /*Text("Manage Friends")
+                                    .font(.headline)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.blue)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .padding([.leading, .trailing])*/
+                            }
+                    }
+                       
                 }
             }
         }
