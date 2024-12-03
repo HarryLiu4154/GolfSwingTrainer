@@ -157,6 +157,7 @@
 		0AB7CA582CBEC953007D10AA /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingVideoCaptureDelegate.swift; sourceTree = "<group>"; };
+		0AD43A8C2CFFCCA3009C0380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesViewModel.swift; sourceTree = "<group>"; };
 		6366384B2CE3FDE300CD48F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -668,6 +669,7 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				0AD43A8C2CFFCCA3009C0380 /* Info.plist */,
 				BC408F732CED2B5C003E2257 /* GolfSwingTrainerDebug.entitlements */,
 				BC46FF942CECFCD20058F58D /* GolfSwingTrainerRelease.entitlements */,
 				0AB7CA5C2CBFE4EB007D10AA /* BLL */,
@@ -1329,6 +1331,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GolfSwingTrainer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1336,6 +1339,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1367,6 +1371,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GolfSwingTrainer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1374,6 +1379,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
