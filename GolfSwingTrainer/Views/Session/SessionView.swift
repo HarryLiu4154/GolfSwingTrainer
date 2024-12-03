@@ -10,8 +10,7 @@ import SceneKit
 import SwiftUI
 
 struct SessionView: View {
-    @State private var viewModel = SessionViewModel()
-    @State private var isRecording = false
+    @State var viewModel: SessionViewModel = SessionViewModel()
     
     var body: some View {
 //        let sceneOptions: SceneView.Options = [.autoenablesDefaultLighting]
@@ -26,11 +25,9 @@ struct SessionView: View {
             VStack{
                 Spacer()
                 Button(action:{
-                    if isRecording {
+                    if viewModel.isRecording {
                         viewModel.stopCapture()
-                        isRecording = false
                     } else {
-                        isRecording = true
                         viewModel.startCapture()
                     }
                 }, label: {

@@ -7,32 +7,66 @@
 
 import ARKit
 import AVFoundation
+import Combine
 import CoreImage
 import RealityKit
 import SceneKit
 import SwiftUI
 
 @Observable
-class SessionViewModel{
+class SessionViewModel: NSObject, ARSessionDelegate {
     
-    private var captureSession: AVCaptureSession = AVCaptureSession()
-    private var videoDevice: AVCaptureDevice?
-    private var videoStream = AVCaptureVideoDataOutput()
-    var videoFileOutput = AVCaptureMovieFileOutput()
-    private var avCaptureDelegate = SwingVideoCaptureDelegate()
-    private var arCaptureDelegate = SwingARCaptureDelegate()
+//    private var captureSession: AVCaptureSession = AVCaptureSession()
+//    private var videoDevice: AVCaptureDevice?
+//    private var videoStream = AVCaptureVideoDataOutput()
+//    var videoFileOutput = AVCaptureMovieFileOutput()
+//    private var avCaptureDelegate = SwingVideoCaptureDelegate()
+//    private var arCaptureDelegate = SwingARCaptureDelegate()
     
-    var outputARView = ARView()
-    var outputScene: SCNScene? {
-        return avCaptureDelegate.outputScene
+    private var character: BodyTrackedEntity?
+    private let characterOffset: SIMD3<Float> = [0.0, 0, 0] // Offset the character if wanted
+    private let characterAnchor = AnchorEntity()
+    
+    override init() {
+        super.init()
+        // Asynchronously load the 3D character.
+        var cancellable: AnyCancellable? = nil
+        cancellable = Entity.loadBodyTrackedAsync(named: "SceneKit Asset Catalog.scnassets/robot").sink(
+            receiveCompletion: { completion in
+                if case let .failure(error) = completion {
+                    print("Error: Unable to load model: \(error.localizedDescription)")
+                }
+                cancellable?.cancel()
+        }, receiveValue: { (character: Entity) in
+            if let character = character as? BodyTrackedEntity {
+                // Scale the character to human size
+                character.scale = [1.0, 1.0, 1.0]
+                self.character = character
+                print("robot model loadededded!!!")
+                cancellable?.cancel()
+            } else {
+                print("Error: Unable to load model as BodyTrackedEntity")
+            }
+        })
     }
+    
+    private var assetWriter: AVAssetWriter?
+    private var assetWriterInput: AVAssetWriterInput?
+    private var recordingStartTime = 0.0
+    private var hasCalledSinceRecording = false
+
+    var isRecording = false
+    var outputARView = ARView()
+//    var outputScene: SCNScene? {
+//        return avCaptureDelegate.outputScene
+//    }
 //        var outputFrame: Image {
 //            guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
 //            return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
 //        }
-    var bodyHeight: Float? {
-        return avCaptureDelegate.bodyHeight
-    }
+//    var bodyHeight: Float? {
+//        return avCaptureDelegate.bodyHeight
+//    }
     
     var isAVAuthorized: Bool {
         get async {
@@ -55,76 +89,143 @@ class SessionViewModel{
         guard ARBodyTrackingConfiguration.isSupported else {
             fatalError("This feature is only supported on devices with an A12 chip")
         }
-        outputARView.session.delegate = self.arCaptureDelegate
+        outputARView.session.delegate = self
         
         // Run a body tracking configuration.
         let configuration = ARBodyTrackingConfiguration()
         outputARView.session.run(configuration)
+        print(configuration)
     }
     
     private func startAR() {
-        outputARView.scene.addAnchor(arCaptureDelegate.characterAnchor)
+        outputARView.scene.addAnchor(self.characterAnchor)
     }
     
     private func stopAR() {
-        outputARView.scene.removeAnchor(arCaptureDelegate.characterAnchor)
+        outputARView.scene.removeAnchor(self.characterAnchor)
     }
     
-    private func setUpAVCaptureSession() async {
-        guard await isAVAuthorized else { return }
-        captureSession = AVCaptureSession()
-        print("configurablecapturedevice:")
-        print(ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera)
-        print("-----------------------")
-        let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera ?? AVCaptureDevice.default(for: .video)!
-        self.videoDevice = videoDevice
-        print(self.videoDevice)
-        
-        guard
-            let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
-            captureSession.canAddInput(videoDeviceInput)
-        else { return }
-        captureSession.addInput(videoDeviceInput)
-        print("Can add input: \(captureSession)")
-        
+    private func startRecording() {
+        if let assetWriter = try? AVAssetWriter(url: .documentsDirectory.appending(path: "aaa\(Date().timeIntervalSince1970).mov"), fileType: .mov) {
+            let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: nil)
+            assetWriterInput.expectsMediaDataInRealTime = true
+            assetWriter.add(assetWriterInput)
+            
+            guard assetWriter.startWriting() else {
+                print("Couldn't start AVAssetWriter wrinting")
+                return
+            }
+            assetWriter.startSession(atSourceTime: .zero)
+            
+            self.hasCalledSinceRecording = false
+            self.assetWriterInput = assetWriterInput
+            self.assetWriter = assetWriter
+        }
+    }
+    
+    private func stopRecording() {
+        self.assetWriterInput?.markAsFinished()
+        self.assetWriter?.finishWriting {
+            self.assetWriterInput = nil
+            self.assetWriter = nil
+        }
+    }
+    
+    func session(_ session: ARSession, didUpdate frame: ARFrame) {
+        guard self.isRecording && (self.assetWriter != nil) && (self.assetWriterInput != nil) else { return }
+        guard self.assetWriter!.status == .writing else { return }
+        if !self.hasCalledSinceRecording {
+            self.hasCalledSinceRecording = true
+            self.recordingStartTime = frame.timestamp
+        }
+        // questions/47993457
+        let scale = CMTimeScale(NSEC_PER_SEC)
+        let pts = CMTime(value: CMTimeValue((frame.timestamp-self.recordingStartTime) * Double(scale)), timescale: scale)
+        let timingInfo = CMSampleTimingInfo(duration: .invalid, presentationTimeStamp: pts, decodeTimeStamp: .invalid)
+        if let cmBuffer = try? CMSampleBuffer(imageBuffer: frame.capturedImage, formatDescription: CMFormatDescription(imageBuffer: frame.capturedImage), sampleTiming: timingInfo) {
+            self.assetWriterInput!.append(cmBuffer)
+        }
+    }
+    
+    func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        for anchor in anchors {
+            guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
+
+            // Update the position of the character anchor's position.
+            let bodyPosition = simd_make_float3(bodyAnchor.transform.columns.3)
+            characterAnchor.position = bodyPosition //+ characterOffset
+            // Also copy over the rotation of the body anchor, because the skeleton's pose
+            // in the world is relative to the body anchor's rotation.
+            characterAnchor.orientation = Transform(matrix: bodyAnchor.transform).rotation
+   
+            if let character = character, character.parent == nil {
+                // Attach the character to its anchor as soon as
+                // 1. the body anchor was detected and
+                // 2. the character was loaded.
+                characterAnchor.addChild(character)
+            }
+        }
+    }
+
+//    private func setUpAVCaptureSession() async {
+//        guard await isAVAuthorized else { return }
+//        captureSession = AVCaptureSession()
+//        print("configurablecapturedevice:")
+//        print(ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera)
+//        print("-----------------------")
+//        let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera ?? AVCaptureDevice.default(for: .video)!
+//        self.videoDevice = videoDevice
+//        print(self.videoDevice)
+//        
+//        guard
+//            let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
+//            captureSession.canAddInput(videoDeviceInput)
+//        else { return }
+//        captureSession.addInput(videoDeviceInput)
+//        print("Can add input: \(captureSession)")
+//        
 //        videoStream = AVCaptureVideoDataOutput()
 //        videoStream.videoSettings = nil // default uncompressed format
-//        videoStream.setSampleBufferDelegate(avCaptureDelegate, queue: DispatchQueue.global(qos: .userInteractive))
+//        videoStream.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
 //        guard captureSession.canAddOutput(videoStream) else { return }
 //        captureSession.addOutput(videoStream)
 //        print("Can add data output: \(captureSession)")
-        
-        guard captureSession.canAddOutput(videoFileOutput) else { return }
-        captureSession.addOutput(videoFileOutput)
-        print("Can add file output: \(captureSession)")
-    }
+//        
+//        guard captureSession.canAddOutput(avCaptureDelegate.fileOutput) else { return }
+//        captureSession.addOutput(avCaptureDelegate.fileOutput)
+//        print("Can add file output: \(captureSession)")
+//    }
     
-    private func startAVRecording() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.captureSession.startRunning()
-        }
-        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
-        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
-    }
-    
-    private func stopAVRecording() {
-        videoFileOutput.stopRecording()
-        //        avCaptureDelegate.fileOutput.stopRecording()
-        captureSession.stopRunning()
-    }
+//    private func startAVRecording() {
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            self.captureSession.startRunning()
+//        }
+////        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
+////        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
+//    }
+//    
+//    private func stopAVRecording() {
+////        videoFileOutput.stopRecording()
+//        avCaptureDelegate.fileOutput.stopRecording()
+//        captureSession.stopRunning()
+//    }
     
     func setup() async {
+//        await setUpAVCaptureSession()
         setUpARCaptureSession()
-        await setUpAVCaptureSession()
     }
 
     func startCapture() {
+        self.isRecording = true
         startAR()
-        startAVRecording()
+        startRecording()
+//        startAVRecording()
     }
     
     func stopCapture() {
         stopAR()
-        stopAVRecording()
+        stopRecording()
+        self.isRecording = false
+//        stopAVRecording()
     }
 }
