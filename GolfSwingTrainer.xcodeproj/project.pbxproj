@@ -18,6 +18,7 @@
 		0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */; };
 		0AD43A8E2D00A6E5009C0380 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A8D2D00A6E5009C0380 /* PlayerView.swift */; };
 		0AD43A902D00A725009C0380 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A8F2D00A725009C0380 /* PlayerViewModel.swift */; };
+		0AD43A922D00F825009C0380 /* SessionTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A912D00F825009C0380 /* SessionTransforms.swift */; };
 		6329FA8B2CDBBB7C00B9C0E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8A2CDBBB7C00B9C0E8 /* FirebaseAnalytics */; };
 		6329FA8D2CDBBB7C00B9C0E8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8C2CDBBB7C00B9C0E8 /* FirebaseAuth */; };
 		6329FA8F2CDBBB7C00B9C0E8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8E2CDBBB7C00B9C0E8 /* FirebaseDatabase */; };
@@ -162,6 +163,7 @@
 		0AD43A8C2CFFCCA3009C0380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0AD43A8D2D00A6E5009C0380 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0AD43A8F2D00A725009C0380 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		0AD43A912D00F825009C0380 /* SessionTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTransforms.swift; sourceTree = "<group>"; };
 		636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesViewModel.swift; sourceTree = "<group>"; };
 		6366384B2CE3FDE300CD48F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */,
 				0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */,
 				0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */,
+				0AD43A912D00F825009C0380 /* SessionTransforms.swift */,
 			);
 			path = SwingAnalyzer;
 			sourceTree = "<group>";
@@ -1029,6 +1032,7 @@
 				BC408F9F2CED512B003E2257 /* FeedViewModel.swift in Sources */,
 				BC46FFAD2CED1CF70058F58D /* WeatherModel.swift in Sources */,
 				BC408FA12CED519E003E2257 /* FeedView.swift in Sources */,
+				0AD43A922D00F825009C0380 /* SessionTransforms.swift in Sources */,
 				BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */,
 				BCF1D2EB2CF42FD20010EB13 /* MotionDataViewModel.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,

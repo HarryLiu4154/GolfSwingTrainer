@@ -27,6 +27,8 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     private let characterOffset: SIMD3<Float> = [0.0, 0, 0] // Offset the character if wanted
     private let characterAnchor = AnchorEntity()
     
+    private var sessionTransforms: SessionTransforms? = nil
+    
     override init() {
         super.init()
         // Asynchronously load the 3D character.
@@ -150,6 +152,15 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         for anchor in anchors {
             guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
+            
+            if let rightHandTransform = bodyAnchor.skeleton.localTransform(for: .rightHand), let leftHandTransform = bodyAnchor.skeleton.localTransform(for: .leftHand), let timestamp = session.currentFrame?.timestamp {
+                
+                if self.sessionTransforms == nil {
+                    self.sessionTransforms = SessionTransforms(initialWorldTransform: bodyAnchor.transform, initialRightHandTransform: rightHandTransform, initialLeftHandTransform: leftHandTransform, initialTimestamp: timestamp)
+                } else {
+                    let avgSpeed = sessionTransforms?.calculateUpdateSpeed(newWorldTransform: bodyAnchor.transform, newRightHandTransform: rightHandTransform, newLeftHandTransform: leftHandTransform, newTimestamp: timestamp)
+                }
+            }
 
             // Update the position of the character anchor's position.
             let bodyPosition = simd_make_float3(bodyAnchor.transform.columns.3)
@@ -157,7 +168,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
             // Also copy over the rotation of the body anchor, because the skeleton's pose
             // in the world is relative to the body anchor's rotation.
             characterAnchor.orientation = Transform(matrix: bodyAnchor.transform).rotation
-   
+            
             if let character = character, character.parent == nil {
                 // Attach the character to its anchor as soon as
                 // 1. the body anchor was detected and
@@ -217,6 +228,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
 
     func startCapture() {
         self.isRecording = true
+        self.sessionTransforms = nil
         startAR()
         startRecording()
 //        startAVRecording()
@@ -225,6 +237,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     func stopCapture() {
         stopAR()
         stopRecording()
+        self.sessionTransforms = nil
         self.isRecording = false
 //        stopAVRecording()
     }
