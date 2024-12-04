@@ -133,61 +133,57 @@ extension FirebaseService {
     }
 
     /// Send a friend request from the sender's UID to the recipient's username.
-    func sendFriendRequest(from senderUid: String, to recipientUid: String) async throws {
+    func sendFriendRequest(from senderUserName: String, to recipientUserName: String) async throws {
         // Query the sender's account
-        let senderQuery = firestore.collection("accounts").whereField("ownerUid", isEqualTo: senderUid).limit(to: 1)
-        let recipientQuery = firestore.collection("accounts").whereField("ownerUid", isEqualTo: recipientUid).limit(to: 1)
-        
+        let senderQuery = firestore.collection("accounts").whereField("userName", isEqualTo: senderUserName).limit(to: 1)
+        let recipientQuery = firestore.collection("accounts").whereField("userName", isEqualTo: recipientUserName).limit(to: 1)
+
         // Fetch documents for both sender and recipient
         let senderSnapshot = try await senderQuery.getDocuments()
         let recipientSnapshot = try await recipientQuery.getDocuments()
-        
+
         guard let senderDocument = senderSnapshot.documents.first else {
-            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Sender account not found"])
+            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Sender account not found for username \(senderUserName)"])
         }
         guard let recipientDocument = recipientSnapshot.documents.first else {
-            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Recipient account not found"])
+            throw NSError(domain: "FirebaseService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Recipient account not found for username \(recipientUserName)"])
         }
-        
+
         let senderRef = senderDocument.reference
         let recipientRef = recipientDocument.reference
 
         // Run transaction to update friend requests
-        try await firestore.runTransaction { transaction, errorPointer in
+        try await firestore.runTransaction({ transaction, errorPointer in
             do {
-                // Get the current data for sender and recipient
-                let senderData = try transaction.getDocument(senderRef).data()
-                let recipientData = try transaction.getDocument(recipientRef).data()
-                
-                guard var senderData = senderData, var recipientData = recipientData else {
-                    throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
+                // Retrieve sender and recipient data
+                guard let senderData = try transaction.getDocument(senderRef).data(),
+                      let recipientData = try transaction.getDocument(recipientRef).data() else {
+                    throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch account data in transaction"])
                 }
 
                 // Update outgoing requests for sender
                 var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
-                if !senderOutgoing.contains(recipientUid) {
-                    senderOutgoing.append(recipientUid)
+                if !senderOutgoing.contains(recipientUserName) {
+                    senderOutgoing.append(recipientUserName)
                     transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
                 }
 
                 // Update incoming requests for recipient
                 var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
-                if !recipientIncoming.contains(senderUid) {
-                    recipientIncoming.append(senderUid)
+                if !recipientIncoming.contains(senderUserName) {
+                    recipientIncoming.append(senderUserName)
                     transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
                 }
-            } catch let error as NSError {
-                // Assign the error to the errorPointer
-                errorPointer?.pointee = error
-                return nil
             } catch {
-                // Assign a generic error to the errorPointer
-                errorPointer?.pointee = NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])
+                // Assign error to the error pointer
+                errorPointer?.pointee = error as NSError
                 return nil
             }
             return nil
-        }
+        })
     }
+
+
 
 
     /// Accept a friend request.

@@ -55,8 +55,10 @@ struct RegistrationView: View {
             //Register Button
             Button{
                 Task{
-                    try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                    LoadingOverlay(isLoading: true, message: "Loading...")
                     dismiss()
+                    try await viewModel.createUser(withEmail: email, password: password, fullName: fullName)
+                    
                 }
                 
             }label: {
