@@ -49,7 +49,7 @@ struct MenuView: View {
             Divider()
             HStack{
                 Image(systemName: "person").foregroundStyle(.gray).imageScale(.large)
-                NavigationLink(destination: UserProfileView().environmentObject(authViewModel)){
+                NavigationLink(destination: UserProfileView().environmentObject(authViewModel).environmentObject(userDataViewModel)){
                     Text("Your Profile").foregroundStyle(.gray).font(.headline)
                 }
             }.padding(.top, 30)

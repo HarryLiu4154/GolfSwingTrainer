@@ -182,6 +182,7 @@ extension UserDataViewModel {
             print("Failed to update account: \(error.localizedDescription)")
         }
     }
+    
 
     func fetchOrCreateAccount(for uid: String) async {
         guard var currentUser = user else { return }

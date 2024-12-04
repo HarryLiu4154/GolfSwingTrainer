@@ -19,162 +19,56 @@ struct SettingsAccountView: View {
     let playerLevels = ["Beginner", "Intermediate", "Amateur", "Expert"]
     let playerStatuses = ["Just for fun", "Trainer", "Competitor/Professional"]
 
+    /*Needed to break UI into modular components for compiler*/
     var body: some View {
         NavigationStack {
             VStack {
                 if let account = viewModel.user?.firestoreAccount {
-                    Form {
-                        // Display Account Data Section
-                        Section(header: Text("Account Information")) {
-                            accountDisplaySection(account: account)
-                        }
-
-                        if isEditing {
-                            // Edit Account Data Section
-                            Section(header: Text("Edit Your Information")) {
-                                accountEditSection()
-                            }
-                        }
+                    // Display/Edit Form
+                    AccountFormComponentView(
+                        account: account,
+                        isEditing: isEditing,
+                        selectedImage: $selectedImage,
+                        playerLevel: $playerLevel,
+                        playerStatus: $playerStatus,
+                        showImagePicker: $showImagePicker
+                    )
+                    .onAppear {
+                        resetEditFields(account: account)
                     }
 
                     // Action Buttons
-                    if isEditing {
-                        HStack {
-                            Button("Save Changes") {
-                                Task {
-                                    await saveChanges(account: account)
-                                    isEditing = false
-                                }
-                            }
-                            .buttonStyle(.borderedProminent)
-
-                            Button("Cancel") {
+                    AccountActionButtonsView(
+                        isEditing: isEditing,
+                        onEdit: { isEditing = true },
+                        onCancel: {
+                            isEditing = false
+                            resetEditFields(account: account)
+                        },
+                        onSave: {
+                            Task {
+                                await saveChanges(account: account)
                                 isEditing = false
-                                resetEditFields(account: account)
                             }
-                            .foregroundColor(.red)
+                        },
+                        onDelete: {
+                            Task {
+                                await viewModel.deleteAccount()
+                            }
                         }
-                        .padding()
-                    } else {
-                        HStack {
-                            Button("Edit Account") {
-                                isEditing = true
-                            }
-                            .buttonStyle(.borderedProminent)
-
-                            Button("Delete Account") {
-                                Task {
-                                    await viewModel.deleteAccount()
-                                }
-                            }
-                            .foregroundColor(.red)
-                        }
-                        .padding()
-                    }
+                    )
                 } else {
                     // No Account Found Section
-                    VStack {
-                        Text("No account found. Create one to unlock more features.")
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                            .padding()
-
-                        Button("Create Account") {
-                            Task {
-                                await createNewAccount()
-                            }
+                    NoAccountComponentView(onCreate: {
+                        Task {
+                            await createNewAccount()
                         }
-                        .buttonStyle(.borderedProminent)
-                    }
+                    })
                 }
             }
             .navigationTitle("Account Settings")
             .sheet(isPresented: $showImagePicker) {
                 ImagePicker(selectedImage: $selectedImage)
-            }
-            .onAppear {
-                if let account = viewModel.user?.firestoreAccount {
-                    resetEditFields(account: account)
-                }
-            }
-        }
-    }
-
-    // MARK: - Subviews
-    private func accountDisplaySection(account: Account) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Text("Username:")
-                Spacer()
-                Text(account.userName).foregroundColor(.secondary)
-            }
-
-            HStack {
-                Text("Profile Picture:")
-                Spacer()
-                if let profilePictureURL = account.profilePictureURL, selectedImage == nil {
-                    AsyncImage(url: URL(string: profilePictureURL)) { image in
-                        image.resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                    } placeholder: {
-                        Circle().fill(Color.gray)
-                            .frame(width: 50, height: 50)
-                    }
-                } else if let image = selectedImage {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                } else {
-                    Circle()
-                        .fill(Color.gray)
-                        .frame(width: 50, height: 50)
-                        .overlay(Text(viewModel.user?.initials ?? ""))
-                }
-            }
-        }
-    }
-
-    private func accountEditSection() -> some View {
-        VStack(alignment: .leading, spacing: 15) {
-            HStack {
-                Text("Profile Picture:")
-                Spacer()
-                ZStack {
-                    Circle()
-                        .fill(Color.gray)
-                        .frame(width: 50, height: 50)
-
-                    if let image = selectedImage {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                    } else {
-                        Text("Tap to Edit")
-                            .font(.caption2)
-                            .foregroundColor(.white)
-                    }
-                }
-                .onTapGesture {
-                    showImagePicker = true
-                }
-            }
-
-            Picker("Player Level", selection: $playerLevel) {
-                ForEach(playerLevels, id: \.self) { level in
-                    Text(level).tag(level)
-                }
-            }
-
-            Picker("Player Status", selection: $playerStatus) {
-                ForEach(playerStatuses, id: \.self) { status in
-                    Text(status).tag(status)
-                }
             }
         }
     }

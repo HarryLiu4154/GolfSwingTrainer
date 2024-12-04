@@ -61,6 +61,9 @@
         }
       }
     },
+    "Accept" : {
+
+    },
     "Account" : {
 
     },
@@ -77,9 +80,6 @@
 
     },
     "Adjust your screen" : {
-
-    },
-    "Alpha" : {
 
     },
     "Already have an account?" : {
@@ -122,6 +122,9 @@
 
     },
     "Day" : {
+
+    },
+    "Decline" : {
 
     },
     "Delete" : {
@@ -211,6 +214,9 @@
     "Home" : {
 
     },
+    "Incoming Friend Requests" : {
+
+    },
     "Measurements" : {
 
     },
@@ -235,7 +241,13 @@
     "None" : {
 
     },
+    "Outgoing Friend Requests" : {
+
+    },
     "Password" : {
+
+    },
+    "Pending" : {
 
     },
     "Physical Attributes" : {
@@ -262,7 +274,7 @@
     "Profile Image" : {
 
     },
-    "Profile Picture:" : {
+    "Profile Picture" : {
 
     },
     "Providing accurate information helps us customize your experience and optimize training recommendations." : {
@@ -344,9 +356,6 @@
     "Sync" : {
 
     },
-    "Tap to Edit" : {
-
-    },
     "Test Watch Sensor Ingestion" : {
 
     },
@@ -356,13 +365,13 @@
     "Timestamp: %@" : {
 
     },
+    "Username" : {
+
+    },
     "Username (required)" : {
 
     },
-    "Username:" : {
-
-    },
-    "Version" : {
+    "v1.0.0 - Alpha" : {
 
     },
     "Week" : {

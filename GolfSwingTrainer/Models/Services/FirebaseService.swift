@@ -67,6 +67,11 @@ extension FirebaseService {
 }
 //MARK: - Account services
 extension FirebaseService {
+    func isUserNameAvailable(_ userName: String) async throws -> Bool {
+        let snapshot = try await firestore.collection("accounts").document(userName).getDocument()
+        return !snapshot.exists
+    }
+
     /// Fetch an Account by UID
     func fetchAccount(for uid: String) async throws -> Account? {
         // Query account in `accounts` collection using `ownerUid`
@@ -119,18 +124,15 @@ extension FirebaseService {
 
 // MARK: - Friend Services
 extension FirebaseService {
-    /// Checks if a username is available in the accounts collection.
-    func isUserNameAvailable(_ userName: String) async throws -> Bool {
-        let documentRef = firestore.collection("accounts").document(userName)
-        
-        // Fetch the document for the given username
-        let document = try await documentRef.getDocument()
-        
-        // If the document does not exist, the username is available
-        return !document.exists
+
+    /// Checks if a username exists and retrieves its UID.
+    func getUidForUsername(_ userName: String) async throws -> String? {
+        let query = firestore.collection("accounts").whereField("userName", isEqualTo: userName).limit(to: 1)
+        let snapshot = try await query.getDocuments()
+        return snapshot.documents.first?.data()["ownerUid"] as? String
     }
-    
-    ///
+
+    /// Send a friend request from the sender's UID to the recipient's username.
     func sendFriendRequest(from senderUid: String, to recipientUid: String) async throws {
         // Query the sender's account
         let senderQuery = firestore.collection("accounts").whereField("ownerUid", isEqualTo: senderUid).limit(to: 1)
@@ -153,11 +155,11 @@ extension FirebaseService {
         // Run transaction to update friend requests
         try await firestore.runTransaction { transaction, errorPointer in
             do {
+                // Get the current data for sender and recipient
                 let senderData = try transaction.getDocument(senderRef).data()
                 let recipientData = try transaction.getDocument(recipientRef).data()
                 
-                guard var senderData = senderData,
-                      var recipientData = recipientData else {
+                guard var senderData = senderData, var recipientData = recipientData else {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
 
@@ -174,8 +176,13 @@ extension FirebaseService {
                     recipientIncoming.append(senderUid)
                     transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
                 }
+            } catch let error as NSError {
+                // Assign the error to the errorPointer
+                errorPointer?.pointee = error
+                return nil
             } catch {
-                errorPointer?.pointee = error as NSError
+                // Assign a generic error to the errorPointer
+                errorPointer?.pointee = NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])
                 return nil
             }
             return nil
@@ -183,14 +190,14 @@ extension FirebaseService {
     }
 
 
-
-    ///
+    /// Accept a friend request.
     func acceptFriendRequest(recipientUserName: String, senderUserName: String) async throws {
         let recipientRef = firestore.collection("accounts").document(recipientUserName)
         let senderRef = firestore.collection("accounts").document(senderUserName)
 
         try await firestore.runTransaction { transaction, errorPointer in
             do {
+                // Get the current data for sender and recipient
                 let recipientSnapshot = try transaction.getDocument(recipientRef)
                 let senderSnapshot = try transaction.getDocument(senderRef)
 
@@ -199,6 +206,7 @@ extension FirebaseService {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
 
+                // Add each other as friends
                 var recipientFriends = recipientData["friends"] as? [String] ?? []
                 var senderFriends = senderData["friends"] as? [String] ?? []
 
@@ -208,6 +216,7 @@ extension FirebaseService {
                 transaction.updateData(["friends": recipientFriends], forDocument: recipientRef)
                 transaction.updateData(["friends": senderFriends], forDocument: senderRef)
 
+                // Remove the friend request
                 var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
                 var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
 
@@ -216,39 +225,48 @@ extension FirebaseService {
 
                 transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
                 transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
+            } catch let error as NSError {
+                errorPointer?.pointee = error
+                return nil
             } catch {
-                errorPointer?.pointee = error as NSError
+                errorPointer?.pointee = NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])
                 return nil
             }
             return nil
         }
     }
 
-    ///
+
+    /// Decline a friend request.
     func declineFriendRequest(recipientUserName: String, senderUserName: String) async throws {
         let recipientRef = firestore.collection("accounts").document(recipientUserName)
         let senderRef = firestore.collection("accounts").document(senderUserName)
-
+        
         try await firestore.runTransaction { transaction, errorPointer in
             do {
+                // Get the current data for sender and recipient
                 let recipientSnapshot = try transaction.getDocument(recipientRef)
                 let senderSnapshot = try transaction.getDocument(senderRef)
-
+                
                 guard var recipientData = recipientSnapshot.data(),
                       var senderData = senderSnapshot.data() else {
                     throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid account data"])
                 }
-
+                
+                // Remove the friend request
                 var recipientIncoming = recipientData["friendRequests.incoming"] as? [String] ?? []
                 var senderOutgoing = senderData["friendRequests.outgoing"] as? [String] ?? []
-
+                
                 recipientIncoming.removeAll { $0 == senderUserName }
                 senderOutgoing.removeAll { $0 == recipientUserName }
-
+                
                 transaction.updateData(["friendRequests.incoming": recipientIncoming], forDocument: recipientRef)
                 transaction.updateData(["friendRequests.outgoing": senderOutgoing], forDocument: senderRef)
+            } catch let error as NSError {
+                errorPointer?.pointee = error
+                return nil
             } catch {
-                errorPointer?.pointee = error as NSError
+                errorPointer?.pointee = NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unknown error occurred"])
                 return nil
             }
             return nil
