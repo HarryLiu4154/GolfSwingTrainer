@@ -268,7 +268,7 @@ struct SettingsAccountView: View {
         
         do {
             // Save the new account to Firestore
-            try await viewModel.firebaseService.saveAccount(newAccount)
+            try await viewModel.firebaseService.saveAccount(newAccount, forUser: newAccount.ownerUid)
             
             // Update the ViewModel and user state
             viewModel.user?.firestoreAccount = newAccount

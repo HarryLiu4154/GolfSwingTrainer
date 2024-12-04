@@ -67,22 +67,39 @@ extension FirebaseService {
 }
 //MARK: - Account services
 extension FirebaseService {
-    ///Fetch Account by UID
+    /// Fetch an Account by UID
     func fetchAccount(for uid: String) async throws -> Account? {
+        // Query account in `accounts` collection using `ownerUid`
         let query = firestore.collection("accounts").whereField("ownerUid", isEqualTo: uid).limit(to: 1)
         let snapshot = try await query.getDocuments()
         guard let document = snapshot.documents.first else { return nil }
         return try document.data(as: Account.self)
     }
 
-    ///Save Account
-    func saveAccount(_ account: Account) async throws {
+    /// Create or Update an Account
+    func saveAccount(_ account: Account, forUser uid: String) async throws {
+        guard !account.userName.isEmpty else {
+            throw NSError(domain: "FirebaseService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Account userName cannot be empty"])
+        }
+        
+        // Save account to the `accounts` collection
         try await firestore.collection("accounts").document(account.userName).setData(Firestore.Encoder().encode(account))
+        
+        // Also embed account in the corresponding user document
+        let userRef = firestore.collection("users").document(uid)
+        let accountData = try Firestore.Encoder().encode(account)
+        try await userRef.updateData(["firestoreAccount": accountData])
     }
+    
 
-    ///Delete Account by Username
-    func deleteAccount(userName: String) async throws {
+    /// Delete an Account
+    func deleteAccount(userName: String, forUser uid: String) async throws {
+        // Remove from `accounts` collection
         try await firestore.collection("accounts").document(userName).delete()
+        
+        // Remove embedded account from the user document
+        let userRef = firestore.collection("users").document(uid)
+        try await userRef.updateData(["firestoreAccount": FieldValue.delete()])
     }
 
     ///Upload profile image to firebase STORAGE

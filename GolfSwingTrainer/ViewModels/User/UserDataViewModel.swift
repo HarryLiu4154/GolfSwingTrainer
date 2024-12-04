@@ -144,49 +144,57 @@ extension UserDataViewModel {
 extension UserDataViewModel {
     /// Update account data such as username, profile picture, player level, and player status.
     func updateAccount(
-        userName: String? = nil,
+        userName: String,
         profileImage: UIImage? = nil,
-        playerLevel: String? = nil,
-        playerStatus: String? = nil
+        playerLevel: String,
+        playerStatus: String
     ) async {
-        guard var currentUser = user, var currentAccount = currentUser.firestoreAccount else { return }
-        
-        if let userName = userName { currentAccount.userName = userName }
-        if let playerLevel = playerLevel { currentAccount.playerLevel = playerLevel }
-        if let playerStatus = playerStatus { currentAccount.playerStatus = playerStatus }
-        
-        if let image = profileImage {
+        guard var currentUser = user else { return }
+
+        var account = currentUser.firestoreAccount ?? Account(
+            id: UUID(),
+            ownerUid: currentUser.uid,
+            userName: userName,
+            profilePictureURL: nil,
+            playerLevel: playerLevel,
+            playerStatus: playerStatus,
+            friends: [],
+            friendRequests: FriendRequests(incoming: [], outgoing: [])
+        )
+
+        account.playerLevel = playerLevel
+        account.playerStatus = playerStatus
+
+        if let profileImage = profileImage {
             do {
-                currentAccount.profilePictureURL = try await firebaseService.uploadProfileImage(image: image)
+                account.profilePictureURL = try await firebaseService.uploadProfileImage(image: profileImage)
             } catch {
                 print("Failed to upload profile image: \(error.localizedDescription)")
                 return
             }
         }
-        
+
         do {
-            try await firebaseService.saveAccount(currentAccount)
-            currentUser.firestoreAccount = currentAccount
+            try await firebaseService.saveAccount(account, forUser: currentUser.uid)
+            currentUser.firestoreAccount = account
             user = currentUser
         } catch {
             print("Failed to update account: \(error.localizedDescription)")
         }
     }
+
     func fetchOrCreateAccount(for uid: String) async {
         guard var currentUser = user else { return }
-        
+
         do {
-            // Try to fetch the existing account
             if let fetchedAccount = try await firebaseService.fetchAccount(for: uid) {
                 currentUser.firestoreAccount = fetchedAccount
             } else {
-                // Dynamically generate a unique username if needed
                 let baseUserName = currentUser.fullName.replacingOccurrences(of: " ", with: "").lowercased()
                 var newUserName = baseUserName
                 var isUnique = false
                 var counter = 1
                 
-                // Check for username uniqueness
                 while !isUnique {
                     if try await firebaseService.isUserNameAvailable(newUserName) {
                         isUnique = true
@@ -195,51 +203,42 @@ extension UserDataViewModel {
                         counter += 1
                     }
                 }
-                
-                // Create a new account
+
                 let newAccount = Account(
                     id: UUID(),
-                    ownerUid: uid, // The Firebase UID of the user creating the account
-                    userName: newUserName, // Unique username, ensure validated for uniqueness
-                    profilePictureURL: nil, // Default to nil; can be updated later
-                    playerLevel: "Beginner", // Default player level
-                    playerStatus: "Just for fun", // Default player status
-                    friends: [], // Empty list as the user starts with no friends
-                    friendRequests: FriendRequests(incoming: [], outgoing: []) // No requests at creation
+                    ownerUid: uid,
+                    userName: newUserName,
+                    profilePictureURL: nil,
+                    playerLevel: "Beginner",
+                    playerStatus: "Just for fun",
+                    friends: [],
+                    friendRequests: FriendRequests(incoming: [], outgoing: [])
                 )
-                
-                // Save the new account to Firestore
-                try await firebaseService.saveAccount(newAccount)
-                
-                // Update the user with the new account
+
+                try await firebaseService.saveAccount(newAccount, forUser: uid)
                 currentUser.firestoreAccount = newAccount
             }
-            
-            // Update the local user state
+
             user = currentUser
         } catch {
             print("Failed to fetch or create account: \(error.localizedDescription)")
         }
-        
     }
+
     /// Deletes the user's account without deleting the user itself.
     func deleteAccount() async {
         guard var currentUser = user, let account = currentUser.firestoreAccount else {
-            print("UserDataViewModel: No account to delete.")
+            print("No account to delete.")
             return
         }
-
+        
         do {
-            // Remove the account from Firebase
-            try await firebaseService.deleteAccount(userName: account.userName)
-
-            // Clear the account locally
+            try await firebaseService.deleteAccount(userName: account.userName, forUser: currentUser.uid)
             currentUser.firestoreAccount = nil
             user = currentUser
-            
-            print("UserDataViewModel: Account deleted successfully.")
+            print("Account deleted successfully.")
         } catch {
-            print("UserDataViewModel: Failed to delete account: \(error.localizedDescription)")
+            print("Failed to delete account: \(error.localizedDescription)")
         }
     }
 }

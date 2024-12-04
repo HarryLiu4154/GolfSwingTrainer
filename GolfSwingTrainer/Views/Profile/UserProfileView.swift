@@ -11,6 +11,7 @@ struct UserProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel
     @State private var showDeleteConfirmation = false //Controls the delete account pop up confirmation
+    @Environment(\.dismiss) var dismiss
     var body: some View {
         NavigationStack {
             if let user = viewModel.currentUser {
@@ -71,6 +72,7 @@ struct UserProfileView: View {
                     Section("Account") {
                         Button {
                             viewModel.signOut()
+                            dismiss()
                         } label: {
                             SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color.yellow)
                         }
@@ -91,6 +93,7 @@ struct UserProfileView: View {
                                 primaryButton: .destructive(Text("Delete")) {
                                     Task {
                                         await viewModel.deleteAccount()
+                                        dismiss()
                                     }
                                 },
                                 secondaryButton: .cancel()
