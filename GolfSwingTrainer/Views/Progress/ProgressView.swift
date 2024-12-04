@@ -19,6 +19,11 @@ struct ProgressView: View {
             }label: {
                 Text(String(localized: "Session"))
             }
+            NavigationLink{
+                PlayerView()
+            }label: {
+                Text(String(localized: "Player"))
+            }
             ScrollView{
                 Spacer()
                 ForEach(timeframes, id: \.self){timeframe in
