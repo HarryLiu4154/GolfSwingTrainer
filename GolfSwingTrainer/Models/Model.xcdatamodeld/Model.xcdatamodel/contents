@@ -8,7 +8,7 @@
         <attribute name="profilePictureURL" optional="YES" attributeType="String"/>
         <attribute name="userName" optional="YES" attributeType="String"/>
         <relationship name="friendRequests" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FriendRequestsEntity" inverseName="account" inverseEntity="FriendRequestsEntity"/>
-        <relationship name="friends" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FriendEntity" inverseName="account" inverseEntity="FriendEntity"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FriendEntity" inverseName="account" inverseEntity="FriendEntity"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="account" inverseEntity="UserEntity"/>
     </entity>
     <entity name="FriendEntity" representedClassName="FriendEntity" syncable="YES" codeGenerationType="class">

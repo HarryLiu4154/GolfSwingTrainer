@@ -67,6 +67,9 @@
     "Account Information" : {
 
     },
+    "Account Settings" : {
+
+    },
     "Add" : {
 
     },
@@ -155,6 +158,9 @@
 
     },
     "Edit your information" : {
+
+    },
+    "Edit Your Information" : {
 
     },
     "Email Address" : {
@@ -256,7 +262,7 @@
     "Profile Image" : {
 
     },
-    "Profile Picture" : {
+    "Profile Picture:" : {
 
     },
     "Providing accurate information helps us customize your experience and optimize training recommendations." : {
@@ -338,6 +344,9 @@
     "Sync" : {
 
     },
+    "Tap to Edit" : {
+
+    },
     "Test Watch Sensor Ingestion" : {
 
     },
@@ -347,10 +356,10 @@
     "Timestamp: %@" : {
 
     },
-    "Username" : {
+    "Username (required)" : {
 
     },
-    "Username (required)" : {
+    "Username:" : {
 
     },
     "Version" : {
