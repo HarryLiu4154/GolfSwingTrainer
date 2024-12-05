@@ -109,7 +109,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     
     private func startRecording() {
         if let assetWriter = try? AVAssetWriter(url: .documentsDirectory.appending(path: "aaa\(Date().timeIntervalSince1970).mov"), fileType: .mov) {
-            let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: nil)
+            let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: AVOutputSettingsAssistant(preset: .preset1920x1080)?.videoSettings)
             assetWriterInput.expectsMediaDataInRealTime = true
             assetWriter.add(assetWriterInput)
             
@@ -136,6 +136,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         guard self.isRecording && (self.assetWriter != nil) && (self.assetWriterInput != nil) else { return }
         guard self.assetWriter!.status == .writing else { return }
+        guard self.assetWriterInput!.isReadyForMoreMediaData else { return }
         if !self.hasCalledSinceRecording {
             self.hasCalledSinceRecording = true
             self.recordingStartTime = frame.timestamp
