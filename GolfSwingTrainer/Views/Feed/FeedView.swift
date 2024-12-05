@@ -12,14 +12,12 @@ struct FeedView: View {
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var userDataViewModel: UserDataViewModel
     @State private var friendUsername: String = "" // To input username for friend operations
-    
+    @State private var showFriendRequests = false // To toggle friend request management screen
+
     var body: some View {
         NavigationStack {
             if let user = userDataViewModel.user {
                 VStack {
-                   
-                    
-                    
                     // Posts Section
                     if feedViewModel.posts.isEmpty {
                         Text("No posts available. Create the first one!")
@@ -32,15 +30,18 @@ struct FeedView: View {
                             }
                         }
                     }
-                }.toolbar {
-                    
+                }
+                .toolbar {
                     
                 }
                 .navigationTitle("Feed")
-                
                 .refreshable {
                     feedViewModel.fetchPosts()
                     await userDataViewModel.loadUser()
+                }
+                .sheet(isPresented: $showFriendRequests) {
+                    FriendRequestsView()
+                        .environmentObject(userDataViewModel)
                 }
             } else {
                 // User does not have an account

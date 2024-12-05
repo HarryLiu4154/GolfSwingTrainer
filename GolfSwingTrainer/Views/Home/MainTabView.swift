@@ -108,17 +108,34 @@ struct MainTabView: View {
                                 Image(systemName: "person.badge.plus")
                                     .font(.title2)
                                 
-                                /*Text("Manage Friends")
-                                    .font(.headline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                                    .padding([.leading, .trailing])*/
                             }
                     }
                        
+                }
+                else if selectedTab ==Tab.feed_friend{
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        // Bell icon with badge for incoming friend requests
+                        Button(action: {
+                            showFriendRequests.toggle()
+                        }) {
+                            ZStack {
+                                Image(systemName: "bell.fill")
+                                    .imageScale(.large)
+                                
+                                if let incomingRequests = user.firestoreAccount?.friendRequests.incoming, !incomingRequests.isEmpty {
+                                    // Badge with number of incoming requests
+                                    Text("\(incomingRequests.count)")
+                                        .font(.caption2)
+                                        .foregroundColor(.white)
+                                        .padding(5)
+                                        .background(Color.red)
+                                        .clipShape(Circle())
+                                        .offset(x: 12, y: -12)
+                                }
+                            }
+                        }
+                        .accessibilityLabel("\(user.firestoreAccount?.friendRequests.incoming.count ?? 0) friend requests")
+                    }
                 }
             }
         }
@@ -129,6 +146,7 @@ enum Tab: Hashable {
     case home
     case feed
     case progress
+    case feed_friend
     //case profile
 }
 #Preview {

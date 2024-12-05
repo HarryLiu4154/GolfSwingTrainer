@@ -23,6 +23,9 @@
     "%lld cm" : {
 
     },
+    "%lld friend requests" : {
+
+    },
     "%lld kg" : {
 
     },
@@ -98,6 +101,9 @@
 
     },
     "Cancel" : {
+
+    },
+    "Close" : {
 
     },
     "Continue" : {
@@ -196,6 +202,9 @@
     "For Dev Eyes Only" : {
 
     },
+    "Friend Requests" : {
+
+    },
     "Friends" : {
 
     },
@@ -230,6 +239,9 @@
 
     },
     "No account found. Create one to unlock more features." : {
+
+    },
+    "No incoming friend requests." : {
 
     },
     "No posts available. Create the first one!" : {
