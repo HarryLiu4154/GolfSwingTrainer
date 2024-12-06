@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProgressView: View {
+    @EnvironmentObject var sessionViewModel: SessionViewModel
+    
     private let timeframes = [String(localized: "Day"), String(localized: "Week"), String(localized: "Month"), String(localized: "Year")]
     
     var body: some View {
@@ -16,6 +18,7 @@ struct ProgressView: View {
                 .font(.title)
             NavigationLink{
                 SessionView()
+                    .environmentObject(sessionViewModel)
             }label: {
                 Text(String(localized: "Session"))
             }

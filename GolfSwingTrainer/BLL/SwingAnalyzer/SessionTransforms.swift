@@ -45,6 +45,12 @@ class SessionTransforms {
         prevLeftHandTransform = newLeftHandTransform
         prevTimestamp = newTimestamp
         
-        return avgSpeed
+        print("\(avgSpeed) m/s")
+        if avgSpeed.isFinite {
+            return avgSpeed
+        } else {
+            print("non finite speed, resetting to 0")
+            return 0.0
+        }
     }
 }

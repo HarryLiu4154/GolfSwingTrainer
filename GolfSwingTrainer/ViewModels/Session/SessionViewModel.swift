@@ -13,8 +13,7 @@ import RealityKit
 import SceneKit
 import SwiftUI
 
-@Observable
-class SessionViewModel: NSObject, ARSessionDelegate {
+class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
     
 //    private var captureSession: AVCaptureSession = AVCaptureSession()
 //    private var videoDevice: AVCaptureDevice?
@@ -28,8 +27,10 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     private let characterAnchor = AnchorEntity()
     
     private var sessionTransforms: SessionTransforms? = nil
+    private let coreDataService: CoreDataService
     
-    override init() {
+    init(coreDataService: CoreDataService) {
+        self.coreDataService = coreDataService
         super.init()
         // Asynchronously load the 3D character.
         var cancellable: AnyCancellable? = nil
@@ -56,9 +57,10 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     private var assetWriterInput: AVAssetWriterInput?
     private var recordingStartTime = 0.0
     private var hasCalledSinceRecording = false
+    private var recordingSession: RecordingSession?
 
-    var isRecording = false
-    var outputARView = ARView()
+    @Published var isRecording = false
+    @Published var outputARView = ARView()
 //    var outputScene: SCNScene? {
 //        return avCaptureDelegate.outputScene
 //    }
@@ -70,7 +72,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
 //        return avCaptureDelegate.bodyHeight
 //    }
     
-    var isAVAuthorized: Bool {
+    private var isAVAuthorized: Bool {
         get async {
             let status = AVCaptureDevice.authorizationStatus(for: .video)
             
@@ -97,6 +99,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
         let configuration = ARBodyTrackingConfiguration()
         outputARView.session.run(configuration)
         print(configuration)
+        print(self.coreDataService.fetchRecordingSessions())
     }
     
     private func startAR() {
@@ -108,7 +111,10 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     }
     
     private func startRecording() {
-        if let assetWriter = try? AVAssetWriter(url: .documentsDirectory.appending(path: "aaa\(Date().timeIntervalSince1970).mov"), fileType: .mov) {
+        let date = Date()
+        let videoURL = URL.documentsDirectory.appending(path: "Session\(date.timeIntervalSince1970).mov")
+        if let assetWriter = try? AVAssetWriter(url: videoURL, fileType: .mov) {
+            self.recordingSession = RecordingSession(userUID: nil, date: date, videoURL: videoURL, timestampData: [TimeInterval](), speedData: [Double]())
             let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: AVOutputSettingsAssistant(preset: .preset1920x1080)?.videoSettings)
             assetWriterInput.expectsMediaDataInRealTime = true
             assetWriter.add(assetWriterInput)
@@ -130,6 +136,9 @@ class SessionViewModel: NSObject, ARSessionDelegate {
         self.assetWriter?.finishWriting {
             self.assetWriterInput = nil
             self.assetWriter = nil
+            if self.recordingSession != nil {
+                self.coreDataService.saveRecordingSession(self.recordingSession!)
+            }
         }
     }
     
@@ -151,6 +160,7 @@ class SessionViewModel: NSObject, ARSessionDelegate {
     }
     
     func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
+        guard self.isRecording else { return }
         for anchor in anchors {
             guard let bodyAnchor = anchor as? ARBodyAnchor else { continue }
             
@@ -159,7 +169,9 @@ class SessionViewModel: NSObject, ARSessionDelegate {
                 if self.sessionTransforms == nil {
                     self.sessionTransforms = SessionTransforms(initialWorldTransform: bodyAnchor.transform, initialRightHandTransform: rightHandTransform, initialLeftHandTransform: leftHandTransform, initialTimestamp: timestamp)
                 } else {
-                    let avgSpeed = sessionTransforms?.calculateUpdateSpeed(newWorldTransform: bodyAnchor.transform, newRightHandTransform: rightHandTransform, newLeftHandTransform: leftHandTransform, newTimestamp: timestamp)
+                    let avgSpeed = sessionTransforms!.calculateUpdateSpeed(newWorldTransform: bodyAnchor.transform, newRightHandTransform: rightHandTransform, newLeftHandTransform: leftHandTransform, newTimestamp: timestamp)
+                    self.recordingSession?.timestampData.append(timestamp)
+                    self.recordingSession?.speedData.append(avgSpeed)
                 }
             }
 

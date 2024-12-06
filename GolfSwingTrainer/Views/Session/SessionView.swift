@@ -10,7 +10,7 @@ import SceneKit
 import SwiftUI
 
 struct SessionView: View {
-    @State var viewModel: SessionViewModel = SessionViewModel()
+    @EnvironmentObject var viewModel: SessionViewModel
     
     var body: some View {
 //        let sceneOptions: SceneView.Options = [.autoenablesDefaultLighting]
@@ -58,4 +58,5 @@ struct ARViewWrapper: UIViewRepresentable {
 
 #Preview {
     SessionView()
+        .environmentObject(SessionViewModel(coreDataService: CoreDataService()))
 }
