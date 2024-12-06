@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = SettingsViewModel()
     @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @EnvironmentObject var motionDataViewModel: MotionDataViewModel
     @Environment(\.managedObjectContext) private var context // Access Core Data context from the environment
 
     var body: some View {
@@ -46,6 +47,7 @@ struct SettingsView: View {
                 Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
                     NavigationLink("Test Watch Sensor Ingestion"){
                         WatchMotionView().environmentObject(swingSessionViewModel)
+                            .environmentObject(motionDataViewModel)
                     }
                     NavigationLink("ML Tests") {
                         CameraViewControllerWrapper()
