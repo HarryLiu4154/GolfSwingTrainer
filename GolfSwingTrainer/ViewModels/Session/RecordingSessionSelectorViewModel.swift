@@ -14,10 +14,14 @@ class RecordingSessionSelectorViewModel: ObservableObject {
     
     init(coreDataService: CoreDataService) {
         self.coreDataService = coreDataService
-        self.recordingSessions = coreDataService.fetchRecordingSessions()
+        self.recordingSessions = self.coreDataService.fetchRecordingSessions().sorted {
+            return $0.date > $1.date
+        }
     }
     
     func update() {
-        self.recordingSessions = self.coreDataService.fetchRecordingSessions()
+        self.recordingSessions = self.coreDataService.fetchRecordingSessions().sorted {
+            return $0.date > $1.date
+        }
     }
 }

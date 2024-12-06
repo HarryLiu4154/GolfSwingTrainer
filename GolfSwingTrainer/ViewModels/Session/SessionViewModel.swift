@@ -94,8 +94,8 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
     
     private func startRecording() {
         let date = Date()
-        let videoURL = URL.documentsDirectory.appending(path: "Session\(date.timeIntervalSince1970).mov")
-        if let assetWriter = try? AVAssetWriter(url: videoURL, fileType: .mov) {
+        let videoURL = URL.documentsDirectory.appending(path: "Session\(date.timeIntervalSince1970).mp4")
+        if let assetWriter = try? AVAssetWriter(url: videoURL, fileType: .mp4) {
             self.recordingSession = RecordingSession(userUID: nil, date: date, videoURL: videoURL, timestampData: [TimeInterval](), speedData: [Double]())
             let assetWriterInput = AVAssetWriterInput(mediaType: .video, outputSettings: AVOutputSettingsAssistant(preset: .preset1920x1080)?.videoSettings)
             assetWriterInput.expectsMediaDataInRealTime = true
