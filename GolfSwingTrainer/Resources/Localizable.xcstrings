@@ -26,16 +26,6 @@
     "%lld kg" : {
 
     },
-    "%lld Rotation Samples, %lld Acceleration Samples" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$lld Rotation Samples, %2$lld Acceleration Samples"
-          }
-        }
-      }
-    },
     "☀️ UV Index:" : {
 
     },
@@ -307,6 +297,16 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Rotation Rate: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+          }
+        }
+      }
+    },
+    "Rotation: %@ Degrees,\nSpeed: %@ km/h" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation: %1$@ Degrees,\nSpeed: %2$@ km/h"
           }
         }
       }

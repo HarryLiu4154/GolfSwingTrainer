@@ -60,7 +60,9 @@ struct HomeView: View {
                 WeatherComponentView()
             }
 
-            
+            ScrollView {
+                SwingSessionListView()
+            }
 
         }.navigationTitle("Home")
             .refreshable {
