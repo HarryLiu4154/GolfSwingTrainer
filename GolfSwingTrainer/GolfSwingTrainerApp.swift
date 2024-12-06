@@ -11,8 +11,7 @@ import FirebaseStorage
 import FirebaseCore
 import Foundation
 import UserNotifications
-//import FirebaseMLModelDownloader
-//import TensorFlowLite
+
 
 @main
 struct GolfSwingTrainerApp: App {
@@ -139,22 +138,4 @@ func requestNotificationPermissions() {
             print("Permission granted for notifications.")
         }
     }
-}
-// MARK: - Firebase Model Download
-func downloadTFLiteModel() {
-    let downloadConditions = ModelDownloadConditions(allowsCellularAccess: false)
-    ModelDownloader.modelDownloader()
-        .getModel(name: "SwingNet",
-                  downloadType: .latestModel,
-                  conditions: downloadConditions,
-                  progressHandler: { progress in
-            print("Model download progress: \(progress.fractionCompleted)")
-        }) { result in
-            switch result {
-            case let .success(model):
-                print("TFLite model downloaded successfully at path: \(model.path)")
-            case let .failure(error):
-                print("Failed to download TFLite model: \(error.localizedDescription)")
-            }
-        }
 }

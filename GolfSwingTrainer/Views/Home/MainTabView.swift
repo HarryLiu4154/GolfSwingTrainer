@@ -112,7 +112,7 @@ struct MainTabView: View {
                     }
                        
                 }
-                else if selectedTab ==Tab.feed_friend{
+                /*else if selectedTab == Tab.feed_friend{
                     ToolbarItem(placement: .navigationBarTrailing) {
                         // Bell icon with badge for incoming friend requests
                         Button(action: {
@@ -136,7 +136,7 @@ struct MainTabView: View {
                         }
                         .accessibilityLabel("\(user.firestoreAccount?.friendRequests.incoming.count ?? 0) friend requests")
                     }
-                }
+                }*/
             }
         }
     }

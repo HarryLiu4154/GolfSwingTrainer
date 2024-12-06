@@ -23,9 +23,6 @@
     "%lld cm" : {
 
     },
-    "%lld friend requests" : {
-
-    },
     "%lld kg" : {
 
     },
@@ -227,6 +224,9 @@
 
     },
     "Measurements" : {
+
+    },
+    "ML Tests" : {
 
     },
     "Month" : {

@@ -40,18 +40,17 @@ struct SettingsView: View {
                         SwingSessionListView()
                             .environmentObject(swingSessionViewModel)
                     }
+                
                     
                 }
                 Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
                     NavigationLink("Test Watch Sensor Ingestion"){
                         WatchMotionView().environmentObject(swingSessionViewModel)
                     }
-                    Button{
-                        authViewModel.signOut()
-                    }label: {
-                        SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Emergency Sign out", tintColor: Color.yellow)
-                        
+                    NavigationLink("ML Tests") {
+                        CameraViewControllerWrapper()
                     }
+                    
                     
                 }
                 
