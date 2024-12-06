@@ -11,13 +11,16 @@ struct RecordingSessionSelectorView: View {
     @EnvironmentObject var viewModel: RecordingSessionSelectorViewModel
     
     var body: some View {
-        ScrollView {
+        List {
             ForEach(viewModel.recordingSessions) { recordingSession in
                 NavigationLink{
                     PlayerView(viewModel: PlayerViewModel(recordingSession: recordingSession))
                 }label:{
                     RecordingSessionComponentView(recordingSession: recordingSession)
                 }
+            }
+            .onDelete { indices in
+                viewModel.deleteIndices(indices: indices)
             }
         }
         .refreshable {

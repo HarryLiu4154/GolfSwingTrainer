@@ -12,17 +12,28 @@ import SwiftUI
 struct SessionView: View {
     @EnvironmentObject var viewModel: SessionViewModel
     
+    @State private var recordingIconOpacity = 1.0
+    
     var body: some View {
-//        let sceneOptions: SceneView.Options = [.autoenablesDefaultLighting]
         ZStack{
             VStack{
                 ARViewWrapper(arView: viewModel.outputARView)
-//                SceneView(scene: viewModel.outputScene, options: sceneOptions)
-//                        viewModel.outputFrame
-//                            .resizable()
-//                            .scaledToFit()
             }
             VStack{
+                HStack {
+                    if viewModel.isRecording {
+                        Circle()
+                            .fill(.red)
+                            .opacity(recordingIconOpacity)
+                            .frame(width: 25, height: 25)
+                            .onAppear {
+                                withAnimation(.easeInOut.repeatForever(autoreverses: true)) {
+                                    self.recordingIconOpacity = 0.0
+                                }
+                            }
+                    }
+                    Spacer()
+                }
                 Spacer()
                 Button(action:{
                     if viewModel.isRecording {

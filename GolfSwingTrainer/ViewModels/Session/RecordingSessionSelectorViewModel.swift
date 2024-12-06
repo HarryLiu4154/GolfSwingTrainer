@@ -24,4 +24,11 @@ class RecordingSessionSelectorViewModel: ObservableObject {
             return $0.date > $1.date
         }
     }
+    
+    func deleteIndices(indices: IndexSet) {
+        for index in indices {
+            self.coreDataService.deleteRecordingSession(self.recordingSessions[index])
+        }
+        self.update()
+    }
 }
