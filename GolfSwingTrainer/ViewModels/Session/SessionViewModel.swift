@@ -15,13 +15,6 @@ import SwiftUI
 
 class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
     
-//    private var captureSession: AVCaptureSession = AVCaptureSession()
-//    private var videoDevice: AVCaptureDevice?
-//    private var videoStream = AVCaptureVideoDataOutput()
-//    var videoFileOutput = AVCaptureMovieFileOutput()
-//    private var avCaptureDelegate = SwingVideoCaptureDelegate()
-//    private var arCaptureDelegate = SwingARCaptureDelegate()
-    
     private var character: BodyTrackedEntity?
     private let characterOffset: SIMD3<Float> = [0.0, 0, 0] // Offset the character if wanted
     private let characterAnchor = AnchorEntity()
@@ -45,7 +38,6 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
                 // Scale the character to human size
                 character.scale = [1.0, 1.0, 1.0]
                 self.character = character
-                print("robot model loadededded!!!")
                 cancellable?.cancel()
             } else {
                 print("Error: Unable to load model as BodyTrackedEntity")
@@ -61,16 +53,6 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
 
     @Published var isRecording = false
     @Published var outputARView = ARView()
-//    var outputScene: SCNScene? {
-//        return avCaptureDelegate.outputScene
-//    }
-//        var outputFrame: Image {
-//            guard let cgImage = captureDelegate.outputFrame else { return Image(systemName: "globe") }
-//            return Image(decorative: captureDelegate.outputFrame!, scale: 1, orientation: .up)
-//        }
-//    var bodyHeight: Float? {
-//        return avCaptureDelegate.bodyHeight
-//    }
     
     private var isAVAuthorized: Bool {
         get async {
@@ -190,52 +172,8 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
             }
         }
     }
-
-//    private func setUpAVCaptureSession() async {
-//        guard await isAVAuthorized else { return }
-//        captureSession = AVCaptureSession()
-//        print("configurablecapturedevice:")
-//        print(ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera)
-//        print("-----------------------")
-//        let videoDevice = ARBodyTrackingConfiguration.configurableCaptureDeviceForPrimaryCamera ?? AVCaptureDevice.default(for: .video)!
-//        self.videoDevice = videoDevice
-//        print(self.videoDevice)
-//        
-//        guard
-//            let videoDeviceInput = try? AVCaptureDeviceInput(device: videoDevice),
-//            captureSession.canAddInput(videoDeviceInput)
-//        else { return }
-//        captureSession.addInput(videoDeviceInput)
-//        print("Can add input: \(captureSession)")
-//        
-//        videoStream = AVCaptureVideoDataOutput()
-//        videoStream.videoSettings = nil // default uncompressed format
-//        videoStream.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
-//        guard captureSession.canAddOutput(videoStream) else { return }
-//        captureSession.addOutput(videoStream)
-//        print("Can add data output: \(captureSession)")
-//        
-//        guard captureSession.canAddOutput(avCaptureDelegate.fileOutput) else { return }
-//        captureSession.addOutput(avCaptureDelegate.fileOutput)
-//        print("Can add file output: \(captureSession)")
-//    }
-    
-//    private func startAVRecording() {
-//        DispatchQueue.global(qos: .userInitiated).async {
-//            self.captureSession.startRunning()
-//        }
-////        let fileURL = URL.moviesDirectory.appendingPathComponent("aaa.mp4")
-////        videoFileOutput.startRecording(to: fileURL, recordingDelegate: SwingSessionFileDelegate())
-//    }
-//    
-//    private func stopAVRecording() {
-////        videoFileOutput.stopRecording()
-//        avCaptureDelegate.fileOutput.stopRecording()
-//        captureSession.stopRunning()
-//    }
     
     func setup() async {
-//        await setUpAVCaptureSession()
         setUpARCaptureSession()
     }
 
@@ -244,7 +182,6 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
         self.sessionTransforms = nil
         startAR()
         startRecording()
-//        startAVRecording()
     }
     
     func stopCapture() {
@@ -252,6 +189,5 @@ class SessionViewModel: NSObject, ObservableObject, ARSessionDelegate {
         stopRecording()
         self.sessionTransforms = nil
         self.isRecording = false
-//        stopAVRecording()
     }
 }
