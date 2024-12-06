@@ -7,47 +7,47 @@
 import SwiftUI
 import Foundation
 
-struct SwingDataCalculationUtilities {
-    static func calculateAngle(from dataList: [[String: Double]]) -> Double? {
-        let angles = dataList.compactMap { data -> Double? in
-            guard let x = data["x"], let y = data["y"], let z = data["z"] else {
-                return nil
-            }
-            return sqrt(x * x + y * y + z * z)
-        }
-        
-        guard !angles.isEmpty else {
-            return nil // Return nil if no valid angles were calculated
-        }
-        
-        let total = angles.reduce(0, +)
-        return radTodeg(total / Double(angles.count))
-    }
-    
-    static func radTodeg(_ number: Double) -> Double {
-        return number * 180 / .pi
-    }
-    
-    static func calculateVelocity(from accelerationData: [[String: Double]]) -> Double? {
-        var velocityX = 0.0
-        var velocityY = 0.0
-        var velocityZ = 0.0
-        var deltaTime: Double = 0.02 // 50Hz or 0.02 seconds
-
-        for data in accelerationData {
-            guard let ax = data["x"], let ay = data["y"], let az = data["z"] else {
-                return nil // Invalid data
-            }
-            velocityX += ax * deltaTime
-            velocityY += ay * deltaTime
-            velocityZ += az * deltaTime
-        }
-
-        // Calculate the magnitude of the velocity vector
-        let velocity = sqrt(velocityX * velocityX + velocityY * velocityY + velocityZ * velocityZ)
-        return velocity
-    }
-}
+//struct SwingDataCalculationUtilities {
+//    static func calculateAngle(from dataList: [[String: Double]]) -> Double? {
+//        let angles = dataList.compactMap { data -> Double? in
+//            guard let x = data["x"], let y = data["y"], let z = data["z"] else {
+//                return nil
+//            }
+//            return sqrt(x * x + y * y + z * z)
+//        }
+//        
+//        guard !angles.isEmpty else {
+//            return nil // Return nil if no valid angles were calculated
+//        }
+//        
+//        let total = angles.reduce(0, +)
+//        return radTodeg(total / Double(angles.count))
+//    }
+//    
+//    static func radTodeg(_ number: Double) -> Double {
+//        return number * 180 / .pi
+//    }
+//    
+//    static func calculateVelocity(from accelerationData: [[String: Double]]) -> Double? {
+//        var velocityX = 0.0
+//        var velocityY = 0.0
+//        var velocityZ = 0.0
+//        let deltaTime: Double = 0.02 // 50Hz or 0.02 seconds
+//
+//        for data in accelerationData {
+//            guard let ax = data["x"], let ay = data["y"], let az = data["z"] else {
+//                return nil // Invalid data
+//            }
+//            velocityX += ax * deltaTime
+//            velocityY += ay * deltaTime
+//            velocityZ += az * deltaTime
+//        }
+//
+//        // Calculate the magnitude of the velocity vector
+//        let velocity = sqrt(velocityX * velocityX + velocityY * velocityY + velocityZ * velocityZ)
+//        return velocity
+//    }
+//}
 
 struct SwingSessionListView: View {
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel

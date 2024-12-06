@@ -41,16 +41,6 @@
     "Acceleration Data" : {
 
     },
-    "Acceleration: x: %.2f, y: %.2f, z: %.2f" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Acceleration: x: %1$.2f, y: %2$.2f, z: %3$.2f"
-          }
-        }
-      }
-    },
     "Accept" : {
 
     },
@@ -73,6 +63,9 @@
 
     },
     "Already have an account?" : {
+
+    },
+    "Angle: %lf degrees" : {
 
     },
     "Are you sure?" : {
@@ -222,9 +215,6 @@
     "Month" : {
 
     },
-    "Motion Data" : {
-
-    },
     "No acceleration data available." : {
 
     },
@@ -291,16 +281,6 @@
     "Rotation Data" : {
 
     },
-    "Rotation Rate: x: %.2f, y: %.2f, z: %.2f" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Rotation Rate: x: %1$.2f, y: %2$.2f, z: %3$.2f"
-          }
-        }
-      }
-    },
     "Rotation: %@ Degrees,\nSpeed: %@ km/h" : {
       "localizations" : {
         "en" : {
@@ -344,6 +324,9 @@
     "Sign up" : {
 
     },
+    "Speed: %lf km/s" : {
+
+    },
     "Stance" : {
 
     },
@@ -375,6 +358,12 @@
 
     },
     "Timestamp: %@" : {
+
+    },
+    "Tracked Swings" : {
+
+    },
+    "Tracker" : {
 
     },
     "Username" : {

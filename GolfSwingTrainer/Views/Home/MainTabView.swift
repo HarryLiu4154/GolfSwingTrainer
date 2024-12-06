@@ -13,6 +13,7 @@ struct MainTabView: View {
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @EnvironmentObject var motionDataViewModel: MotionDataViewModel
 
     @State private var selectedTab: Tab = .home
     @State private var showMenu: Bool = false // Manage MenuView visibility
@@ -41,8 +42,8 @@ struct MainTabView: View {
                             }
                             .tag(Tab.home)
                         
-                        SwingSessionListView()
-                            .environmentObject(swingSessionViewModel)
+                        WatchMotionView()
+                            .environmentObject(motionDataViewModel)
                             .tabItem {
                                 Label("Tracker", systemImage: selectedTab == .tracker ? "figure.golf.circle.fill" : "figure.golf.circle")
                             }
