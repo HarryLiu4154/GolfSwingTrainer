@@ -10,7 +10,7 @@ import SceneKit
 import SwiftUI
 
 struct SessionView: View {
-    @State private var viewModel = SessionViewModel()
+    @EnvironmentObject var viewModel: SessionViewModel
     
     var body: some View {
 //        let sceneOptions: SceneView.Options = [.autoenablesDefaultLighting]
@@ -21,12 +21,27 @@ struct SessionView: View {
 //                        viewModel.outputFrame
 //                            .resizable()
 //                            .scaledToFit()
-        }
-//            Text("Height: \(viewModel.bodyHeight ?? .nan)m")
+            }
+            VStack{
+                Spacer()
+                Button(action:{
+                    if viewModel.isRecording {
+                        viewModel.stopCapture()
+                    } else {
+                        viewModel.startCapture()
+                    }
+                }, label: {
+                    Text("")
+                        .font(.title2)
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.white)
+                        .background(.red)
+                        .clipShape(Circle())
+                })
+            }
         }
         .task {
-            viewModel.setUpARCaptureSession()
-//            await viewModel.setUpAVCaptureSession()
+            await viewModel.setup()
         }
     }
 }
@@ -43,4 +58,5 @@ struct ARViewWrapper: UIViewRepresentable {
 
 #Preview {
     SessionView()
+        .environmentObject(SessionViewModel(coreDataService: CoreDataService()))
 }

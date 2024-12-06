@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%lld cm" : {
 
     },
@@ -138,6 +141,9 @@
     "Humidity: %@%%" : {
 
     },
+    "Max Speed: %lf m/s" : {
+
+    },
     "Measurements" : {
 
     },
@@ -165,6 +171,9 @@
     "Physical Attributes" : {
 
     },
+    "Player" : {
+
+    },
     "Post" : {
 
     },
@@ -177,10 +186,10 @@
     "Profile" : {
 
     },
-    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
-    
-    },
     "Progress" : {
+
+    },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
 
     },
     "Register" : {
@@ -211,10 +220,10 @@
     "Select Session" : {
 
     },
-    "Session Details" : {
+    "Session" : {
 
     },
-    "Session" : {
+    "Session Details" : {
 
     },
     "Settings" : {

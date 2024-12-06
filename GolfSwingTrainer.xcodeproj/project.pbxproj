@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1AF99D2CEFF913000BFD3A /* SwingSessionFileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */; };
 		0AA2CAC82CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */; };
 		0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */; };
 		0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */; };
@@ -15,6 +16,13 @@
 		0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA582CBEC953007D10AA /* SessionView.swift */; };
 		0AB7CA5B2CBECEE0007D10AA /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */; };
 		0AB7CA5F2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */; };
+		0AD43A8E2D00A6E5009C0380 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A8D2D00A6E5009C0380 /* PlayerView.swift */; };
+		0AD43A902D00A725009C0380 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A8F2D00A725009C0380 /* PlayerViewModel.swift */; };
+		0AD43A922D00F825009C0380 /* SessionTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A912D00F825009C0380 /* SessionTransforms.swift */; };
+		0AD43A942D0110CC009C0380 /* RecordingSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A932D0110CC009C0380 /* RecordingSession.swift */; };
+		0AD43A982D027A4A009C0380 /* RecordingSessionComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A972D027A4A009C0380 /* RecordingSessionComponentView.swift */; };
+		0AD43A9A2D027F28009C0380 /* RecordingSessionSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A992D027F28009C0380 /* RecordingSessionSelectorView.swift */; };
+		0AD43A9E2D0280A1009C0380 /* RecordingSessionSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD43A9D2D0280A1009C0380 /* RecordingSessionSelectorViewModel.swift */; };
 		6329FA8B2CDBBB7C00B9C0E8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8A2CDBBB7C00B9C0E8 /* FirebaseAnalytics */; };
 		6329FA8D2CDBBB7C00B9C0E8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8C2CDBBB7C00B9C0E8 /* FirebaseAuth */; };
 		6329FA8F2CDBBB7C00B9C0E8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6329FA8E2CDBBB7C00B9C0E8 /* FirebaseDatabase */; };
@@ -147,6 +155,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingSessionFileDelegate.swift; sourceTree = "<group>"; };
 		0AA2CAC72CE3A1B10048F486 /* SceneKit Asset Catalog.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = "SceneKit Asset Catalog.scnassets"; sourceTree = "<group>"; };
 		0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingARCaptureDelegate.swift; sourceTree = "<group>"; };
 		0AB5E0472CAC68C00035E5E5 /* ProgressionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressionComponentView.swift; sourceTree = "<group>"; };
@@ -155,6 +164,14 @@
 		0AB7CA582CBEC953007D10AA /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwingVideoCaptureDelegate.swift; sourceTree = "<group>"; };
+		0AD43A8C2CFFCCA3009C0380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0AD43A8D2D00A6E5009C0380 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		0AD43A8F2D00A725009C0380 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		0AD43A912D00F825009C0380 /* SessionTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTransforms.swift; sourceTree = "<group>"; };
+		0AD43A932D0110CC009C0380 /* RecordingSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSession.swift; sourceTree = "<group>"; };
+		0AD43A972D027A4A009C0380 /* RecordingSessionComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionComponentView.swift; sourceTree = "<group>"; };
+		0AD43A992D027F28009C0380 /* RecordingSessionSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSelectorView.swift; sourceTree = "<group>"; };
+		0AD43A9D2D0280A1009C0380 /* RecordingSessionSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingSessionSelectorViewModel.swift; sourceTree = "<group>"; };
 		636638492CE3FCD800CD48F7 /* UserAttributesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAttributesViewModel.swift; sourceTree = "<group>"; };
 		6366384B2CE3FDE300CD48F7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.1.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		6366384E2CE3FE2E00CD48F7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -291,6 +308,8 @@
 			isa = PBXGroup;
 			children = (
 				0AB7CA5A2CBECEE0007D10AA /* SessionViewModel.swift */,
+				0AD43A9D2D0280A1009C0380 /* RecordingSessionSelectorViewModel.swift */,
+				0AD43A8F2D00A725009C0380 /* PlayerViewModel.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -326,6 +345,9 @@
 			isa = PBXGroup;
 			children = (
 				0AB7CA582CBEC953007D10AA /* SessionView.swift */,
+				0AD43A8D2D00A6E5009C0380 /* PlayerView.swift */,
+				0AD43A972D027A4A009C0380 /* RecordingSessionComponentView.swift */,
+				0AD43A992D027F28009C0380 /* RecordingSessionSelectorView.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -343,6 +365,8 @@
 			children = (
 				0AB7CA5E2CBFE550007D10AA /* SwingVideoCaptureDelegate.swift */,
 				0AA2CAC92CED019A0048F486 /* SwingARCaptureDelegate.swift */,
+				0A1AF99C2CEFF913000BFD3A /* SwingSessionFileDelegate.swift */,
+				0AD43A912D00F825009C0380 /* SessionTransforms.swift */,
 			);
 			path = SwingAnalyzer;
 			sourceTree = "<group>";
@@ -510,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				BCA464272CF53C8C00F2C3E1 /* SwingSession.swift */,
+				0AD43A932D0110CC009C0380 /* RecordingSession.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -665,6 +690,7 @@
 		FE0109012C91265C00F074C8 /* GolfSwingTrainer */ = {
 			isa = PBXGroup;
 			children = (
+				0AD43A8C2CFFCCA3009C0380 /* Info.plist */,
 				BC408F732CED2B5C003E2257 /* GolfSwingTrainerDebug.entitlements */,
 				BC46FF942CECFCD20058F58D /* GolfSwingTrainerRelease.entitlements */,
 				0AB7CA5C2CBFE4EB007D10AA /* BLL */,
@@ -990,6 +1016,7 @@
 				6366384A2CE3FCE300CD48F7 /* UserAttributesViewModel.swift in Sources */,
 				BCA464282CF53C9900F2C3E1 /* SwingSession.swift in Sources */,
 				BCB320172CE6E142005E9853 /* HomeView.swift in Sources */,
+				0AD43A982D027A4A009C0380 /* RecordingSessionComponentView.swift in Sources */,
 				BCB3200F2CE6D4A4005E9853 /* SettingsView.swift in Sources */,
 				BCF1D2E32CF3D9260010EB13 /* UserDataViewModel.swift in Sources */,
 				BC1CC8822CAF92E700E5FC48 /* AppState.swift in Sources */,
@@ -1003,18 +1030,24 @@
 				0AB5E0482CAC68C00035E5E5 /* ProgressionComponentView.swift in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
 				0AA2CACA2CED019A0048F486 /* SwingARCaptureDelegate.swift in Sources */,
+				0A1AF99D2CEFF913000BFD3A /* SwingSessionFileDelegate.swift in Sources */,
 				0AB7CA592CBEC953007D10AA /* SessionView.swift in Sources */,
 				BC064AE32CD2A58C0082B7D9 /* AuthInputComponentView.swift in Sources */,
 				636638522CE3FE7600CD48F7 /* PersistenceController.swift in Sources */,
 				BCF7144F2CDABD6600BDB798 /* UserAttributesInputView.swift in Sources */,
+				0AD43A9E2D0280A1009C0380 /* RecordingSessionSelectorViewModel.swift in Sources */,
 				6366384F2CE3FE2E00CD48F7 /* Model.xcdatamodeld in Sources */,
 				BC1CC8782CAF351E00E5FC48 /* AuthViewModel.swift in Sources */,
+				0AD43A902D00A725009C0380 /* PlayerViewModel.swift in Sources */,
+				0AD43A8E2D00A6E5009C0380 /* PlayerView.swift in Sources */,
 				BCA4642C2CF53E7500F2C3E1 /* SwingSessionListView.swift in Sources */,
+				0AD43A942D0110CC009C0380 /* RecordingSession.swift in Sources */,
 				BCF1D2E52CF42D420010EB13 /* WatchMotionView.swift in Sources */,
 				BC1CC87A2CAF36AB00E5FC48 /* RegistrationView.swift in Sources */,
 				BC408F9F2CED512B003E2257 /* FeedViewModel.swift in Sources */,
 				BC46FFAD2CED1CF70058F58D /* WeatherModel.swift in Sources */,
 				BC408FA12CED519E003E2257 /* FeedView.swift in Sources */,
+				0AD43A922D00F825009C0380 /* SessionTransforms.swift in Sources */,
 				BC46FFB02CED1D570058F58D /* WeatherComponentView.swift in Sources */,
 				BCF1D2EB2CF42FD20010EB13 /* MotionDataViewModel.swift in Sources */,
 				BCE638182CD9BC9B00411D5B /* SettingRowComponentView.swift in Sources */,
@@ -1022,6 +1055,7 @@
 				BCA4642A2CF53E2D00F2C3E1 /* SwingSessionViewModel.swift in Sources */,
 				BC46FFAB2CECFFC30058F58D /* WeatherViewModel.swift in Sources */,
 				BC0E65FD2CEC2091009BA763 /* LocationManager.swift in Sources */,
+				0AD43A9A2D027F28009C0380 /* RecordingSessionSelectorView.swift in Sources */,
 				BCE638112CD9851000411D5B /* User.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
@@ -1325,6 +1359,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GolfSwingTrainer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1332,6 +1367,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1363,6 +1399,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = HB3XP4BKLJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GolfSwingTrainer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = GolfSwingTrainer;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera to record swing sessions.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1370,6 +1407,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

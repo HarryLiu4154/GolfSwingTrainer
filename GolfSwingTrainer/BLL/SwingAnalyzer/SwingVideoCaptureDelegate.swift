@@ -18,7 +18,7 @@ class SwingVideoCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferD
     var bodyHeight: Float?
     
     private let defaultScene = SCNScene(named: "MyScene3.scn", inDirectory: "SceneKit Asset Catalog.scnassets")
-    private let modelScene = SCNScene(named: "robot.usdz", inDirectory: "SceneKit Asset Catalog.scnassets")
+    private let modelScene = SCNScene(named: "Humanoid.scn", inDirectory: "SceneKit Asset Catalog.scnassets")
     private var firstTime = false
     private var modelNode: SCNNode {
         if !firstTime{
@@ -28,7 +28,17 @@ class SwingVideoCaptureDelegate: NSObject, AVCaptureVideoDataOutputSampleBufferD
         }
     }
     
+    var fileOutput = AVCaptureMovieFileOutput()
+    
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        print("!!!!!!!!!!!!!!!!!!!!!!! Entered datastream captureOutput")
+        do {
+            let docDir = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let fileURL = docDir.appendingPathComponent(UUID().uuidString + ".mov")
+            print(fileURL)
+            self.fileOutput.startRecording(to: URL.moviesDirectory.appendingPathComponent("aaa.mov"), recordingDelegate: SwingSessionFileDelegate())
+        } catch {
+        }
         guard let cvBuffer = sampleBuffer.imageBuffer else { return }
         let ciImage = CIImage(cvImageBuffer: cvBuffer)
         let ciContext = CIContext()

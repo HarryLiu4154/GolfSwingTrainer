@@ -77,4 +77,32 @@ extension CoreDataService {
         }
     }
 }
+
+//MARK: - Recording Session Services
+extension CoreDataService {
+    func fetchRecordingSessions() -> [RecordingSession] {
+        let request = RecordingSessionEntity.fetchRequest()
+        guard let entities = try? context.fetch(request) else { return [] }
+        return entities.map { $0.toRecordingSession() }
+    }
+    
+    func saveRecordingSession(_ session: RecordingSession) {
+        let request = RecordingSessionEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", session.id as CVarArg)
+        
+        let entity = (try? context.fetch(request).first) ?? RecordingSessionEntity(context: context)
+        entity.update(from: session)
+        try? context.save()
+    }
+    
+    func deleteRecordingSession(_ session: RecordingSession) {
+        let request = RecordingSessionEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", session.id as CVarArg)
+        
+        if let entity = try? context.fetch(request).first {
+            context.delete(entity)
+            try? context.save()
+        }
+    }
+}
 //MARK: - TBD
