@@ -40,6 +40,13 @@ struct MainTabView: View {
                                 Label("Home", systemImage: selectedTab == .home ? "house.fill" : "house")
                             }
                             .tag(Tab.home)
+                        
+                        SwingSessionListView()
+                            .environmentObject(swingSessionViewModel)
+                            .tabItem {
+                                Label("Tracker", systemImage: selectedTab == .tracker ? "figure.golf.circle.fill" : "figure.golf.circle")
+                            }
+                            .tag(Tab.tracker)
 
                         FeedView()
                             .environmentObject(userDataViewModel)
@@ -147,6 +154,7 @@ enum Tab: Hashable {
     case feed
     case progress
     case feed_friend
+    case tracker
     //case profile
 }
 #Preview {
