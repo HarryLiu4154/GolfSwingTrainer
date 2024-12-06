@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 import UIKit
-
+import FirebaseFirestore
 /// Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for synchronized functionality.
 @MainActor
 class UserDataViewModel: ObservableObject {
@@ -43,11 +43,13 @@ extension UserDataViewModel {
 
         if let coreDataUser = coreDataService.fetchUser(by: uid) {
             self.user = coreDataUser
+            listenForAccountUpdates() // Start listening after loading from Core Data
         } else {
             do {
                 if let firebaseUser = try await firebaseService.fetchUser(uid: uid) {
                     self.user = firebaseUser
                     coreDataService.saveUser(firebaseUser) // Sync to Core Data
+                    listenForAccountUpdates() // Start listening after loading from Firebase
                 } else {
                     print("UserDataViewModel: No user found in Firebase.")
                 }
@@ -56,6 +58,7 @@ extension UserDataViewModel {
             }
         }
     }
+
 
     /// Update the entire user object in Firebase and Core Data.
     func updateUser(_ updatedUser: User) async {
@@ -168,6 +171,7 @@ extension UserDataViewModel {
         if let profileImage = profileImage {
             do {
                 account.profilePictureURL = try await firebaseService.uploadProfileImage(image: profileImage)
+                listenForAccountUpdates()// Start listening for account updates
             } catch {
                 print("Failed to upload profile image: \(error.localizedDescription)")
                 return
@@ -219,7 +223,7 @@ extension UserDataViewModel {
                 try await firebaseService.saveAccount(newAccount, forUser: uid)
                 currentUser.firestoreAccount = newAccount
             }
-
+            listenForAccountUpdates()// Start listening for account updates
             user = currentUser
         } catch {
             print("Failed to fetch or create account: \(error.localizedDescription)")
@@ -278,4 +282,41 @@ extension UserDataViewModel {
             print("Failed to decline friend request: \(error.localizedDescription)")
         }
     }
+    
+    ///Handles updates regarding incoming accounts
+    func listenForAccountUpdates() {
+        guard let userName = user?.firestoreAccount?.userName else {
+            print("No username found for real-time updates.")
+            return
+        }
+        
+        firebaseService.firestore
+            .collection("accounts")
+            .document(userName)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error listening for account updates: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let snapshotData = snapshot?.data() else {
+                    print("No data found in snapshot.")
+                    return
+                }
+                
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: snapshotData)
+                    let updatedAccount = try JSONDecoder().decode(Account.self, from: jsonData)
+                    print("Updated Friends: \(updatedAccount.friends)")
+                    DispatchQueue.main.async {
+                        self.user?.firestoreAccount = updatedAccount
+                    }
+                } catch {
+                    print("Error decoding account data: \(error.localizedDescription)")
+                }
+            }
+    }
+    
 }

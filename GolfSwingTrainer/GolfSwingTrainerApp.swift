@@ -96,7 +96,12 @@ struct RootView: View {
                             isVisible: $isNotificationVisible
                         )
             
-        }.onReceive(NotificationCenter.default.publisher(for: Notification.Name("WindDirectionChanged"))) { notification in
+        }.onAppear {
+            Task {
+                await viewModel.loadUser()
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("WindDirectionChanged"))) { notification in
             if let userInfo = notification.userInfo,
                let title = userInfo["title"] as? String,
                let message = userInfo["message"] as? String {

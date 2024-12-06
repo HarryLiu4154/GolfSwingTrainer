@@ -74,7 +74,6 @@
 		BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */; };
 		BCCE88F12CFADAA000B61188 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */; };
 		BCD774562CFEDF3500C91918 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774552CFEDF3200C91918 /* Account.swift */; };
-		BCD774582CFF921700C91918 /* FirestoreAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774572CFF920900C91918 /* FirestoreAccount.swift */; };
 		BCD7745D2D002E1300C91918 /* AddFriendsComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7745C2D002E1200C91918 /* AddFriendsComponentView.swift */; };
 		BCD7745F2D002E6500C91918 /* FriendsListsComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD7745E2D002E6500C91918 /* FriendsListsComponentView.swift */; };
 		BCD774612D002F0100C91918 /* FriendsRowComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD774602D002F0100C91918 /* FriendsRowComponentView.swift */; };
@@ -236,7 +235,6 @@
 		BCB3201A2CE78655005E9853 /* SettingsAttributesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAttributesView.swift; sourceTree = "<group>"; };
 		BCCE88F02CFADAA000B61188 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		BCD774552CFEDF3200C91918 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		BCD774572CFF920900C91918 /* FirestoreAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreAccount.swift; sourceTree = "<group>"; };
 		BCD7745C2D002E1200C91918 /* AddFriendsComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendsComponentView.swift; sourceTree = "<group>"; };
 		BCD7745E2D002E6500C91918 /* FriendsListsComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListsComponentView.swift; sourceTree = "<group>"; };
 		BCD774602D002F0100C91918 /* FriendsRowComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRowComponentView.swift; sourceTree = "<group>"; };
@@ -738,7 +736,6 @@
 		BCF1D2E62CF42E050010EB13 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				BCD774572CFF920900C91918 /* FirestoreAccount.swift */,
 				BCE638102CD9850D00411D5B /* User.swift */,
 			);
 			path = User;
@@ -1192,7 +1189,6 @@
 				BC3C5C9C2CFC5E2D00E07B5B /* PostDetailView.swift in Sources */,
 				6340F4CB2D027FDF00533819 /* CameraViewControllerWrapper.swift in Sources */,
 				BCD7746B2D0035A400C91918 /* AccountFormComponentView.swift in Sources */,
-				BCD774582CFF921700C91918 /* FirestoreAccount.swift in Sources */,
 				BCB3201B2CE78655005E9853 /* SettingsAttributesView.swift in Sources */,
 				BCB320142CE6DBA3005E9853 /* SettingsViewModel.swift in Sources */,
 			);

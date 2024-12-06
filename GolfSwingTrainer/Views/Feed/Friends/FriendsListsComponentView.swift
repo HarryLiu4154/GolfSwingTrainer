@@ -11,6 +11,7 @@ struct FriendsListsComponentView: View {
     let account: Account
     @Binding var feedbackMessage: String?
     @EnvironmentObject var userDataViewModel: UserDataViewModel
+
     var body: some View {
         List {
             // Friends Section
@@ -21,7 +22,7 @@ struct FriendsListsComponentView: View {
                     }
                 }
             }
-            
+
             // Incoming Friend Requests Section
             if !account.friendRequests.incoming.isEmpty {
                 Section(header: Text("Incoming Friend Requests")) {
@@ -32,14 +33,24 @@ struct FriendsListsComponentView: View {
                         )
                     }
                 }
+            } else {
+                Section(header: Text("Incoming Friend Requests")) {
+                    Text("No incoming friend requests.")
+                        .foregroundColor(.gray)
+                }
             }
-            
+
             // Outgoing Friend Requests Section
             if !account.friendRequests.outgoing.isEmpty {
                 Section(header: Text("Outgoing Friend Requests")) {
                     ForEach(account.friendRequests.outgoing, id: \.self) { outgoing in
                         OutgoingRequestRowComponentView(outgoing: outgoing)
                     }
+                }
+            } else {
+                Section(header: Text("Outgoing Friend Requests")) {
+                    Text("No outgoing friend requests.")
+                        .foregroundColor(.gray)
                 }
             }
         }

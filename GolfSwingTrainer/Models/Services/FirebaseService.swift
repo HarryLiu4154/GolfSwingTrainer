@@ -14,8 +14,8 @@ import FirebaseStorage
 import UIKit
 
 class FirebaseService {
-    private lazy var firestore = Firestore.firestore()
-    private lazy var storage = Storage.storage()
+    lazy var firestore = Firestore.firestore()
+    lazy var storage = Storage.storage()
 }
 
 //MARK: - User Services
@@ -193,7 +193,6 @@ extension FirebaseService {
 
         try await firestore.runTransaction { transaction, errorPointer in
             do {
-                // Get the current data for sender and recipient
                 let recipientSnapshot = try transaction.getDocument(recipientRef)
                 let senderSnapshot = try transaction.getDocument(senderRef)
 
@@ -206,8 +205,13 @@ extension FirebaseService {
                 var recipientFriends = recipientData["friends"] as? [String] ?? []
                 var senderFriends = senderData["friends"] as? [String] ?? []
 
-                recipientFriends.append(senderUserName)
-                senderFriends.append(recipientUserName)
+                if !recipientFriends.contains(senderUserName) {
+                    recipientFriends.append(senderUserName)
+                }
+
+                if !senderFriends.contains(recipientUserName) {
+                    senderFriends.append(recipientUserName)
+                }
 
                 transaction.updateData(["friends": recipientFriends], forDocument: recipientRef)
                 transaction.updateData(["friends": senderFriends], forDocument: senderRef)
@@ -231,6 +235,7 @@ extension FirebaseService {
             return nil
         }
     }
+
 
 
     /// Decline a friend request.
