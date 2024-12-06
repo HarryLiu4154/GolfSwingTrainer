@@ -9,7 +9,7 @@ import AVKit
 import SwiftUI
 
 struct PlayerView: View {
-    @State private var viewModel = PlayerViewModel()
+    @State var viewModel: PlayerViewModel
     
     var body: some View {
         VStack {
@@ -23,10 +23,11 @@ struct PlayerView: View {
                     Text(String(format: "Playback Rate: %.2f", viewModel.playbackRate))
                 }
             }
+            Text("Max Speed: \(viewModel.recordingSession.speedData.max() ?? 0) m/s")
         }
     }
 }
 
 #Preview {
-    PlayerView()
+    PlayerView(viewModel: PlayerViewModel(recordingSession: RecordingSession(userUID: nil, date: Date(), videoURL: URL.documentsDirectory.appending(path: "Session.mov"), timestampData: [0,1], speedData: [1,0])))
 }

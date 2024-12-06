@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProgressView: View {
     @EnvironmentObject var sessionViewModel: SessionViewModel
+    @EnvironmentObject var recordingSessionSelectorViewModel: RecordingSessionSelectorViewModel
     
     private let timeframes = [String(localized: "Day"), String(localized: "Week"), String(localized: "Month"), String(localized: "Year")]
     
@@ -23,7 +24,8 @@ struct ProgressView: View {
                 Text(String(localized: "Session"))
             }
             NavigationLink{
-                PlayerView()
+                RecordingSessionSelectorView()
+                    .environmentObject(recordingSessionSelectorViewModel)
             }label: {
                 Text(String(localized: "Player"))
             }

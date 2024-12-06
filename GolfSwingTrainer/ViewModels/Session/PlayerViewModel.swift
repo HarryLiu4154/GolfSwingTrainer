@@ -10,10 +10,15 @@ import SwiftUI
 
 @Observable
 class PlayerViewModel {
+    let recordingSession: RecordingSession
     var player: AVPlayer?
     var playbackRate: Float = 1.0
     
-    init() {
-        player = AVPlayer(url: .documentsDirectory.appending(path: "abode.MOV"))
+    init(recordingSession: RecordingSession) {
+        self.recordingSession = recordingSession
+        print(recordingSession.videoURL)
+        if let videoURL = recordingSession.videoURL {
+            self.player = AVPlayer(url: URL.documentsDirectory.appending(path: videoURL.lastPathComponent))
+        }
     }
 }
