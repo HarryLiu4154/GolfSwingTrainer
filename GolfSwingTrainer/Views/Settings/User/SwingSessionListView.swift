@@ -7,10 +7,8 @@
 import SwiftUI
 import Foundation
 
-struct SwingSessionListView: View {
-    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
-    
-    private func calculateAngle(from dataList: [[String: Double]]) -> Double? {
+struct SwingDataCalculationUtilities {
+    static func calculateAngle(from dataList: [[String: Double]]) -> Double? {
         let angles = dataList.compactMap { data -> Double? in
             guard let x = data["x"], let y = data["y"], let z = data["z"] else {
                 return nil
@@ -26,11 +24,11 @@ struct SwingSessionListView: View {
         return radTodeg(total / Double(angles.count))
     }
     
-    func radTodeg(_ number: Double) -> Double {
+    static func radTodeg(_ number: Double) -> Double {
         return number * 180 / .pi
     }
-                           
-    private func calculateVelocity(from accelerationData: [[String: Double]]) -> Double? {
+    
+    static func calculateVelocity(from accelerationData: [[String: Double]]) -> Double? {
         var velocityX = 0.0
         var velocityY = 0.0
         var velocityZ = 0.0
@@ -49,6 +47,10 @@ struct SwingSessionListView: View {
         let velocity = sqrt(velocityX * velocityX + velocityY * velocityY + velocityZ * velocityZ)
         return velocity
     }
+}
+
+struct SwingSessionListView: View {
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
 
     var body: some View {
         NavigationStack {
@@ -62,7 +64,7 @@ struct SwingSessionListView: View {
 //                                .font(.subheadline)
 //                                .foregroundColor(.gray)
                             
-                            Text("Rotation: \(String(describing: calculateAngle(from: session.rotationData))) Degrees,\nSpeed: \(String(describing: calculateVelocity(from: session.accelerationData))) km/h")
+                            Text("Rotation: \(String(describing: SwingDataCalculationUtilities.calculateAngle(from: session.rotationData))) Degrees,\nSpeed: \(String(describing: SwingDataCalculationUtilities.calculateVelocity(from: session.accelerationData))) km/h")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
