@@ -1,0 +1,6 @@
+framework module Pods_GolfSwingTrainer_GolfSwingTrainerUITests {
+  umbrella header "Pods-GolfSwingTrainer-GolfSwingTrainerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

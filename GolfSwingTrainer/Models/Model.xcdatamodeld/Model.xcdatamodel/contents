@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23507" systemVersion="23H222" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="AccountEntity" representedClassName="AccountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="ownerUid" optional="YES" attributeType="String"/>
+        <attribute name="playerLevel" optional="YES" attributeType="String"/>
+        <attribute name="playerStatus" optional="YES" attributeType="String"/>
+        <attribute name="profilePictureURL" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="friendRequests" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FriendRequestsEntity" inverseName="account" inverseEntity="FriendRequestsEntity"/>
+        <relationship name="friends" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FriendEntity" inverseName="account" inverseEntity="FriendEntity"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserEntity" inverseName="account" inverseEntity="UserEntity"/>
+    </entity>
+    <entity name="FriendEntity" representedClassName="FriendEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="playerLevel" optional="YES" attributeType="String"/>
+        <attribute name="profilePictureURL" optional="YES" attributeType="String"/>
+        <attribute name="userName" optional="YES" attributeType="String"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="friends" inverseEntity="AccountEntity"/>
+    </entity>
+    <entity name="FriendRequestsEntity" representedClassName="FriendRequestsEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="incoming" optional="YES" attributeType="Transformable"/>
+        <attribute name="outgoing" optional="YES" attributeType="Transformable"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="friendRequests" inverseEntity="AccountEntity"/>
     <entity name="RecordingSessionEntity" representedClassName="RecordingSessionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -7,6 +29,7 @@
         <attribute name="timestampData" optional="YES" attributeType="Binary"/>
         <attribute name="userUID" optional="YES" attributeType="String"/>
         <attribute name="videoURL" optional="YES" attributeType="URI"/>
+
     </entity>
     <entity name="SwingSessionEntity" representedClassName="SwingSessionEntity" syncable="YES" codeGenerationType="class">
         <attribute name="accelerationData" optional="YES" attributeType="Binary"/>
@@ -27,5 +50,6 @@
         <attribute name="preferredMeasurement" optional="YES" attributeType="String"/>
         <attribute name="uid" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountEntity" inverseName="user" inverseEntity="AccountEntity"/>
     </entity>
 </model>

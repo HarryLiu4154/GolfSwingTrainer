@@ -12,6 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var viewModel = SettingsViewModel()
     @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @EnvironmentObject var motionDataViewModel: MotionDataViewModel
     @Environment(\.managedObjectContext) private var context // Access Core Data context from the environment
 
     var body: some View {
@@ -24,7 +25,13 @@ struct SettingsView: View {
                     })
                     
                 }
-                Section(header: Text(String(localized: "Your Information")), footer: Text(String(localized: "Edit your information"))){
+                Section(header: Text(String(localized: "Your Account Information")), footer: Text(String(localized: "Edit & view your account information"))){
+                    NavigationLink("Your Account") {
+                        SettingsAccountView()
+                            .environmentObject(userDataViewModel)
+                    }
+                }
+                Section(header: Text(String(localized: "Your Personal Information")), footer: Text(String(localized: "Edit your information"))){
                     
                     NavigationLink("Your Attributes") {
                         SettingsAttributesView()
@@ -34,18 +41,18 @@ struct SettingsView: View {
                         SwingSessionListView()
                             .environmentObject(swingSessionViewModel)
                     }
+                
                     
                 }
                 Section(header: Text(String(localized: "Developer Settings")), footer: Text(String(localized: "For Dev Eyes Only"))){
                     NavigationLink("Test Watch Sensor Ingestion"){
                         WatchMotionView().environmentObject(swingSessionViewModel)
+                            .environmentObject(motionDataViewModel)
                     }
-                    Button{
-                        authViewModel.signOut()
-                    }label: {
-                        SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Emergency Sign out", tintColor: Color.yellow)
-                        
+                    NavigationLink("ML Tests") {
+                        CameraViewControllerWrapper()
                     }
+                    
                     
                 }
                 

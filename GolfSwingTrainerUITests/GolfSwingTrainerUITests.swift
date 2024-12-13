@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import GolfSwingTrainer
 
 final class GolfSwingTrainerUITests: XCTestCase {
 
@@ -37,5 +38,54 @@ final class GolfSwingTrainerUITests: XCTestCase {
                 XCUIApplication().launch()
             }
         }
+    }
+}
+
+final class SwingDataCalculationUtilities: XCTestCase {
+    func testCalculateAngleValidData() {
+        let data: [[String: Double]] = [
+            ["x": 1.0, "y": 2.0, "z": 2.0],
+            ["x": 0.0, "y": 3.0, "z": 4.0]
+        ]
+        let angle = SwingMathUtilities.calculateAngle(from: data)
+        XCTAssertNotNil(angle)
+        XCTAssertEqual(round(angle!), 53)
+    }
+    
+    func testCalculateAngleEmptyData() {
+        let data: [[String: Double]] = []
+        let angle = SwingMathUtilities.calculateAngle(from: data)
+        XCTAssertNil(angle)
+    }
+    
+    func testCalculateAngleInvalidData() {
+        let data: [[String: Double]] = [
+            ["x": 1.0], // Missing "y" and "z"
+            ["y": 2.0, "z": 3.0] // Missing "x"
+        ]
+        let angle = SwingMathUtilities.calculateAngle(from: data)
+        XCTAssertNil(angle)
+    }
+    
+    func testCalculateVelocityValidData() {
+        let accelerationData: [[String: Double]] = [
+            ["x": 1.0, "y": 0.0, "z": 0.0],
+            ["x": 0.5, "y": 0.5, "z": 0.0]
+        ]
+        let velocity = SwingMathUtilities.calculateVelocity(from: accelerationData)
+        XCTAssertNotNil(velocity)
+        XCTAssertEqual(round(velocity!), 0) // Velocity ~0 (approximation for small data)
+    }
+    
+    func testCalculateVelocityEmptyData() {
+        let accelerationData: [[String: Double]] = []
+        let velocity = SwingMathUtilities.calculateVelocity(from: accelerationData)
+        XCTAssertNil(velocity)
+    }
+    
+    func testRadToDeg() {
+        let radians: Double = .pi // 180 degrees
+        let degrees = SwingMathUtilities.radTodeg(radians)
+        XCTAssertEqual(degrees, 180.0)
     }
 }

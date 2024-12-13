@@ -10,12 +10,13 @@ import Foundation
 
 struct CreatePostView: View {
     @EnvironmentObject var feedViewModel: FeedViewModel
-        @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
-        @Environment(\.dismiss) var dismiss
-
-        @State private var postText: String = ""
-        @State private var selectedSession: SwingSession? = nil
-
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
+    @EnvironmentObject var userDataViewModel: UserDataViewModel // Access user's profile info
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var postText: String = ""
+    @State private var selectedSession: SwingSession? = nil
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -37,10 +38,18 @@ struct CreatePostView: View {
             .navigationTitle("Create Post")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Post") {
+                    Button(action: {
+                        guard let user = userDataViewModel.user else { return }
                         let duration = selectedSession.map { "\($0.rotationData.count) sec" }
-                        feedViewModel.addPost(text: postText, duration: duration)
-                        dismiss() // Return to FeedView
+                        feedViewModel.addPost(
+                            text: postText,
+                            duration: duration,
+                            userName: user.firestoreAccount?.userName ?? "Unknown User",
+                            profilePictureURL: user.firestoreAccount?.profilePictureURL
+                        )
+                        dismiss()
+                    }) {
+                        Text("Post")
                     }
                     .disabled(postText.isEmpty)
                 }
@@ -48,6 +57,7 @@ struct CreatePostView: View {
         }
     }
 }
+
 
 #Preview {
     CreatePostView().environmentObject(FeedViewModel())

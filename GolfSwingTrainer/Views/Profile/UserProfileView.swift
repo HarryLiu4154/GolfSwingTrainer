@@ -9,68 +9,106 @@ import SwiftUI
 
 struct UserProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    @State private var showDeleteConfirmation = false //Controls the delete account pop up confirmation
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @State private var showDeleteConfirmation = false // Controls the delete account pop-up confirmation
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             if let user = viewModel.currentUser {
-                List{
-                    Section{
-                        HStack{
-                            Text(user.initials)
-                                .font(.title)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(.white)
-                                .frame(width: 72, height: 72)
-                                .background(Color(.systemGray3))
-                                .clipShape(Circle())
-                            VStack(alignment: .leading, spacing: 4){
+                List {
+                    Section {
+                        HStack {
+                            // Profile Image or Initials
+                            ZStack {
+                                if let profilePictureURL = user.firestoreAccount?.profilePictureURL, !profilePictureURL.isEmpty {
+                                    AsyncImage(url: URL(string: profilePictureURL)) { image in
+                                        image.resizable()
+                                            .scaledToFill()
+                                            .frame(width: 72, height: 72)
+                                            .clipShape(Circle())
+                                    } placeholder: {
+                                        Circle()
+                                            .fill(Color(.systemGray3))
+                                            .frame(width: 72, height: 72)
+                                    }
+                                } else {
+                                    Circle()
+                                        .fill(Color(.systemGray3))
+                                        .frame(width: 72, height: 72)
+                                        .overlay(
+                                            Text(user.initials)
+                                                .font(.title)
+                                                .fontWeight(.semibold)
+                                                .foregroundColor(.white)
+                                        )
+                                }
+                            }
+
+                            VStack(alignment: .leading, spacing: 4) {
                                 Text(user.fullName)
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
-                                    .padding(.top, 4)
+
+                                Text(user.firestoreAccount?.userName ?? "No username")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+
                                 Text(user.email)
                                     .font(.footnote)
-                                    .foregroundStyle(.gray)
-                                
+                                    .foregroundColor(.gray)
                             }
-                            
                         }
                     }
-                    Section("General"){
-                        HStack{
-                            SettingRowComponentView(imageName: "gear", title: String(localized: "Version"), tintColor: Color(.systemGray))
-                            
+
+                    Section("General") {
+                        HStack {
+                            SettingRowComponentView(imageName: "gear", title: "Version", tintColor: Color(.systemGray))
                             Spacer()
-                            
-                            Text("v1.0.0" + " - " + String(localized: "Alpha")).foregroundStyle(.gray)
+                            Text("v1.0.0 - Alpha")
+                                .foregroundStyle(.gray)
                         }
                     }
-                    Section("Account"){
-                        Button{
+
+                    Section("Account") {
+                        Button {
                             viewModel.signOut()
-                        }label: {
+                            dismiss()
+                        } label: {
                             SettingRowComponentView(imageName: "arrow.left.circle.fill", title: "Sign out", tintColor: Color.yellow)
-                            
                         }
-                        Button{
-                            print("Button: Delete user account pressed")
+
+                        Button {
                             showDeleteConfirmation = true
-                        }label: {
+                        } label: {
                             SettingRowComponentView(imageName: "trash", title: "DELETE ACCOUNT", tintColor: Color.red)
-                        }.alert(isPresented: $showDeleteConfirmation) {
+                        }
+                        .alert(isPresented: $showDeleteConfirmation) {
                             Alert(
                                 title: Text("Are you sure?"),
                                 message: Text("This action will permanently delete your account."),
                                 primaryButton: .destructive(Text("Delete")) {
                                     Task {
                                         await viewModel.deleteAccount()
+                                        dismiss()
                                     }
                                 },
                                 secondaryButton: .cancel()
                             )
                         }
                     }
-                }.navigationTitle("Your Profile")
+                }
+                .refreshable {
+                    Task {
+                        await userDataViewModel.loadUser()
+                    }
+                }
+                .onAppear {
+                    Task {
+                        await userDataViewModel.loadUser()
+                    }
+                }
+                .navigationTitle("Your Profile")
             }
         }
     }

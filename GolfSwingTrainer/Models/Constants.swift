@@ -8,5 +8,7 @@ import Foundation
 import SwiftUI
 
 
-// MARK: - TBD
+// MARK: - User Personalization
 
+let levels = ["Beginner", "Intermediate", "Amateur", "Expert"]
+let statuses = ["Just for fun", "Trainer", "Competitor/Professional"]

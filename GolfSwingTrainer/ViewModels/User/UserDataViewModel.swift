@@ -7,28 +7,34 @@
 
 import Foundation
 import FirebaseAuth
-
-///Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for syncronized funionality.
+import UIKit
+import FirebaseFirestore
+/// Unified ViewModel that handles User-data related operations using CoreDataService and FirebaseService for synchronized functionality.
 @MainActor
 class UserDataViewModel: ObservableObject {
+    // MARK: - Properties
     @Published var user: User? // Current user model
-    
-    //Services
+
+    // Services
     let coreDataService: CoreDataService
     let firebaseService: FirebaseService
     let auth: Auth
-    
+
+    // MARK: - Initializer
     init(coreDataService: CoreDataService, firebaseService: FirebaseService, auth: Auth = Auth.auth()) {
         self.coreDataService = coreDataService
         self.firebaseService = firebaseService
         self.auth = auth
-        
+
         Task {
             await loadUser()
         }
     }
-    
-    // MARK: - Load User Data
+}
+
+// MARK: - User Management
+extension UserDataViewModel {
+    /// Load the user from Core Data or Firebase.
     func loadUser() async {
         guard let uid = auth.currentUser?.uid else {
             print("UserDataViewModel: No authenticated user.")
@@ -37,11 +43,13 @@ class UserDataViewModel: ObservableObject {
 
         if let coreDataUser = coreDataService.fetchUser(by: uid) {
             self.user = coreDataUser
+            listenForAccountUpdates() // Start listening after loading from Core Data
         } else {
             do {
                 if let firebaseUser = try await firebaseService.fetchUser(uid: uid) {
                     self.user = firebaseUser
                     coreDataService.saveUser(firebaseUser) // Sync to Core Data
+                    listenForAccountUpdates() // Start listening after loading from Firebase
                 } else {
                     print("UserDataViewModel: No user found in Firebase.")
                 }
@@ -50,27 +58,47 @@ class UserDataViewModel: ObservableObject {
             }
         }
     }
-    
-    // MARK: - Delete User
-    func deleteUser() async {
-        guard let user = self.user else {
-            print("UserDataViewModel: No user available to delete.")
-            return
-        }
-        
-        // Delete from Core Data
-        coreDataService.deleteUser(user)
-        
-        // Delete from Firebase
+
+
+    /// Update the entire user object in Firebase and Core Data.
+    func updateUser(_ updatedUser: User) async {
+        self.user = updatedUser
+        coreDataService.saveUser(updatedUser)
         do {
-            try await firebaseService.deleteUser(uid: user.id.uuidString)
-            self.user = nil // Clear local user data
+            try await firebaseService.saveUser(updatedUser)
         } catch {
-            print("UserDataViewModel: Failed to delete user from Firebase: \(error)")
+            print("UserDataViewModel: Failed to update user in Firebase: \(error.localizedDescription)")
         }
     }
     
-    // MARK: - Save Updated User Attributes
+    ///Delete whole user
+    func deleteUser() async {
+        guard let currentUser = user else {
+            print("UserDataViewModel: No user available to delete.")
+            return
+        }
+
+        // Delete all posts by the user (if needed)
+        let feedViewModel = FeedViewModel() // Assuming FeedViewModel exists
+        await feedViewModel.deleteAllPostsByUser(userUID: currentUser.uid)
+
+        // Delete user from Core Data
+        coreDataService.deleteUser(currentUser)
+
+        // Delete user from Firebase
+        do {
+            try await firebaseService.deleteUser(uid: currentUser.uid)
+            self.user = nil // Clear local user state
+            print("UserDataViewModel: User deleted successfully.")
+        } catch {
+            print("UserDataViewModel: Failed to delete user: \(error.localizedDescription)")
+        }
+    }
+}
+
+// MARK: - User Attributes Management
+extension UserDataViewModel {
+    /// Update user-specific attributes such as height, weight, etc.
     func updateUserAttributes(
         preferredMeasurement: String,
         height: Int,
@@ -84,7 +112,6 @@ class UserDataViewModel: ObservableObject {
             return
         }
 
-        // Update the user object
         var updatedUser = currentUser
         updatedUser.preferredMeasurement = preferredMeasurement
         updatedUser.height = height
@@ -93,26 +120,10 @@ class UserDataViewModel: ObservableObject {
         updatedUser.gender = gender
         updatedUser.dominantHand = dominantHand
 
-        // Save changes to Firebase and Core Data
         await updateUser(updatedUser)
     }
     
-    // MARK: - Update Entire User
-    func updateUser(_ updatedUser: User) async {
-        self.user = updatedUser // Update local state
-        
-        // Save to Core Data
-        coreDataService.saveUser(updatedUser)
-        
-        // Save to Firebase
-        do {
-            try await firebaseService.saveUser(updatedUser)
-        } catch {
-            print("UserDataViewModel: Failed to update user in Firebase: \(error)")
-        }
-    }
-    
-    // MARK: - Helper Method to Populate Fields
+    ///Helper Method to Retrieve User Attributes
     func getUserAttributes() -> (
         preferredMeasurement: String,
         height: Int,
@@ -130,4 +141,182 @@ class UserDataViewModel: ObservableObject {
             user?.dominantHand ?? "Right"
         )
     }
+}
+
+// MARK: - Account Management
+extension UserDataViewModel {
+    /// Update account data such as username, profile picture, player level, and player status.
+    func updateAccount(
+        userName: String,
+        profileImage: UIImage? = nil,
+        playerLevel: String,
+        playerStatus: String
+    ) async {
+        guard var currentUser = user else { return }
+
+        var account = currentUser.firestoreAccount ?? Account(
+            id: UUID(),
+            ownerUid: currentUser.uid,
+            userName: userName,
+            profilePictureURL: nil,
+            playerLevel: playerLevel,
+            playerStatus: playerStatus,
+            friends: [],
+            friendRequests: FriendRequests(incoming: [], outgoing: [])
+        )
+
+        account.playerLevel = playerLevel
+        account.playerStatus = playerStatus
+
+        if let profileImage = profileImage {
+            do {
+                account.profilePictureURL = try await firebaseService.uploadProfileImage(image: profileImage)
+                listenForAccountUpdates()// Start listening for account updates
+            } catch {
+                print("Failed to upload profile image: \(error.localizedDescription)")
+                return
+            }
+        }
+
+        do {
+            try await firebaseService.saveAccount(account, forUser: currentUser.uid)
+            currentUser.firestoreAccount = account
+            user = currentUser
+        } catch {
+            print("Failed to update account: \(error.localizedDescription)")
+        }
+    }
+    
+
+    func fetchOrCreateAccount(for uid: String) async {
+        guard var currentUser = user else { return }
+
+        do {
+            if let fetchedAccount = try await firebaseService.fetchAccount(for: uid) {
+                currentUser.firestoreAccount = fetchedAccount
+            } else {
+                let baseUserName = currentUser.fullName.replacingOccurrences(of: " ", with: "").lowercased()
+                var newUserName = baseUserName
+                var isUnique = false
+                var counter = 1
+                
+                while !isUnique {
+                    if try await firebaseService.isUserNameAvailable(newUserName) {
+                        isUnique = true
+                    } else {
+                        newUserName = "\(baseUserName)\(counter)"
+                        counter += 1
+                    }
+                }
+
+                let newAccount = Account(
+                    id: UUID(),
+                    ownerUid: uid,
+                    userName: newUserName,
+                    profilePictureURL: nil,
+                    playerLevel: "Beginner",
+                    playerStatus: "Just for fun",
+                    friends: [],
+                    friendRequests: FriendRequests(incoming: [], outgoing: [])
+                )
+
+                try await firebaseService.saveAccount(newAccount, forUser: uid)
+                currentUser.firestoreAccount = newAccount
+            }
+            listenForAccountUpdates()// Start listening for account updates
+            user = currentUser
+        } catch {
+            print("Failed to fetch or create account: \(error.localizedDescription)")
+        }
+    }
+
+    /// Deletes the user's account without deleting the user itself.
+    func deleteAccount() async {
+        guard var currentUser = user, let account = currentUser.firestoreAccount else {
+            print("No account to delete.")
+            return
+        }
+        
+        do {
+            try await firebaseService.deleteAccount(userName: account.userName, forUser: currentUser.uid)
+            currentUser.firestoreAccount = nil
+            user = currentUser
+            print("Account deleted successfully.")
+        } catch {
+            print("Failed to delete account: \(error.localizedDescription)")
+        }
+    }
+}
+
+// MARK: - Friends Management
+extension UserDataViewModel {
+    /// Send a friend request to another user.
+    func sendFriendRequest(to recipientUserName: String) async {
+        guard let senderUserName = user?.firestoreAccount?.userName else { return }
+        do {
+            try await firebaseService.sendFriendRequest(from: senderUserName, to: recipientUserName)
+            print("Friend request sent.")
+        } catch {
+            print("Failed to send friend request: \(error.localizedDescription)")
+        }
+    }
+    
+    /// Accept a friend request from another user.
+    func acceptFriendRequest(from senderUserName: String) async {
+        guard let recipientUserName = user?.firestoreAccount?.userName else { return }
+        do {
+            try await firebaseService.acceptFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
+            print("Friend request accepted.")
+        } catch {
+            print("Failed to accept friend request: \(error.localizedDescription)")
+        }
+    }
+    
+    /// Decline a friend request from another user.
+    func declineFriendRequest(from senderUserName: String) async {
+        guard let recipientUserName = user?.firestoreAccount?.userName else { return }
+        do {
+            try await firebaseService.declineFriendRequest(recipientUserName: recipientUserName, senderUserName: senderUserName)
+            print("Friend request declined.")
+        } catch {
+            print("Failed to decline friend request: \(error.localizedDescription)")
+        }
+    }
+    
+    ///Handles updates regarding incoming accounts
+    func listenForAccountUpdates() {
+        guard let userName = user?.firestoreAccount?.userName else {
+            print("No username found for real-time updates.")
+            return
+        }
+        
+        firebaseService.firestore
+            .collection("accounts")
+            .document(userName)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error listening for account updates: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let snapshotData = snapshot?.data() else {
+                    print("No data found in snapshot.")
+                    return
+                }
+                
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: snapshotData)
+                    let updatedAccount = try JSONDecoder().decode(Account.self, from: jsonData)
+                    print("Updated Friends: \(updatedAccount.friends)")
+                    DispatchQueue.main.async {
+                        self.user?.firestoreAccount = updatedAccount
+                    }
+                } catch {
+                    print("Error decoding account data: \(error.localizedDescription)")
+                }
+            }
+    }
+    
 }

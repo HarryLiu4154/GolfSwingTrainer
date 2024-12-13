@@ -1,6 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ km/h (%@)" : {
     "" : {
 
     },
@@ -15,34 +16,66 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$lld Rotation Samples, %2$lld Acceleration Samples"
+            "value" : "%1$@ km/h (%2$@)"
           }
         }
       }
+    },
+    "%@%%" : {
+
+    },
+    "%@°C" : {
+
+    },
+    "%lld" : {
+
+    },
+    "%lld cm" : {
+
+    },
+    "%lld kg" : {
+
+    },
+    "☀️ UV Index:" : {
+
+    },
+    "🌡️ Temperature:" : {
+
+    },
+    "🌬️ Wind:" : {
+
+    },
+    "💧 Humidity:" : {
+
     },
     "Acceleration Data" : {
 
     },
-    "Acceleration: x: %.2f, y: %.2f, z: %.2f" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Acceleration: x: %1$.2f, y: %2$.2f, z: %3$.2f"
-          }
-        }
-      }
+    "Accept" : {
+
     },
     "Account" : {
+
+    },
+    "Account Information" : {
+
+    },
+    "Account Settings" : {
+
+    },
+    "Add" : {
+
+    },
+    "Add a Friend" : {
 
     },
     "Adjust your screen" : {
 
     },
-    "Alpha" : {
+    "Already have an account?" : {
 
     },
-    "Already have an account?" : {
+    "Angle: %lf degrees" : {
 
     },
     "Are you sure?" : {
@@ -57,13 +90,25 @@
     "Birthday" : {
 
     },
-    "Condition: %@" : {
+    "Cancel" : {
+
+    },
+    "Close" : {
 
     },
     "Continue" : {
 
     },
+    "Create Account" : {
+
+    },
+    "Create an Account" : {
+
+    },
     "Create Post" : {
+
+    },
+    "Creating an account alias allows you to share your achievements and progress with your friends, colleagues, and trainer! It helps you stay competitive, showcase your personal records, and give your trainer more insights into your game. Creating an account also helps us tailor the app to your needs as a player." : {
 
     },
     "Dark Mode" : {
@@ -75,7 +120,16 @@
     "Day" : {
 
     },
+    "Decline" : {
+
+    },
     "Delete" : {
+
+    },
+    "Delete Account" : {
+
+    },
+    "Delete Post" : {
 
     },
     "Developer Settings" : {
@@ -96,13 +150,25 @@
     "Don't have an account?" : {
 
     },
+    "Edit & view your account information" : {
+
+    },
+    "Edit Account" : {
+
+    },
     "Edit your information" : {
+
+    },
+    "Edit Your Information" : {
 
     },
     "Email Address" : {
 
     },
     "Enter %@" : {
+
+    },
+    "Enter username" : {
 
     },
     "Enter your password" : {
@@ -114,13 +180,22 @@
     "Enter your post text" : {
 
     },
+    "Error: %@" : {
+
+    },
     "Feed" : {
 
     },
-    "Feels Like: %@°C" : {
+    "Fetching Weather..." : {
 
     },
     "For Dev Eyes Only" : {
+
+    },
+    "Friend Requests" : {
+
+    },
+    "Friends" : {
 
     },
     "Gender" : {
@@ -138,7 +213,7 @@
     "Home" : {
 
     },
-    "Humidity: %@%%" : {
+    "Incoming Friend Requests" : {
 
     },
     "Max Speed: %lf m/s" : {
@@ -147,13 +222,22 @@
     "Measurements" : {
 
     },
+    "ML Tests" : {
+
+    },
     "Month" : {
 
     },
-    "Motion Data" : {
+    "No acceleration data available." : {
 
     },
-    "No acceleration data available." : {
+    "No account found. Create one to unlock more features." : {
+
+    },
+    "No incoming friend requests." : {
+
+    },
+    "No outgoing friend requests." : {
 
     },
     "No posts available. Create the first one!" : {
@@ -165,11 +249,23 @@
     "None" : {
 
     },
+    "Outgoing Friend Requests" : {
+
+    },
     "Password" : {
+
+    },
+    "Pending" : {
 
     },
     "Physical Attributes" : {
 
+    },
+    "Player Level" : {
+
+    },
+    "Player Status" : {
+    
     },
     "Player" : {
 
@@ -180,11 +276,20 @@
     "Post Content" : {
 
     },
+    "Post Details" : {
+
+    },
     "Preferred Measurement" : {
 
     },
-    "Profile" : {
+    "Profile Image" : {
 
+    },
+    "Profile Picture" : {
+
+    },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
+    
     },
     "Progress" : {
 
@@ -195,15 +300,18 @@
     "Register" : {
 
     },
+    "Retry" : {
+
+    },
     "Rotation Data" : {
 
     },
-    "Rotation Rate: x: %.2f, y: %.2f, z: %.2f" : {
+    "Rotation: %@ Degrees,\nSpeed: %@ km/h" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Rotation Rate: x: %1$.2f, y: %2$.2f, z: %3$.2f"
+            "value" : "Rotation: %1$@ Degrees,\nSpeed: %2$@ km/h"
           }
         }
       }
@@ -212,6 +320,9 @@
 
     },
     "Save" : {
+
+    },
+    "Save Changes" : {
 
     },
     "Saving..." : {
@@ -229,10 +340,16 @@
     "Settings" : {
 
     },
+    "Side Menu" : {
+
+    },
     "Sign in" : {
 
     },
     "Sign up" : {
+
+    },
+    "Speed: %lf km/s" : {
 
     },
     "Stance" : {
@@ -259,9 +376,6 @@
     "Sync" : {
 
     },
-    "Temperature: %@°C" : {
-
-    },
     "Test Watch Sensor Ingestion" : {
 
     },
@@ -271,10 +385,19 @@
     "Timestamp: %@" : {
 
     },
-    "UV Index: %lld" : {
+    "Tracked Swings" : {
 
     },
-    "Version" : {
+    "Tracker" : {
+
+    },
+    "Username" : {
+
+    },
+    "Username (required)" : {
+
+    },
+    "v1.0.0 - Alpha" : {
 
     },
     "Week" : {
@@ -286,22 +409,37 @@
     "Weight: %lld kg" : {
 
     },
+    "Welcome, %@" : {
+
+    },
+    "Why create an account?" : {
+
+    },
     "Why do we need this?" : {
 
     },
-    "Wind Direction: %@" : {
-
-    },
-    "Wind: %@ km/h" : {
-
-    },
     "Year" : {
+
+    },
+    "You need an account to access the feed." : {
+
+    },
+    "You need an account to manage friends." : {
+
+    },
+    "Your Account" : {
+
+    },
+    "Your Account Information" : {
 
     },
     "Your Attributes" : {
 
     },
     "Your Information" : {
+
+    },
+    "Your Personal Information" : {
 
     },
     "Your Physical Attributes" : {

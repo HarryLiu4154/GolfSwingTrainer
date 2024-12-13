@@ -7,38 +7,77 @@
 
 import SwiftUI
 /*using this temporary home screen until team makes the refined one*/
-struct HomeView: View {
-    @EnvironmentObject var userDataViewModel: UserDataViewModel
+
+struct HomeScreen: View {
+    @State var showMenu = false
     var body: some View {
-        NavigationStack{
-            
-            VStack{
-                //WeatherComponentView()
-                TabView{
-                    ProgressView().tabItem{
-                        Label(String(localized: "Progress"), systemImage: "chart.bar.xaxis.ascending")
-                    }
-                    UserProfileView().tabItem{
-                        Label(String(localized: "Profile"), systemImage: "person.fill")
-                    }
-                    SettingsView().tabItem{
-                        Label(String(localized: "Settings"), systemImage: "gear")
-                    }
-                    FeedView().tabItem{
-                        Label("Feed", systemImage: "paperplane.circle")
+        let drag = DragGesture() //drag to close
+            .onEnded{
+                if $0.translation.width < -100{
+                    withAnimation{
+                        self.showMenu = false
                     }
                 }
             }
+        return NavigationStack{
+            GeometryReader{ geometry in
+                HomeView(showMenu: self.$showMenu).frame(width: geometry.size.width, height: geometry.size.height)
+                    .offset(x: self.showMenu ?
+                            geometry.size.width/2 : 0)
+                    .disabled(self.showMenu ? true : false)
+                if self.showMenu{
+                    MenuView()
+                        .frame(width: geometry.size.width/2)
+                        .transition(.move(edge: .leading))
+                }
+            }
+            .gesture(drag)
+        }.navigationTitle("Side Menu")
+            .toolbar{
+                ToolbarItem(placement: .topBarLeading, content: {
+                    Button(action: {
+                        withAnimation {
+                            self.showMenu.toggle()
+                        }
+                    }, label: {
+                        Image(systemName: "line.horizontal.3").imageScale(.large)
+                    })
+                }
+                            
+                )
+            }
+    }
+}
+struct HomeView: View {
+    @EnvironmentObject var userDataViewModel: UserDataViewModel
+    @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
+    
+    @Binding var showMenu: Bool
+    
+    var body: some View {
+        NavigationStack{
+            ScrollView{
+                WeatherComponentView()
+            }
+
+            ScrollView {
+                SwingSessionListView()
+            }
+
         }.navigationTitle("Home")
+            .refreshable {
+                 
+            }
     }
 }
 
 #Preview {
+    let showMenu = false
     let coreDataService = CoreDataService()
     let firebaseService = FirebaseService()
     let userDataViewModel = UserDataViewModel(
         coreDataService: coreDataService,
         firebaseService: firebaseService
     )
-    HomeView().environmentObject(userDataViewModel)
+    HomeView(showMenu: .constant(showMenu)).environmentObject(userDataViewModel)
 }
