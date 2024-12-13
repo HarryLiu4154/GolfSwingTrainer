@@ -2,6 +2,16 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%@ km/h (%@)" : {
+    "" : {
+
+    },
+    "%lld cm" : {
+
+    },
+    "%lld kg" : {
+
+    },
+    "%lld Rotation Samples, %lld Acceleration Samples" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -206,6 +216,9 @@
     "Incoming Friend Requests" : {
 
     },
+    "Max Speed: %lf m/s" : {
+
+    },
     "Measurements" : {
 
     },
@@ -252,6 +265,9 @@
 
     },
     "Player Status" : {
+    
+    },
+    "Player" : {
 
     },
     "Post" : {
@@ -270,6 +286,12 @@
 
     },
     "Profile Picture" : {
+
+    },
+    "Providing accurate information helps us customize your experience and optimize training recommendations." : {
+    
+    },
+    "Progress" : {
 
     },
     "Providing accurate information helps us customize your experience and optimize training recommendations." : {

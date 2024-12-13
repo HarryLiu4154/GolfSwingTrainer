@@ -23,6 +23,8 @@ struct GolfSwingTrainerApp: App {
     @StateObject var swingSessionViewModel: SwingSessionViewModel
     @StateObject var feedViewModel: FeedViewModel
     @StateObject var motionDataViewModel: MotionDataViewModel
+    @StateObject var sessionViewModel: SessionViewModel
+    @StateObject var recordingSessionSelectorViewModel: RecordingSessionSelectorViewModel
     
     init() {
         //Firebase configs
@@ -55,6 +57,13 @@ struct GolfSwingTrainerApp: App {
         _feedViewModel = StateObject(wrappedValue: FeedViewModel())
         
         _motionDataViewModel = StateObject(wrappedValue: MotionDataViewModel())
+        _sessionViewModel = StateObject(wrappedValue: SessionViewModel(
+            coreDataService: userDataViewModelInstance.coreDataService
+        ))
+        
+        _recordingSessionSelectorViewModel = StateObject(wrappedValue: RecordingSessionSelectorViewModel(
+            coreDataService: userDataViewModelInstance.coreDataService
+        ))
     }
 
     var body: some Scene {
@@ -67,6 +76,8 @@ struct GolfSwingTrainerApp: App {
                     .environmentObject(swingSessionViewModel)
                     .environmentObject(feedViewModel)
                     .environmentObject(motionDataViewModel)
+                    .environmentObject(sessionViewModel)
+                    .environmentObject(recordingSessionSelectorViewModel)
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
                     
                 
