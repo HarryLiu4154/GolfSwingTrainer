@@ -10,6 +10,38 @@ import WatchConnectivity
 
 ///Manages Motion Data settings example
 class MotionDataViewModel: NSObject, ObservableObject, WCSessionDelegate {
+    
+    func groupMotionDataByTimestamp(_ motionData: [MotionData], threshold: TimeInterval = 0.02) -> [[MotionData]] {
+        guard !motionData.isEmpty else { return [] }
+        
+        let sortedData = motionData.sorted { $0.timestamp < $1.timestamp }
+        
+        var groupedData: [[MotionData]] = []
+        var currentGroup: [MotionData] = [sortedData.first!]
+        
+        for i in 1..<sortedData.count {
+            let currentData = sortedData[i]
+            let previousData = sortedData[i - 1]
+            
+            // Check if the difference in timestamps is within the threshold
+            if currentData.timestamp - previousData.timestamp <= threshold {
+                currentGroup.append(currentData)
+            } else {
+                // Start a new group
+                groupedData.append(currentGroup)
+                currentGroup = [currentData]
+            }
+        }
+        
+        // Add the last group
+        if !currentGroup.isEmpty {
+            groupedData.append(currentGroup)
+        }
+        
+        return groupedData
+    }
+
+    
     func sessionDidBecomeInactive(_ session: WCSession) {
         //Auto generated
     }
@@ -18,6 +50,7 @@ class MotionDataViewModel: NSObject, ObservableObject, WCSessionDelegate {
         //Auto generated
     }
     
+    @Published var groupedMotionData: [[MotionData]] = []
     @Published var motionData: [MotionData] = []
 
     override init() {
@@ -38,6 +71,7 @@ class MotionDataViewModel: NSObject, ObservableObject, WCSessionDelegate {
             let data = try JSONDecoder().decode([MotionData].self, from: messageData)
             DispatchQueue.main.async {
                 self.motionData = data
+                self.groupedMotionData = self.groupMotionDataByTimestamp(data)
                 print("Motion data received: \(data)")
             }
         } catch {

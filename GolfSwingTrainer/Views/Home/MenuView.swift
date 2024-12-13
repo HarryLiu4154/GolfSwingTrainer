@@ -13,6 +13,8 @@ struct MenuView: View {
     @EnvironmentObject var userDataViewModel: UserDataViewModel
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var motionDataViewModel: MotionDataViewModel
+    
     var body: some View {
         VStack(alignment: .leading){
             // Menu Header
@@ -55,7 +57,8 @@ struct MenuView: View {
             }.padding(.top, 30)
             HStack{
                 Image(systemName: "gear").foregroundStyle(.gray).imageScale(.large)
-                NavigationLink(destination: SettingsView().environmentObject(swingSessionViewModel).environmentObject(userDataViewModel)){
+                NavigationLink(destination: SettingsView().environmentObject(swingSessionViewModel)
+                    .environmentObject(motionDataViewModel).environmentObject(userDataViewModel)){
                     Text("Settings").foregroundStyle(.gray).font(.headline)
                 }
             }

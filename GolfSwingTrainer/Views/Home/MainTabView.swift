@@ -13,6 +13,7 @@ struct MainTabView: View {
     @EnvironmentObject var swingSessionViewModel: SwingSessionViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var feedViewModel: FeedViewModel
+    @EnvironmentObject var motionDataViewModel: MotionDataViewModel
 
     @State private var selectedTab: Tab = .home
     @State private var showMenu: Bool = false // Manage MenuView visibility
@@ -40,6 +41,13 @@ struct MainTabView: View {
                                 Label("Home", systemImage: selectedTab == .home ? "house.fill" : "house")
                             }
                             .tag(Tab.home)
+                        
+                        WatchMotionView()
+                            .environmentObject(motionDataViewModel)
+                            .tabItem {
+                                Label("Tracker", systemImage: selectedTab == .tracker ? "figure.golf.circle.fill" : "figure.golf.circle")
+                            }
+                            .tag(Tab.tracker)
 
                         FeedView()
                             .environmentObject(userDataViewModel)
@@ -147,6 +155,7 @@ enum Tab: Hashable {
     case feed
     case progress
     case feed_friend
+    case tracker
     //case profile
 }
 #Preview {
